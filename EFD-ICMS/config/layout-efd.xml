@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Descricao -->
+<!-- Mapa de campos do EFD-FISCAL conforme disponibilizado pela RFB -->
+<layout version="1">
+    <registro codigo="C170">
+        <campo posicao="1">
+            <coluna>codigo</coluna>
+            <tipo>C</tipo>
+        </campo>
+    </registro>
+</layout>
