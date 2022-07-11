@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Descricao -->
 <!-- Mapa de campos do EFD-FISCAL conforme disponibilizado pela RFB -->
-<layout version="1">
+<layout version="16">
     <registro codigo="C170">
         <campo posicao="1">
             <coluna>codigo</coluna>
