@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -42,6 +43,7 @@ public class Reg1110 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -53,7 +55,7 @@ public class Reg1110 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "COD_PART")
@@ -63,14 +65,14 @@ public class Reg1110 implements Serializable {
     @Column(name = "SER")
     private String ser;
     @Column(name = "NUM_DOC")
-    private String numDoc;
+    private int numDoc;
     @Column(name = "DT_DOC")
     @Temporal(TemporalType.DATE)
     private Date dtDoc;
     @Column(name = "CHV_NFE")
     private String chvNfe;
     @Column(name = "NR_MEMO")
-    private String nrMemo;
+    private int nrMemo;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "QTD")
     private BigDecimal qtd;
@@ -84,7 +86,7 @@ public class Reg1110 implements Serializable {
         this.id = id;
     }
 
-    public Reg1110(Long id, long idPai, long linha, long hash) {
+    public Reg1110(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -115,11 +117,11 @@ public class Reg1110 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -155,11 +157,11 @@ public class Reg1110 implements Serializable {
         this.ser = ser;
     }
 
-    public String getNumDoc() {
+    public int getNumDoc() {
         return numDoc;
     }
 
-    public void setNumDoc(String numDoc) {
+    public void setNumDoc(int numDoc) {
         this.numDoc = numDoc;
     }
 
@@ -179,11 +181,11 @@ public class Reg1110 implements Serializable {
         this.chvNfe = chvNfe;
     }
 
-    public String getNrMemo() {
+    public int getNrMemo() {
         return nrMemo;
     }
 
-    public void setNrMemo(String nrMemo) {
+    public void setNrMemo(int nrMemo) {
         this.nrMemo = nrMemo;
     }
 

@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -44,6 +45,7 @@ public class RegB030 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -55,7 +57,7 @@ public class RegB030 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "COD_MOD")
@@ -63,14 +65,14 @@ public class RegB030 implements Serializable {
     @Column(name = "SER")
     private String ser;
     @Column(name = "NUM_DOC_INI")
-    private String numDocIni;
+    private int numDocIni;
     @Column(name = "NUM_DOC_FIN")
-    private String numDocFin;
+    private int numDocFin;
     @Column(name = "DT_DOC")
     @Temporal(TemporalType.DATE)
     private Date dtDoc;
     @Column(name = "QTD_CANC")
-    private String qtdCanc;
+    private int qtdCanc;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "VL_CONT")
     private BigDecimal vlCont;
@@ -90,7 +92,7 @@ public class RegB030 implements Serializable {
         this.id = id;
     }
 
-    public RegB030(Long id, long idPai, long linha, long hash) {
+    public RegB030(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -121,11 +123,11 @@ public class RegB030 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -153,19 +155,19 @@ public class RegB030 implements Serializable {
         this.ser = ser;
     }
 
-    public String getNumDocIni() {
+    public int getNumDocIni() {
         return numDocIni;
     }
 
-    public void setNumDocIni(String numDocIni) {
+    public void setNumDocIni(int numDocIni) {
         this.numDocIni = numDocIni;
     }
 
-    public String getNumDocFin() {
+    public int getNumDocFin() {
         return numDocFin;
     }
 
-    public void setNumDocFin(String numDocFin) {
+    public void setNumDocFin(int numDocFin) {
         this.numDocFin = numDocFin;
     }
 
@@ -177,11 +179,11 @@ public class RegB030 implements Serializable {
         this.dtDoc = dtDoc;
     }
 
-    public String getQtdCanc() {
+    public int getQtdCanc() {
         return qtdCanc;
     }
 
-    public void setQtdCanc(String qtdCanc) {
+    public void setQtdCanc(int qtdCanc) {
         this.qtdCanc = qtdCanc;
     }
 

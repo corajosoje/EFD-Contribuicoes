@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -35,6 +36,7 @@ public class Reg0300 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -46,7 +48,7 @@ public class Reg0300 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "COD_IND_BEM")
@@ -60,7 +62,7 @@ public class Reg0300 implements Serializable {
     @Column(name = "COD_CTA")
     private String codCta;
     @Column(name = "NR_PARC")
-    private String nrParc;
+    private int nrParc;
 
     public Reg0300() {
     }
@@ -69,7 +71,7 @@ public class Reg0300 implements Serializable {
         this.id = id;
     }
 
-    public Reg0300(Long id, long idPai, long linha, long hash) {
+    public Reg0300(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -100,11 +102,11 @@ public class Reg0300 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -156,11 +158,11 @@ public class Reg0300 implements Serializable {
         this.codCta = codCta;
     }
 
-    public String getNrParc() {
+    public int getNrParc() {
         return nrParc;
     }
 
-    public void setNrParc(String nrParc) {
+    public void setNrParc(int nrParc) {
         this.nrParc = nrParc;
     }
 

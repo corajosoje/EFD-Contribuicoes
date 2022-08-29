@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -27,12 +28,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegH020.findByHash", query = "SELECT r FROM RegH020 r WHERE r.hash = :hash"),
     @NamedQuery(name = "RegH020.findByReg", query = "SELECT r FROM RegH020 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegH020.findByCstIcms", query = "SELECT r FROM RegH020 r WHERE r.cstIcms = :cstIcms"),
-    @NamedQuery(name = "RegH020.findByBlIcms", query = "SELECT r FROM RegH020 r WHERE r.blIcms = :blIcms"),
+    @NamedQuery(name = "RegH020.findByBlIcms", query = "SELECT r FROM RegH020 r WHERE r.bcIcms = :bcIcms"),
     @NamedQuery(name = "RegH020.findByVlIcms", query = "SELECT r FROM RegH020 r WHERE r.vlIcms = :vlIcms")})
 public class RegH020 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -44,14 +46,14 @@ public class RegH020 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "CST_ICMS")
     private String cstIcms;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "BL_ICMS")
-    private BigDecimal blIcms;
+    @Column(name = "BC_ICMS")
+    private BigDecimal bcIcms;
     @Column(name = "VL_ICMS")
     private BigDecimal vlIcms;
 
@@ -62,7 +64,7 @@ public class RegH020 implements Serializable {
         this.id = id;
     }
 
-    public RegH020(Long id, long idPai, long linha, long hash) {
+    public RegH020(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -93,11 +95,11 @@ public class RegH020 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -117,12 +119,12 @@ public class RegH020 implements Serializable {
         this.cstIcms = cstIcms;
     }
 
-    public BigDecimal getBlIcms() {
-        return blIcms;
+    public BigDecimal getBcIcms() {
+        return bcIcms;
     }
 
-    public void setBlIcms(BigDecimal blIcms) {
-        this.blIcms = blIcms;
+    public void setBcIcms(BigDecimal bcIcms) {
+        this.bcIcms = bcIcms;
     }
 
     public BigDecimal getVlIcms() {

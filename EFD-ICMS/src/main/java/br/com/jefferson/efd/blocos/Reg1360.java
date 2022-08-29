@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -29,11 +30,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1360.findByHash", query = "SELECT r FROM Reg1360 r WHERE r.hash = :hash"),
     @NamedQuery(name = "Reg1360.findByReg", query = "SELECT r FROM Reg1360 r WHERE r.reg = :reg"),
     @NamedQuery(name = "Reg1360.findByNumLacre", query = "SELECT r FROM Reg1360 r WHERE r.numLacre = :numLacre"),
-    @NamedQuery(name = "Reg1360.findByDatAplicacao", query = "SELECT r FROM Reg1360 r WHERE r.datAplicacao = :datAplicacao")})
+    @NamedQuery(name = "Reg1360.findByDatAplicacao", query = "SELECT r FROM Reg1360 r WHERE r.dtAplicacao = :dtAplicacao")})
 public class Reg1360 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -45,14 +47,14 @@ public class Reg1360 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "NUM_LACRE")
     private String numLacre;
-    @Column(name = "DAT_APLICACAO")
+    @Column(name = "DT_APLICACAO")
     @Temporal(TemporalType.DATE)
-    private Date datAplicacao;
+    private Date dtAplicacao;
 
     public Reg1360() {
     }
@@ -61,7 +63,7 @@ public class Reg1360 implements Serializable {
         this.id = id;
     }
 
-    public Reg1360(Long id, long idPai, long linha, long hash) {
+    public Reg1360(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -92,11 +94,11 @@ public class Reg1360 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -116,12 +118,12 @@ public class Reg1360 implements Serializable {
         this.numLacre = numLacre;
     }
 
-    public Date getDatAplicacao() {
-        return datAplicacao;
+    public Date getDtAplicacao() {
+        return dtAplicacao;
     }
 
-    public void setDatAplicacao(Date datAplicacao) {
-        this.datAplicacao = datAplicacao;
+    public void setDtAplicacao(Date dtAplicacao) {
+        this.dtAplicacao = dtAplicacao;
     }
 
     @Override

@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -49,6 +50,7 @@ public class RegC800 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -60,7 +62,7 @@ public class RegC800 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "COD_MOD")
@@ -68,7 +70,7 @@ public class RegC800 implements Serializable {
     @Column(name = "COD_SIT")
     private String codSit;
     @Column(name = "NUM_CFE")
-    private String numCfe;
+    private int numCfe;
     @Column(name = "DT_DOC")
     @Temporal(TemporalType.DATE)
     private Date dtDoc;
@@ -105,7 +107,7 @@ public class RegC800 implements Serializable {
         this.id = id;
     }
 
-    public RegC800(Long id, long idPai, long linha, long hash) {
+    public RegC800(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -136,11 +138,11 @@ public class RegC800 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -168,11 +170,11 @@ public class RegC800 implements Serializable {
         this.codSit = codSit;
     }
 
-    public String getNumCfe() {
+    public int getNumCfe() {
         return numCfe;
     }
 
-    public void setNumCfe(String numCfe) {
+    public void setNumCfe(int numCfe) {
         this.numCfe = numCfe;
     }
 

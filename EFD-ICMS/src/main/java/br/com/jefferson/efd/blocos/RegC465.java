@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -31,6 +32,7 @@ public class RegC465 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -42,13 +44,13 @@ public class RegC465 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "CHV_CFE")
     private String chvCfe;
     @Column(name = "NUM_CCF")
-    private String numCcf;
+    private int numCcf;
 
     public RegC465() {
     }
@@ -57,7 +59,7 @@ public class RegC465 implements Serializable {
         this.id = id;
     }
 
-    public RegC465(Long id, long idPai, long linha, long hash) {
+    public RegC465(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -88,11 +90,11 @@ public class RegC465 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -112,11 +114,11 @@ public class RegC465 implements Serializable {
         this.chvCfe = chvCfe;
     }
 
-    public String getNumCcf() {
+    public int getNumCcf() {
         return numCcf;
     }
 
-    public void setNumCcf(String numCcf) {
+    public void setNumCcf(int numCcf) {
         this.numCcf = numCcf;
     }
 

@@ -1,4 +1,4 @@
-package br.com.jefferson.efd.util;
+package br.com.jefferson.efd.util;//LeitorProperties
 
 import java.io.File;
 import java.io.FileInputStream;

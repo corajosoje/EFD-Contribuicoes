@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -43,6 +44,7 @@ public class RegD140 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -54,7 +56,7 @@ public class RegD140 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "COD_PART_CONSG")
@@ -70,7 +72,7 @@ public class RegD140 implements Serializable {
     @Column(name = "IND_NAV")
     private String indNav;
     @Column(name = "VIAGEM")
-    private String viagem;
+    private int viagem;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "VL_FRT_LIQ")
     private BigDecimal vlFrtLiq;
@@ -92,7 +94,7 @@ public class RegD140 implements Serializable {
         this.id = id;
     }
 
-    public RegD140(Long id, long idPai, long linha, long hash) {
+    public RegD140(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -123,11 +125,11 @@ public class RegD140 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -187,11 +189,11 @@ public class RegD140 implements Serializable {
         this.indNav = indNav;
     }
 
-    public String getViagem() {
+    public int getViagem() {
         return viagem;
     }
 
-    public void setViagem(String viagem) {
+    public void setViagem(int viagem) {
         this.viagem = viagem;
     }
 

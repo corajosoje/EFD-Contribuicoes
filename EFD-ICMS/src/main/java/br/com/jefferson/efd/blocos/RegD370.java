@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -35,6 +36,7 @@ public class RegD370 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -46,7 +48,7 @@ public class RegD370 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "COD_MUN_ORIG")
@@ -55,7 +57,7 @@ public class RegD370 implements Serializable {
     @Column(name = "VL_SERV")
     private BigDecimal vlServ;
     @Column(name = "QTD_BILH")
-    private String qtdBilh;
+    private int qtdBilh;
     @Column(name = "VL_BC_ICMS")
     private BigDecimal vlBcIcms;
     @Column(name = "VL_ICMS")
@@ -68,7 +70,7 @@ public class RegD370 implements Serializable {
         this.id = id;
     }
 
-    public RegD370(Long id, long idPai, long linha, long hash) {
+    public RegD370(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -99,11 +101,11 @@ public class RegD370 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -131,11 +133,11 @@ public class RegD370 implements Serializable {
         this.vlServ = vlServ;
     }
 
-    public String getQtdBilh() {
+    public int getQtdBilh() {
         return qtdBilh;
     }
 
-    public void setQtdBilh(String qtdBilh) {
+    public void setQtdBilh(int qtdBilh) {
         this.qtdBilh = qtdBilh;
     }
 

@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -40,6 +41,7 @@ public class Reg1320 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -51,13 +53,13 @@ public class Reg1320 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "NUM_BICO")
-    private String numBico;
+    private int numBico;
     @Column(name = "NR_INTERV")
-    private String nrInterv;
+    private int nrInterv;
     @Column(name = "MOT_INTERV")
     private String motInterv;
     @Column(name = "NOM_INTERV")
@@ -83,7 +85,7 @@ public class Reg1320 implements Serializable {
         this.id = id;
     }
 
-    public Reg1320(Long id, long idPai, long linha, long hash) {
+    public Reg1320(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -114,11 +116,11 @@ public class Reg1320 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -130,19 +132,19 @@ public class Reg1320 implements Serializable {
         this.reg = reg;
     }
 
-    public String getNumBico() {
+    public int getNumBico() {
         return numBico;
     }
 
-    public void setNumBico(String numBico) {
+    public void setNumBico(int numBico) {
         this.numBico = numBico;
     }
 
-    public String getNrInterv() {
+    public int getNrInterv() {
         return nrInterv;
     }
 
-    public void setNrInterv(String nrInterv) {
+    public void setNrInterv(int nrInterv) {
         this.nrInterv = nrInterv;
     }
 

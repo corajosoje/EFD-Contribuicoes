@@ -1,8 +1,11 @@
 package br.com.jefferson.efd.util;
 
+import br.com.jefferson.efd.config.xmlversion;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
 import javax.persistence.EntityManager;
+import javax.xml.bind.JAXB;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +19,8 @@ public class ObjectFactory {
     public static final SimpleDateFormat dataSimples = new SimpleDateFormat("dd/MM/yyyy");
     private static ObjectFactory facotory = null;
     private static Properties vConfigProperties = null, vJPAProperties = null;
+
+    private static xmlversion layout = null;
 
     public static ObjectFactory getInstance() {
         if (facotory == null) {
@@ -51,4 +56,10 @@ public class ObjectFactory {
         return JPAConfiguration.getEntityManager();
     }
 
+    public static xmlversion getLayout() {
+        if (layout == null) {
+            layout = JAXB.unmarshal(new File("config/layout-efd.xml"), xmlversion.class);
+        }
+        return layout;
+    }
 }

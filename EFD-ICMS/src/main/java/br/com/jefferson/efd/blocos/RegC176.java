@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -59,6 +60,7 @@ public class RegC176 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -70,13 +72,13 @@ public class RegC176 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "COD_MOD_ULT_E")
     private String codModUltE;
     @Column(name = "NUM_DOC_ULT_E")
-    private String numDocUltE;
+    private int numDocUltE;
     @Column(name = "SER_ULT_E")
     private String serUltE;
     @Column(name = "DT_ULT_E")
@@ -94,7 +96,7 @@ public class RegC176 implements Serializable {
     @Column(name = "CHAVE_NFE_ULT_E")
     private String chaveNfeUltE;
     @Column(name = "NUM_ITEM_ULT_E")
-    private String numItemUltE;
+    private int numItemUltE;
     @Column(name = "VL_UNIT_BC_ICMS_ULT_E")
     private BigDecimal vlUnitBcIcmsUltE;
     @Column(name = "ALIQ_ICMS_ULT_E")
@@ -118,9 +120,9 @@ public class RegC176 implements Serializable {
     @Column(name = "SER_NFE_RET")
     private String serNfeRet;
     @Column(name = "NUM_NFE_RET")
-    private String numNfeRet;
+    private int numNfeRet;
     @Column(name = "ITEM_NFE_RET")
-    private String itemNfeRet;
+    private int itemNfeRet;
     @Column(name = "COD_DA")
     private String codDa;
     @Column(name = "NUM_DA")
@@ -135,7 +137,7 @@ public class RegC176 implements Serializable {
         this.id = id;
     }
 
-    public RegC176(Long id, long idPai, long linha, long hash) {
+    public RegC176(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -166,11 +168,11 @@ public class RegC176 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -190,11 +192,11 @@ public class RegC176 implements Serializable {
         this.codModUltE = codModUltE;
     }
 
-    public String getNumDocUltE() {
+    public int getNumDocUltE() {
         return numDocUltE;
     }
 
-    public void setNumDocUltE(String numDocUltE) {
+    public void setNumDocUltE(int numDocUltE) {
         this.numDocUltE = numDocUltE;
     }
 
@@ -254,11 +256,11 @@ public class RegC176 implements Serializable {
         this.chaveNfeUltE = chaveNfeUltE;
     }
 
-    public String getNumItemUltE() {
+    public int getNumItemUltE() {
         return numItemUltE;
     }
 
-    public void setNumItemUltE(String numItemUltE) {
+    public void setNumItemUltE(int numItemUltE) {
         this.numItemUltE = numItemUltE;
     }
 
@@ -350,19 +352,19 @@ public class RegC176 implements Serializable {
         this.serNfeRet = serNfeRet;
     }
 
-    public String getNumNfeRet() {
+    public int getNumNfeRet() {
         return numNfeRet;
     }
 
-    public void setNumNfeRet(String numNfeRet) {
+    public void setNumNfeRet(int numNfeRet) {
         this.numNfeRet = numNfeRet;
     }
 
-    public String getItemNfeRet() {
+    public int getItemNfeRet() {
         return itemNfeRet;
     }
 
-    public void setItemNfeRet(String itemNfeRet) {
+    public void setItemNfeRet(int itemNfeRet) {
         this.itemNfeRet = itemNfeRet;
     }
 

@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -42,6 +43,7 @@ public class RegD162 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -53,7 +55,7 @@ public class RegD162 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "COD_MOD")
@@ -61,7 +63,7 @@ public class RegD162 implements Serializable {
     @Column(name = "SER")
     private String ser;
     @Column(name = "NUM_DOC")
-    private String numDoc;
+    private int numDoc;
     @Column(name = "DT_DOC")
     @Temporal(TemporalType.DATE)
     private Date dtDoc;
@@ -71,7 +73,7 @@ public class RegD162 implements Serializable {
     @Column(name = "VL_MERC")
     private BigDecimal vlMerc;
     @Column(name = "QTD_VOL")
-    private String qtdVol;
+    private int qtdVol;
     @Column(name = "PESO_BRT")
     private BigDecimal pesoBrt;
     @Column(name = "PESO_LIQ")
@@ -84,7 +86,7 @@ public class RegD162 implements Serializable {
         this.id = id;
     }
 
-    public RegD162(Long id, long idPai, long linha, long hash) {
+    public RegD162(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -115,11 +117,11 @@ public class RegD162 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -147,11 +149,11 @@ public class RegD162 implements Serializable {
         this.ser = ser;
     }
 
-    public String getNumDoc() {
+    public int getNumDoc() {
         return numDoc;
     }
 
-    public void setNumDoc(String numDoc) {
+    public void setNumDoc(int numDoc) {
         this.numDoc = numDoc;
     }
 
@@ -179,11 +181,11 @@ public class RegD162 implements Serializable {
         this.vlMerc = vlMerc;
     }
 
-    public String getQtdVol() {
+    public int getQtdVol() {
         return qtdVol;
     }
 
-    public void setQtdVol(String qtdVol) {
+    public void setQtdVol(int qtdVol) {
         this.qtdVol = qtdVol;
     }
 

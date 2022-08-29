@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -42,6 +43,7 @@ public class RegG125 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -53,7 +55,7 @@ public class RegG125 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "COD_IND_BEM")
@@ -73,7 +75,7 @@ public class RegG125 implements Serializable {
     @Column(name = "VL_IMOB_ICMS_DIF")
     private BigDecimal vlImobIcmsDif;
     @Column(name = "NUM_PARC")
-    private String numParc;
+    private int numParc;
     @Column(name = "VL_PARC_PASS")
     private BigDecimal vlParcPass;
 
@@ -84,7 +86,7 @@ public class RegG125 implements Serializable {
         this.id = id;
     }
 
-    public RegG125(Long id, long idPai, long linha, long hash) {
+    public RegG125(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -115,11 +117,11 @@ public class RegG125 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -187,11 +189,11 @@ public class RegG125 implements Serializable {
         this.vlImobIcmsDif = vlImobIcmsDif;
     }
 
-    public String getNumParc() {
+    public int getNumParc() {
         return numParc;
     }
 
-    public void setNumParc(String numParc) {
+    public void setNumParc(int numParc) {
         this.numParc = numParc;
     }
 

@@ -3,8 +3,8 @@
     <Properties>
         <Property name="logPath">log</Property>
         <Property name="rollingFileName">EFD-Fiscal</Property>
-        <Property name="AppenderPadrao">Console</Property>   
-        <Property name="LevelPadrao">ALL</Property>  
+        <Property name="AppenderPadrao">rollingFile</Property>   
+        <Property name="LevelPadrao">ERROR</Property>  
         <!--  
         OFF (most specific, no logging)
         FATAL (most specific, little data)
@@ -37,34 +37,39 @@
         <Logger name="LoggerTest" level="ALL" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Root level="WARN" additivity="true">
+        <Root level="${LevelPadrao}" additivity="true">
             <AppenderRef ref="${AppenderPadrao}"/>
         </Root>
         
-          
-        <Logger name="br.com.jefferson.consultadfe.util.LeitorProperties" level="${LevelPadrao}" additivity="false">
+        <Logger name="br.com.jefferson.efd.MainFrame" level="${LevelPadrao}" additivity="false">
             <AppenderRef ref="${AppenderPadrao}"/>
         </Logger>
-       
-       
-        <Logger name="Main" level="${LevelPadrao}" additivity="false">
-            <AppenderRef ref="Console"/>
+        <Logger name="br.com.jefferson.efd.processamento.DaoRegistro" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="${AppenderPadrao}"/>
         </Logger>
-         
+        <Logger name="br.com.jefferson.efd.util.JPAConfiguration" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="${AppenderPadrao}"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.util.LeitorProperties" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="${AppenderPadrao}"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.Main" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="${AppenderPadrao}"/>
+        </Logger>
       
-        
         <!--      JPA        -->
         <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="WARN" additivity="false">
-            <AppenderRef ref="Console2"/>
+            <AppenderRef ref="Console"/>
         </Logger>
         <Logger name="org.hibernate.SQL" level="WARN" additivity="false">
-            <AppenderRef ref="Console2"/>
+            <AppenderRef ref="Console"/>
         </Logger>
         <Logger name="org.hibernate.jpa.internal.util.LogHelper" level="WARN" additivity="false">
-            <AppenderRef ref="Console2"/>
+            <AppenderRef ref="Console"/>
         </Logger>
         <!--
         log.debug("");
+        log.trace("");
         -->
     </Loggers>
 </Configuration>

@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -37,6 +38,7 @@ public class RegC860 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -48,7 +50,7 @@ public class RegC860 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "COD_MOD")
@@ -59,9 +61,9 @@ public class RegC860 implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dtDoc;
     @Column(name = "DOC_INI")
-    private String docIni;
+    private int docIni;
     @Column(name = "DOC_FIM")
-    private String docFim;
+    private int docFim;
 
     public RegC860() {
     }
@@ -70,7 +72,7 @@ public class RegC860 implements Serializable {
         this.id = id;
     }
 
-    public RegC860(Long id, long idPai, long linha, long hash) {
+    public RegC860(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -101,11 +103,11 @@ public class RegC860 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -141,19 +143,19 @@ public class RegC860 implements Serializable {
         this.dtDoc = dtDoc;
     }
 
-    public String getDocIni() {
+    public int getDocIni() {
         return docIni;
     }
 
-    public void setDocIni(String docIni) {
+    public void setDocIni(int docIni) {
         this.docIni = docIni;
     }
 
-    public String getDocFim() {
+    public int getDocFim() {
         return docFim;
     }
 
-    public void setDocFim(String docFim) {
+    public void setDocFim(int docFim) {
         this.docFim = docFim;
     }
 

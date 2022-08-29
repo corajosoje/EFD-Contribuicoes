@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -50,6 +51,7 @@ public class RegC510 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -61,11 +63,11 @@ public class RegC510 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "NUM_ITEM")
-    private String numItem;
+    private int numItem;
     @Column(name = "COD_ITEM")
     private String codItem;
     @Column(name = "COD_CLASS")
@@ -113,7 +115,7 @@ public class RegC510 implements Serializable {
         this.id = id;
     }
 
-    public RegC510(Long id, long idPai, long linha, long hash) {
+    public RegC510(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -144,11 +146,11 @@ public class RegC510 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
@@ -160,11 +162,11 @@ public class RegC510 implements Serializable {
         this.reg = reg;
     }
 
-    public String getNumItem() {
+    public int getNumItem() {
         return numItem;
     }
 
-    public void setNumItem(String numItem) {
+    public void setNumItem(int numItem) {
         this.numItem = numItem;
     }
 

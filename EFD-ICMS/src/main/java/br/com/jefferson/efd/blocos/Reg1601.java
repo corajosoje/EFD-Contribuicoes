@@ -1,6 +1,8 @@
 
 package br.com.jefferson.efd.blocos;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -34,7 +36,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Reg1601 implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -46,7 +49,7 @@ public class Reg1601 implements Serializable {
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
-    private long hash;
+    private String hash;
     @Column(name = "REG")
     private String reg;
     @Column(name = "COD_PART_IP")
@@ -68,7 +71,7 @@ public class Reg1601 implements Serializable {
         this.id = id;
     }
 
-    public Reg1601(Long id, long idPai, long linha, long hash) {
+    public Reg1601(Long id, long idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -99,11 +102,11 @@ public class Reg1601 implements Serializable {
         this.linha = linha;
     }
 
-    public long getHash() {
+    public String getHash() {
         return hash;
     }
 
-    public void setHash(long hash) {
+    public void setHash(String hash) {
         this.hash = hash;
     }
 
