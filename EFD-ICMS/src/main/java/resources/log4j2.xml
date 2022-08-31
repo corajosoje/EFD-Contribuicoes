@@ -4,14 +4,14 @@
         <Property name="logPath">log</Property>
         <Property name="rollingFileName">EFD-Fiscal</Property>
         <Property name="AppenderPadrao">rollingFile</Property>   
-        <Property name="LevelPadrao">ERROR</Property>  
+        <Property name="LevelPadrao">DEBUG</Property>  
         <!--  
         OFF (most specific, no logging)
         FATAL (most specific, little data)
-        ERROR.
-        WARN.
-        INFO.
-        DEBUG.
+        ERROR
+        WARN
+        INFO
+        DEBUG
         TRACE (least specific, a lot of data)
         ALL (least specific, all data)
         -->
@@ -24,9 +24,14 @@
         
         <RollingFile name="rollingFile" filePattern="${logPath}/${rollingFileName}_%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            
+            <!-- Matches only ERROR level -->
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+      
             <Policies>
                 <OnStartupTriggeringPolicy />
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy size="19500KB" />
             </Policies>
         </RollingFile>
         
@@ -42,19 +47,36 @@
         </Root>
         
         <Logger name="br.com.jefferson.efd.MainFrame" level="${LevelPadrao}" additivity="false">
-            <AppenderRef ref="${AppenderPadrao}"/>
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.processamento.DaoRegistro" level="${LevelPadrao}" additivity="false">
-            <AppenderRef ref="${AppenderPadrao}"/>
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.util.JPAConfiguration" level="${LevelPadrao}" additivity="false">
-            <AppenderRef ref="${AppenderPadrao}"/>
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.util.LeitorProperties" level="${LevelPadrao}" additivity="false">
-            <AppenderRef ref="${AppenderPadrao}"/>
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.Main" level="${LevelPadrao}" additivity="false">
-            <AppenderRef ref="${AppenderPadrao}"/>
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.util.ObjectFactory" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.processamento.Leitor" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.util.Util" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
         </Logger>
       
         <!--      JPA        -->

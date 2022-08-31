@@ -202,6 +202,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                             log.trace("Fechando Manager");
                             entityManager.close();
+                            reader.close();
                         } catch (Exception ex) {
                             log.error("Não foi possivel ler arquivo " + arquivos[i].getAbsolutePath(), ex);
                         }
@@ -234,7 +235,7 @@ public class MainFrame extends javax.swing.JFrame {
             } catch (IOException e) {
                 //throw new RuntimeException("Unable to close input stream for MD5 calculation", e);
             }
-            log.debug("Hash Code gerado: " + output);
+            log.info("Hash Code gerado: " + output);
             return output;
         } catch (IOException | NoSuchAlgorithmException e) {
             throw new LeitorExeption("Unable to process file for MD5", e);

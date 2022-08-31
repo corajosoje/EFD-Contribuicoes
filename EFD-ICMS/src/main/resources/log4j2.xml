@@ -2,18 +2,18 @@
 <Configuration status="WARN" monitorInterval="30">
     <Properties>
         <Property name="logPath">log</Property>
-        <Property name="rollingFileName">LeitorEFD</Property>
-        <Property name="AppenderPadrao">Console</Property>   
-        <Property name="LevelPadrao">ALL</Property>
-        <!--   
-       OFF (most specific, no logging)
-       FATAL (most specific, little data)
-       ERROR.
-       WARN.
-       INFO.
-       DEBUG.
-       TRACE (least specific, a lot of data)
-       ALL (least specific, all data)
+        <Property name="rollingFileName">EFD-Fiscal</Property>
+        <Property name="AppenderPadrao">rollingFile</Property>   
+        <Property name="LevelPadrao">INFO</Property>  
+        <!--  
+        OFF (most specific, no logging)
+        FATAL (most specific, little data)
+        ERROR
+        WARN
+        INFO
+        DEBUG
+        TRACE (least specific, a lot of data)
+        ALL (least specific, all data)
         -->
     </Properties>
   
@@ -23,41 +23,75 @@
         </Console>
         
         <RollingFile name="rollingFile" filePattern="${logPath}/${rollingFileName}_%d{yyyy-MM-dd}.log">
-            
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            
+            <!-- Matches only ERROR level -->
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+      
             <Policies>
-                <!-- Causes a rollover if the log file is older than the current JVM's start time -->
                 <OnStartupTriggeringPolicy />
-                <!-- Causes a rollover once the date/time pattern no longer applies to the active file -->
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy size="19500KB" />
             </Policies>
         </RollingFile>
+        
     </Appenders>
     
     <Loggers>
-               
-        <Logger name="br.com.jefferson.efd.processamento.DaoRegistro" level="ALL" additivity="false">
-            <AppenderRef ref="${AppenderPadrao}"/>
-        </Logger>
-        <Logger name="br.com.jefferson.efd.util.JPAConfiguration" level="${LevelPadrao}" additivity="false">
-            <AppenderRef ref="${AppenderPadrao}"/>
-        </Logger>
-        <Logger name="br.com.jefferson.efd.processamento.Leitor" level="${LevelPadrao}" additivity="false">
-            <AppenderRef ref="${AppenderPadrao}"/>
-        </Logger>
-        <Logger name="br.com.jefferson.efd.MainFrame" level="${LevelPadrao}" additivity="false">
-            <AppenderRef ref="${AppenderPadrao}"/>
-        </Logger>
-        
+       
         <Logger name="LoggerTest" level="ALL" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Root level="INFO" additivity="true">
+        <Root level="${LevelPadrao}" additivity="true">
             <AppenderRef ref="${AppenderPadrao}"/>
         </Root>
-        <!-- 
-       log.debug("");
-       log.trace("");
+        
+        <Logger name="br.com.jefferson.efd.MainFrame" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.processamento.DaoRegistro" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.util.JPAConfiguration" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.util.LeitorProperties" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.Main" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.util.ObjectFactory" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.processamento.Leitor" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.util.Util" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+      
+        <!--      JPA        -->
+        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="org.hibernate.SQL" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="org.hibernate.jpa.internal.util.LogHelper" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <!--
+        log.debug("");
+        log.trace("");
         -->
     </Loggers>
 </Configuration>

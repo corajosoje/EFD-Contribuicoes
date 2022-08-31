@@ -1,7 +1,8 @@
-package br.com.jefferson.efd.util;
+package br.com.jefferson.efd.util;//ObjectFactory
 
 import br.com.jefferson.efd.config.xmlversion;
 import java.io.File;
+import java.io.FileFilter;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
 import javax.persistence.EntityManager;
@@ -15,6 +16,18 @@ import org.apache.logging.log4j.Logger;
  */
 public class ObjectFactory {
 
+    private static final FileFilter spedFileFilter = new FileFilter() {
+
+        @Override
+        public boolean accept(File pathname) {
+            if (pathname.getName().endsWith(".txt")) {
+                return Util.verificarArquivoSped(pathname);
+            }
+            return false;
+        }
+    };
+
+    private static final org.apache.logging.log4j.Logger log = LogManager.getLogger(ObjectFactory.class.getName());
     public static final SimpleDateFormat UTC = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX");
     public static final SimpleDateFormat dataSimples = new SimpleDateFormat("dd/MM/yyyy");
     private static ObjectFactory facotory = null;
@@ -61,5 +74,10 @@ public class ObjectFactory {
             layout = JAXB.unmarshal(new File("config/layout-efd.xml"), xmlversion.class);
         }
         return layout;
+    }
+
+    public static FileFilter getSpedFileFilter() {
+        log.info("Iniciando verificação dos arquivos que são SPED");
+        return ObjectFactory.spedFileFilter;
     }
 }
