@@ -89,6 +89,12 @@
         <Logger name="org.hibernate.jpa.internal.util.LogHelper" level="WARN" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
+        <Logger name="EL Warning" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="EL Info" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
         <!--
         log.debug("");
         log.trace("");
