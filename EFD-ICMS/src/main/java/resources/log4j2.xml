@@ -4,7 +4,7 @@
         <Property name="logPath">log</Property>
         <Property name="rollingFileName">EFD-Fiscal</Property>
         <Property name="AppenderPadrao">rollingFile</Property>   
-        <Property name="LevelPadrao">DEBUG</Property>  
+        <Property name="LevelPadrao">TRACE</Property>  
         <!--  
         OFF (most specific, no logging)
         FATAL (most specific, little data)
@@ -80,13 +80,13 @@
         </Logger>
       
         <!--      JPA        -->
-        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="WARN" additivity="false">
+        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="ALL" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger name="org.hibernate.SQL" level="WARN" additivity="false">
+        <Logger name="org.hibernate.SQL" level="ALL" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger name="org.hibernate.jpa.internal.util.LogHelper" level="WARN" additivity="false">
+        <Logger name="org.hibernate.jpa.internal.util.LogHelper" level="ALL" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
         <!--

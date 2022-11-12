@@ -1,16 +1,19 @@
-
 package br.com.jefferson.efd.blocos;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,8 +28,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Reg0000.findAll", query = "SELECT r FROM Reg0000 r"),
-    @NamedQuery(name = "Reg0000.findById", query = "SELECT r FROM Reg0000 r WHERE r.id = :id"),
-    @NamedQuery(name = "Reg0000.findByIdPai", query = "SELECT r FROM Reg0000 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "Reg0000.findByLinha", query = "SELECT r FROM Reg0000 r WHERE r.linha = :linha"),
     @NamedQuery(name = "Reg0000.findByHash", query = "SELECT r FROM Reg0000 r WHERE r.hash = :hash"),
     @NamedQuery(name = "Reg0000.findByReg", query = "SELECT r FROM Reg0000 r WHERE r.reg = :reg"),
@@ -44,85 +45,96 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg0000.findBySuframa", query = "SELECT r FROM Reg0000 r WHERE r.suframa = :suframa"),
     @NamedQuery(name = "Reg0000.findByIndPerfil", query = "SELECT r FROM Reg0000 r WHERE r.indPerfil = :indPerfil"),
     @NamedQuery(name = "Reg0000.findByIndAtiv", query = "SELECT r FROM Reg0000 r WHERE r.indAtiv = :indAtiv")})
+@Registros(nivel = 0)
 public class Reg0000 implements Serializable {
 
     private static final long serialVersionUID = 1L;
-   
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-    @Column(name = "ID")
-    private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
+
     @Id
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
     @Column(name = "REG")
+    @Campos(posicao = 1, tipo = 'C')
     private String reg;
+
     @Column(name = "COD_VER")
+    @Campos(posicao = 2, tipo = 'C')
     private String codVer;
+
     @Column(name = "COD_FIN")
+    @Campos(posicao = 3, tipo = 'C')
     private String codFin;
+
     @Column(name = "DT_INI")
     @Temporal(TemporalType.DATE)
+    @Campos(posicao = 4, tipo = 'D')
     private Date dtIni;
+
     @Column(name = "DT_FIN")
     @Temporal(TemporalType.DATE)
+    @Campos(posicao = 5, tipo = 'D')
     private Date dtFin;
+
     @Column(name = "NOME")
+    @Campos(posicao = 6, tipo = 'C')
     private String nome;
+
     @Column(name = "CNPJ")
+    @Campos(posicao = 7, tipo = 'C')
     private String cnpj;
+
     @Column(name = "CPF")
+    @Campos(posicao = 8, tipo = 'C')
     private String cpf;
+
     @Column(name = "UF")
+    @Campos(posicao = 9, tipo = 'C')
     private String uf;
+
     @Column(name = "IE")
+    @Campos(posicao = 10, tipo = 'C')
     private String ie;
+
     @Column(name = "COD_MUN")
+    @Campos(posicao = 11, tipo = 'C')
     private String codMun;
+
     @Column(name = "IM")
+    @Campos(posicao = 12, tipo = 'C')
     private String im;
+
     @Column(name = "SUFRAMA")
+    @Campos(posicao = 13, tipo = 'C')
     private String suframa;
+
     @Column(name = "IND_PERFIL")
+    @Campos(posicao = 14, tipo = 'C')
     private String indPerfil;
+
+    @Campos(posicao = 15, tipo = 'C')
     @Column(name = "IND_ATIV")
     private String indAtiv;
+
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private Reg0001 reg0001;
 
     public Reg0000() {
     }
 
-    public Reg0000(Long id) {
-        this.id = id;
-    }
-
-    public Reg0000(Long id, long idPai, long linha, String hash) {
-        this.id = id;
-        this.idPai = idPai;
-        this.linha = linha;
+    public Reg0000(String hash) {
         this.hash = hash;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Reg0000(long idPai, String hash) {
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+        this.linha = linha;
+        this.hash = hash;
     }
 
     public long getLinha() {
@@ -261,29 +273,39 @@ public class Reg0000 implements Serializable {
         this.indAtiv = indAtiv;
     }
 
+    public Reg0001 getReg0001() {
+        return reg0001;
+    }
+
+    public void setReg0001(Reg0001 reg0001) {
+        this.reg0001 = reg0001;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 3;
+        hash = 43 * hash + Objects.hashCode(this.hash);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Reg0000)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Reg0000 other = (Reg0000) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Reg0000 other = (Reg0000) obj;
+        return Objects.equals(this.hash, other.hash);
     }
 
     @Override
     public String toString() {
-        return "br.com.jefferson.efd.blocos.Reg0000[ id=" + id + " ]";
+        return "br.com.jefferson.efd.blocos.Reg0000[ hash=" + hash + " ]";
     }
 
 }

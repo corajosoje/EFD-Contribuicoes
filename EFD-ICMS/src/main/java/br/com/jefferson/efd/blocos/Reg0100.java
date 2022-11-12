@@ -1,15 +1,19 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -40,6 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg0100.findByFax", query = "SELECT r FROM Reg0100 r WHERE r.fax = :fax"),
     @NamedQuery(name = "Reg0100.findByEmail", query = "SELECT r FROM Reg0100 r WHERE r.email = :email"),
     @NamedQuery(name = "Reg0100.findByCodMun", query = "SELECT r FROM Reg0100 r WHERE r.codMun = :codMun")})
+@Registros(nivel = 2)
 public class Reg0100 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,41 +53,72 @@ public class Reg0100 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg0001 idPai;
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
+
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "NOME")
     private String nome;
+
+    @Campos(posicao = 3, tipo = 'C')
     @Column(name = "CPF")
     private String cpf;
+
+    @Campos(posicao = 4, tipo = 'C')
     @Column(name = "CRC")
     private String crc;
+
+    @Campos(posicao = 5, tipo = 'C')
     @Column(name = "CNPJ")
     private String cnpj;
+
+    @Campos(posicao = 6, tipo = 'C')
     @Column(name = "CEP")
     private String cep;
+
+    @Campos(posicao = 7, tipo = 'C')
     @Column(name = "ENDERECO")
     private String endereco;
+
+    @Campos(posicao = 8, tipo = 'C')
     @Column(name = "NUM")
     private String num;
+
+    @Campos(posicao = 9, tipo = 'C')
     @Column(name = "COMPL")
     private String compl;
+
+    @Campos(posicao = 10, tipo = 'C')
     @Column(name = "BAIRRO")
     private String bairro;
+
+    @Campos(posicao = 11, tipo = 'C')
     @Column(name = "FONE")
     private String fone;
+
+    @Campos(posicao = 12, tipo = 'C')
     @Column(name = "FAX")
     private String fax;
+
+    @Campos(posicao = 13, tipo = 'C')
     @Column(name = "EMAIL")
     private String email;
+
+    @Campos(posicao = 14, tipo = 'C')
     @Column(name = "COD_MUN")
     private String codMun;
 
@@ -93,7 +129,7 @@ public class Reg0100 implements Serializable {
         this.id = id;
     }
 
-    public Reg0100(Long id, long idPai, long linha, String hash) {
+    public Reg0100(Long id, Reg0001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -108,12 +144,12 @@ public class Reg0100 implements Serializable {
         this.id = id;
     }
 
-    public long getIdPai() {
+    public Reg0001 getIdPai() {
         return idPai;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0001) idPai;
     }
 
     public long getLinha() {

@@ -3,16 +3,11 @@ package br.com.jefferson.efd;//Main
 import br.com.jefferson.efd.processamento.Leitor;
 import br.com.jefferson.efd.util.ObjectFactory;
 import java.io.File;
-import java.io.FileFilter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.logging.log4j.LogManager;
-import br.com.jefferson.efd.util.Util;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 /**
  * @version 1.0
