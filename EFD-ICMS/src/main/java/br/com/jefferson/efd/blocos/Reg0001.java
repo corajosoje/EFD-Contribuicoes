@@ -49,6 +49,14 @@ public class Reg0001 implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
     private Reg0000 idPai;
+    
+    public Reg0000 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0000) idPai;
+    }
 
     @Basic(optional = false)
     @Column(name = "LINHA")
@@ -84,6 +92,24 @@ public class Reg0001 implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<Reg0190> reg0190;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg0200> reg0200;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg0300> reg0300;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg0400> reg0400;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg0500> reg0500;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg0600> reg0600;
+
+    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private Reg0990 reg0990;
+
     public Reg0001() {
     }
 
@@ -106,13 +132,6 @@ public class Reg0001 implements Serializable {
         this.id = id;
     }
 
-    public Reg0000 getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(Object idPai) {
-        this.idPai = (Reg0000) idPai;
-    }
 
     public long getLinha() {
         return linha;
@@ -192,6 +211,54 @@ public class Reg0001 implements Serializable {
 
     public void setReg0190(List<Reg0190> reg0190) {
         this.reg0190 = reg0190;
+    }
+
+    public List<Reg0200> getReg0200() {
+        return reg0200;
+    }
+
+    public void setReg0200(List<Reg0200> reg0200) {
+        this.reg0200 = reg0200;
+    }
+
+    public List<Reg0300> getReg0300() {
+        return reg0300;
+    }
+
+    public void setReg0300(List<Reg0300> reg0300) {
+        this.reg0300 = reg0300;
+    }
+
+    public List<Reg0400> getReg0400() {
+        return reg0400;
+    }
+
+    public void setReg0400(List<Reg0400> reg0400) {
+        this.reg0400 = reg0400;
+    }
+
+    public List<Reg0500> getReg0500() {
+        return reg0500;
+    }
+
+    public void setReg0500(List<Reg0500> reg0500) {
+        this.reg0500 = reg0500;
+    }
+
+    public List<Reg0600> getReg0600() {
+        return reg0600;
+    }
+
+    public void setReg0600(List<Reg0600> reg0600) {
+        this.reg0600 = reg0600;
+    }
+
+    public Reg0990 getReg0990() {
+        return reg0990;
+    }
+
+    public void setReg0990(Reg0990 reg0990) {
+        this.reg0990 = reg0990;
     }
 
     @Override

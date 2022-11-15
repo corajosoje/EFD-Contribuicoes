@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +9,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -34,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg0205.findByDtIni", query = "SELECT r FROM Reg0205 r WHERE r.dtIni = :dtIni"),
     @NamedQuery(name = "Reg0205.findByDtFim", query = "SELECT r FROM Reg0205 r WHERE r.dtFim = :dtFim"),
     @NamedQuery(name = "Reg0205.findByCodAntItem", query = "SELECT r FROM Reg0205 r WHERE r.codAntItem = :codAntItem")})
+@Registros(nivel = 3)
 public class Reg0205 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,25 +47,38 @@ public class Reg0205 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg0200 idPai;
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
+
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "DESCR_ANT_ITEM")
     private String descrAntItem;
+
+    @Campos(posicao = 3, tipo = 'D')
     @Column(name = "DT_INI")
     @Temporal(TemporalType.DATE)
     private Date dtIni;
+
+    @Campos(posicao = 4, tipo = 'C')
     @Column(name = "DT_FIM")
     @Temporal(TemporalType.DATE)
     private Date dtFim;
+
+    @Campos(posicao = 5, tipo = 'C')
     @Column(name = "COD_ANT_ITEM")
     private String codAntItem;
 
@@ -71,7 +89,7 @@ public class Reg0205 implements Serializable {
         this.id = id;
     }
 
-    public Reg0205(Long id, long idPai, long linha, String hash) {
+    public Reg0205(Long id, Reg0200 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -86,12 +104,12 @@ public class Reg0205 implements Serializable {
         this.id = id;
     }
 
-    public long getIdPai() {
+    public Reg0200 getIdPai() {
         return idPai;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0200) idPai;
     }
 
     public long getLinha() {

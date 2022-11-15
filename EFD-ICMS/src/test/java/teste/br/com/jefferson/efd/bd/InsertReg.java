@@ -91,7 +91,7 @@ public class InsertReg {
 
                         for (Field field : sped.getClass().getDeclaredFields()) {
                             if (field.isAnnotationPresent(Campos.class)) {
-                                InvocarMetodo(campos, field, sped);
+                                preencherObjeto(campos, field, sped);
                             }
                         }
                     } else {
@@ -112,7 +112,7 @@ public class InsertReg {
                         for (Field field : forName.getDeclaredFields()) {
                             if (field.isAnnotationPresent(Campos.class)) {
                                 //fazer verificação de versão com a versão do arquivo
-                                InvocarMetodo(campos, field, newInstance);
+                                preencherObjeto(campos, field, newInstance);
                             }
                         }
 
@@ -272,7 +272,7 @@ public class InsertReg {
         reader.close();
     }
 
-    private static void InvocarMetodo(String[] campos, Field field, Object newInstance) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    private static void preencherObjeto(String[] campos, Field field, Object newInstance) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         Class forName = newInstance.getClass();
         Method method;
         Campos informacoes = field.getAnnotation(Campos.class);

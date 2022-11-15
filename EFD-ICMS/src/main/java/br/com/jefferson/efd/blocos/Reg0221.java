@@ -23,20 +23,20 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 88717
  */
 @Entity
-@Table(name = "reg_0210")
+@Table(name = "reg_0220")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Reg0210.findAll", query = "SELECT r FROM Reg0210 r"),
-    @NamedQuery(name = "Reg0210.findById", query = "SELECT r FROM Reg0210 r WHERE r.id = :id"),
-    @NamedQuery(name = "Reg0210.findByIdPai", query = "SELECT r FROM Reg0210 r WHERE r.idPai = :idPai"),
-    @NamedQuery(name = "Reg0210.findByLinha", query = "SELECT r FROM Reg0210 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "Reg0210.findByHash", query = "SELECT r FROM Reg0210 r WHERE r.hash = :hash"),
-    @NamedQuery(name = "Reg0210.findByReg", query = "SELECT r FROM Reg0210 r WHERE r.reg = :reg"),
-    @NamedQuery(name = "Reg0210.findByCodItemComp", query = "SELECT r FROM Reg0210 r WHERE r.codItemComp = :codItemComp"),
-    @NamedQuery(name = "Reg0210.findByQtdComp", query = "SELECT r FROM Reg0210 r WHERE r.qtdComp = :qtdComp"),
-    @NamedQuery(name = "Reg0210.findByPerda", query = "SELECT r FROM Reg0210 r WHERE r.perda = :perda")})
+    @NamedQuery(name = "Reg0220.findAll", query = "SELECT r FROM Reg0220 r"),
+    @NamedQuery(name = "Reg0220.findById", query = "SELECT r FROM Reg0220 r WHERE r.id = :id"),
+    @NamedQuery(name = "Reg0220.findByIdPai", query = "SELECT r FROM Reg0220 r WHERE r.idPai = :idPai"),
+    @NamedQuery(name = "Reg0220.findByLinha", query = "SELECT r FROM Reg0220 r WHERE r.linha = :linha"),
+    @NamedQuery(name = "Reg0220.findByHash", query = "SELECT r FROM Reg0220 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "Reg0220.findByReg", query = "SELECT r FROM Reg0220 r WHERE r.reg = :reg"),
+    @NamedQuery(name = "Reg0220.findByUnidConv", query = "SELECT r FROM Reg0220 r WHERE r.unidConv = :unidConv"),
+    @NamedQuery(name = "Reg0220.findByFatConv", query = "SELECT r FROM Reg0220 r WHERE r.fatConv = :fatConv"),
+    @NamedQuery(name = "Reg0220.findByCodBarra", query = "SELECT r FROM Reg0220 r WHERE r.codBarra = :codBarra")})
 @Registros(nivel = 3)
-public class Reg0210 implements Serializable {
+public class Reg0221 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -62,26 +62,22 @@ public class Reg0210 implements Serializable {
     private String reg;
 
     @Campos(posicao = 2, tipo = 'C')
-    @Column(name = "COD_ITEM_COMP")
-    private String codItemComp;
+    @Column(name = "COD_ITEM_ATOMICO")
+    private String codItemAtomico;
 
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Campos(posicao = 3, tipo = 'R')
-    @Column(name = "QTD_COMP")
-    private BigDecimal qtdComp;
+    @Column(name = "QTD_CONTIDA")
+    private BigDecimal qtdContida;
 
-    @Campos(posicao = 4, tipo = 'R')
-    @Column(name = "PERDA")
-    private BigDecimal perda;
-
-    public Reg0210() {
+    public Reg0221() {
     }
 
-    public Reg0210(Long id) {
+    public Reg0221(Long id) {
         this.id = id;
     }
 
-    public Reg0210(Long id, Reg0200 idPai, long linha, String hash) {
+    public Reg0221(Long id, Reg0200 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -128,28 +124,20 @@ public class Reg0210 implements Serializable {
         this.reg = reg;
     }
 
-    public String getCodItemComp() {
-        return codItemComp;
+    public String getCodItemAtomico() {
+        return codItemAtomico;
     }
 
-    public void setCodItemComp(String codItemComp) {
-        this.codItemComp = codItemComp;
+    public void setCodItemAtomico(String codItemAtomico) {
+        this.codItemAtomico = codItemAtomico;
     }
 
-    public BigDecimal getQtdComp() {
-        return qtdComp;
+    public BigDecimal getQtdContida() {
+        return qtdContida;
     }
 
-    public void setQtdComp(BigDecimal qtdComp) {
-        this.qtdComp = qtdComp;
-    }
-
-    public BigDecimal getPerda() {
-        return perda;
-    }
-
-    public void setPerda(BigDecimal perda) {
-        this.perda = perda;
+    public void setQtdContida(BigDecimal qtdContida) {
+        this.qtdContida = qtdContida;
     }
 
     @Override
@@ -162,10 +150,10 @@ public class Reg0210 implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Reg0210)) {
+        if (!(object instanceof Reg0221)) {
             return false;
         }
-        Reg0210 other = (Reg0210) object;
+        Reg0221 other = (Reg0221) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -174,7 +162,7 @@ public class Reg0210 implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.jefferson.efd.blocos.Reg0210[ id=" + id + " ]";
+        return "br.com.jefferson.efd.blocos.Reg0220[ id=" + id + " ]";
     }
 
 }

@@ -1,14 +1,22 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegB001.findByHash", query = "SELECT r FROM RegB001 r WHERE r.hash = :hash"),
     @NamedQuery(name = "RegB001.findByReg", query = "SELECT r FROM RegB001 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegB001.findByIndMov", query = "SELECT r FROM RegB001 r WHERE r.indMov = :indMov")})
+@Registros(nivel = 1)
 public class RegB001 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,19 +44,50 @@ public class RegB001 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg0000 idPai;
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
+
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "IND_MOV")
     private String indMov;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegB020> regB020;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegB030> regB030;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegB350> regB350;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegB420> regB420;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegB440> regB440;
+
+    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegB470 regB470;
+
+    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegB500 regB500;
+
+    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegB990 regB990;
 
     public RegB001() {
     }
@@ -56,7 +96,7 @@ public class RegB001 implements Serializable {
         this.id = id;
     }
 
-    public RegB001(Long id, long idPai, long linha, String hash) {
+    public RegB001(Long id, Reg0000 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -71,12 +111,12 @@ public class RegB001 implements Serializable {
         this.id = id;
     }
 
-    public long getIdPai() {
+    public Reg0000 getIdPai() {
         return idPai;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0000) idPai;
     }
 
     public long getLinha() {
@@ -109,6 +149,70 @@ public class RegB001 implements Serializable {
 
     public void setIndMov(String indMov) {
         this.indMov = indMov;
+    }
+
+    public List<RegB020> getRegB020() {
+        return regB020;
+    }
+
+    public void setRegB020(List<RegB020> regB020) {
+        this.regB020 = regB020;
+    }
+
+    public List<RegB030> getRegB030() {
+        return regB030;
+    }
+
+    public void setRegB030(List<RegB030> regB030) {
+        this.regB030 = regB030;
+    }
+
+    public List<RegB350> getRegB350() {
+        return regB350;
+    }
+
+    public void setRegB350(List<RegB350> regB350) {
+        this.regB350 = regB350;
+    }
+
+    public List<RegB420> getRegB420() {
+        return regB420;
+    }
+
+    public void setRegB420(List<RegB420> regB420) {
+        this.regB420 = regB420;
+    }
+
+    public List<RegB440> getRegB440() {
+        return regB440;
+    }
+
+    public void setRegB440(List<RegB440> regB440) {
+        this.regB440 = regB440;
+    }
+
+    public RegB470 getRegB470() {
+        return regB470;
+    }
+
+    public void setRegB470(RegB470 regB470) {
+        this.regB470 = regB470;
+    }
+
+    public RegB500 getRegB500() {
+        return regB500;
+    }
+
+    public void setRegB500(RegB500 regB500) {
+        this.regB500 = regB500;
+    }
+
+    public RegB990 getRegB990() {
+        return regB990;
+    }
+
+    public void setRegB990(RegB990 regB990) {
+        this.regB990 = regB990;
     }
 
     @Override

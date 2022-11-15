@@ -123,6 +123,24 @@ public class Reg0000 implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, mappedBy = "idPai")
     private Reg0001 reg0001;
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegB001 regB001;
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegC001 regC001;
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegD001 regD001;
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegE001 regE001;
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegG001 regG001;
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegH001 regH001;
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegK001 regK001;
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private Reg1001 reg1001;
+    @OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private Reg9001 reg9001;
 
     public Reg0000() {
     }
@@ -279,6 +297,78 @@ public class Reg0000 implements Serializable {
 
     public void setReg0001(Reg0001 reg0001) {
         this.reg0001 = reg0001;
+    }
+
+    public RegB001 getRegB001() {
+        return regB001;
+    }
+
+    public void setRegB001(RegB001 regB001) {
+        this.regB001 = regB001;
+    }
+
+    public RegC001 getRegC001() {
+        return regC001;
+    }
+
+    public void setRegC001(RegC001 regC001) {
+        this.regC001 = regC001;
+    }
+
+    public RegD001 getRegD001() {
+        return regD001;
+    }
+
+    public void setRegD001(RegD001 regD001) {
+        this.regD001 = regD001;
+    }
+
+    public RegE001 getRegE001() {
+        return regE001;
+    }
+
+    public void setRegE001(RegE001 regE001) {
+        this.regE001 = regE001;
+    }
+
+    public RegG001 getRegG001() {
+        return regG001;
+    }
+
+    public void setRegG001(RegG001 regG001) {
+        this.regG001 = regG001;
+    }
+
+    public RegH001 getRegH001() {
+        return regH001;
+    }
+
+    public void setRegH001(RegH001 regH001) {
+        this.regH001 = regH001;
+    }
+
+    public RegK001 getRegK001() {
+        return regK001;
+    }
+
+    public void setRegK001(RegK001 regK001) {
+        this.regK001 = regK001;
+    }
+
+    public Reg1001 getReg1001() {
+        return reg1001;
+    }
+
+    public void setReg1001(Reg1001 reg1001) {
+        this.reg1001 = reg1001;
+    }
+
+    public Reg9001 getReg9001() {
+        return reg9001;
+    }
+
+    public void setReg9001(Reg9001 reg9001) {
+        this.reg9001 = reg9001;
     }
 
     @Override

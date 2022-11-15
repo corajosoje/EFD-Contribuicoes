@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -33,6 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegB440.findByVlContRt", query = "SELECT r FROM RegB440 r WHERE r.vlContRt = :vlContRt"),
     @NamedQuery(name = "RegB440.findByVlBcIssRt", query = "SELECT r FROM RegB440 r WHERE r.vlBcIssRt = :vlBcIssRt"),
     @NamedQuery(name = "RegB440.findByVlIssRt", query = "SELECT r FROM RegB440 r WHERE r.vlIssRt = :vlIssRt")})
+@Registros(nivel = 2)
 public class RegB440 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,26 +46,41 @@ public class RegB440 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegB001 idPai;
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
+
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "IND_OPER")
     private String indOper;
+
+    @Campos(posicao = 3, tipo = 'C')
     @Column(name = "COD_PART")
     private String codPart;
+
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Campos(posicao = 4, tipo = 'R')
     @Column(name = "VL_CONT_RT")
     private BigDecimal vlContRt;
+
+    @Campos(posicao = 5, tipo = 'R')
     @Column(name = "VL_BC_ISS_RT")
     private BigDecimal vlBcIssRt;
+
+    @Campos(posicao = 6, tipo = 'R')
     @Column(name = "VL_ISS_RT")
     private BigDecimal vlIssRt;
 
@@ -71,7 +91,7 @@ public class RegB440 implements Serializable {
         this.id = id;
     }
 
-    public RegB440(Long id, long idPai, long linha, String hash) {
+    public RegB440(Long id, RegB001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -86,12 +106,12 @@ public class RegB440 implements Serializable {
         this.id = id;
     }
 
-    public long getIdPai() {
+    public RegB001 getIdPai() {
         return idPai;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegB001) idPai;
     }
 
     public long getLinha() {

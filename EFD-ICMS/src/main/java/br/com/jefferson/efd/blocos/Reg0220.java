@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -31,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg0220.findByUnidConv", query = "SELECT r FROM Reg0220 r WHERE r.unidConv = :unidConv"),
     @NamedQuery(name = "Reg0220.findByFatConv", query = "SELECT r FROM Reg0220 r WHERE r.fatConv = :fatConv"),
     @NamedQuery(name = "Reg0220.findByCodBarra", query = "SELECT r FROM Reg0220 r WHERE r.codBarra = :codBarra")})
+@Registros(nivel = 3)
 public class Reg0220 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,22 +44,33 @@ public class Reg0220 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg0200 idPai;
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
+
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "UNID_CONV")
     private String unidConv;
+
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Campos(posicao = 3, tipo = 'R')
     @Column(name = "FAT_CONV")
     private BigDecimal fatConv;
+
+    @Campos(posicao = 4, tipo = 'C')
     @Column(name = "COD_BARRA")
     private String codBarra;
 
@@ -65,7 +81,7 @@ public class Reg0220 implements Serializable {
         this.id = id;
     }
 
-    public Reg0220(Long id, long idPai, long linha, String hash) {
+    public Reg0220(Long id, Reg0200 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -80,12 +96,12 @@ public class Reg0220 implements Serializable {
         this.id = id;
     }
 
-    public long getIdPai() {
+    public Reg0200 getIdPai() {
         return idPai;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0200) idPai;
     }
 
     public long getLinha() {

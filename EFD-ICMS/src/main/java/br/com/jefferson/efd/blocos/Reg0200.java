@@ -1,16 +1,24 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -40,6 +48,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg0200.findByCodLst", query = "SELECT r FROM Reg0200 r WHERE r.codLst = :codLst"),
     @NamedQuery(name = "Reg0200.findByAliqIcms", query = "SELECT r FROM Reg0200 r WHERE r.aliqIcms = :aliqIcms"),
     @NamedQuery(name = "Reg0200.findByCest", query = "SELECT r FROM Reg0200 r WHERE r.cest = :cest")})
+@Registros(nivel = 2)
 public class Reg0200 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,42 +57,86 @@ public class Reg0200 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg0001 idPai;
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
+
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "COD_ITEM")
     private String codItem;
+
+    @Campos(posicao = 3, tipo = 'C')
     @Column(name = "DESCR_ITEM")
     private String descrItem;
+
+    @Campos(posicao = 4, tipo = 'C')
     @Column(name = "COD_BARRA")
     private String codBarra;
+
+    @Campos(posicao = 5, tipo = 'C')
     @Column(name = "COD_ANT_ITEM")
     private String codAntItem;
+
+    @Campos(posicao = 6, tipo = 'C')
     @Column(name = "UNID_INV")
     private String unidInv;
+
+    @Campos(posicao = 7, tipo = 'C')
     @Column(name = "TIPO_ITEM")
     private String tipoItem;
+
+    @Campos(posicao = 8, tipo = 'C')
     @Column(name = "COD_NCM")
     private String codNcm;
+
+    @Campos(posicao = 9, tipo = 'C')
     @Column(name = "EX_IPI")
     private String exIpi;
+
+    @Campos(posicao = 10, tipo = 'C')
     @Column(name = "COD_GEN")
     private String codGen;
+
+    @Campos(posicao = 11, tipo = 'C')
     @Column(name = "COD_LST")
     private String codLst;
+
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Campos(posicao = 12, tipo = 'R')
     @Column(name = "ALIQ_ICMS")
     private BigDecimal aliqIcms;
+
+    @Campos(posicao = 13, tipo = 'C')
     @Column(name = "CEST")
     private String cest;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg0205> reg0205;
+
+    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private Reg0206 reg0206;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg0210> reg0210;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg0220> reg0220;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg0221> reg0221;
 
     public Reg0200() {
     }
@@ -92,7 +145,7 @@ public class Reg0200 implements Serializable {
         this.id = id;
     }
 
-    public Reg0200(Long id, long idPai, long linha, String hash) {
+    public Reg0200(Long id, Reg0001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -107,12 +160,12 @@ public class Reg0200 implements Serializable {
         this.id = id;
     }
 
-    public long getIdPai() {
+    public Reg0001 getIdPai() {
         return idPai;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0001) idPai;
     }
 
     public long getLinha() {
@@ -233,6 +286,46 @@ public class Reg0200 implements Serializable {
 
     public void setCest(String cest) {
         this.cest = cest;
+    }
+
+    public List<Reg0205> getReg0205() {
+        return reg0205;
+    }
+
+    public void setReg0205(List<Reg0205> reg0205) {
+        this.reg0205 = reg0205;
+    }
+
+    public Reg0206 getReg0206() {
+        return reg0206;
+    }
+
+    public void setReg0206(Reg0206 reg0206) {
+        this.reg0206 = reg0206;
+    }
+
+    public List<Reg0210> getReg0210() {
+        return reg0210;
+    }
+
+    public void setReg0210(List<Reg0210> reg0210) {
+        this.reg0210 = reg0210;
+    }
+
+    public List<Reg0220> getReg0220() {
+        return reg0220;
+    }
+
+    public void setReg0220(List<Reg0220> reg0220) {
+        this.reg0220 = reg0220;
+    }
+
+    public List<Reg0221> getReg0221() {
+        return reg0221;
+    }
+
+    public void setReg0221(List<Reg0221> reg0221) {
+        this.reg0221 = reg0221;
     }
 
     @Override

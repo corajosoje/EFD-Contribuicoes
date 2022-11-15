@@ -1,15 +1,23 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,6 +48,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1100.findByDtAvb", query = "SELECT r FROM Reg1100 r WHERE r.dtAvb = :dtAvb"),
     @NamedQuery(name = "Reg1100.findByTpChc", query = "SELECT r FROM Reg1100 r WHERE r.tpChc = :tpChc"),
     @NamedQuery(name = "Reg1100.findByPais", query = "SELECT r FROM Reg1100 r WHERE r.pais = :pais")})
+@Registros(nivel = 2)
 public class Reg1100 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,43 +57,86 @@ public class Reg1100 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg1001 idPai;
+
+    public Reg1001 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg1001) idPai;
+    }
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "IND_DOC")
     private String indDoc;
+
+    @Campos(posicao = 3, tipo = 'C')
     @Column(name = "NRO_DE")
     private String nroDe;
+
+    @Campos(posicao = 4, tipo = 'D')
     @Column(name = "DT_DE")
     @Temporal(TemporalType.DATE)
     private Date dtDe;
+
+    @Campos(posicao = 5, tipo = 'C')
     @Column(name = "NAT_EXP")
     private String natExp;
+
+    @Campos(posicao = 6, tipo = 'I')
     @Column(name = "NRO_RE")
     private int nroRe;
+
+    @Campos(posicao = 7, tipo = 'D')
     @Column(name = "DT_RE")
     @Temporal(TemporalType.DATE)
     private Date dtRe;
+
+    @Campos(posicao = 8, tipo = 'C')
     @Column(name = "CHC_EMB")
     private String chcEmb;
+
+    @Campos(posicao = 9, tipo = 'D')
     @Column(name = "DT_CHC")
     @Temporal(TemporalType.DATE)
     private Date dtChc;
+
+    @Campos(posicao = 10, tipo = 'D')
     @Column(name = "DT_AVB")
     @Temporal(TemporalType.DATE)
     private Date dtAvb;
+
+    @Campos(posicao = 11, tipo = 'C')
     @Column(name = "TP_CHC")
     private String tpChc;
+
+    @Campos(posicao = 12, tipo = 'C')
     @Column(name = "PAIS")
     private String pais;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg1105> reg1105;
+
+    public List<Reg1105> getReg1105() {
+        return reg1105;
+    }
+
+    public void setReg1105(List<Reg1105> reg1105) {
+        this.reg1105 = reg1105;
+    }
 
     public Reg1100() {
     }
@@ -93,7 +145,7 @@ public class Reg1100 implements Serializable {
         this.id = id;
     }
 
-    public Reg1100(Long id, long idPai, long linha, String hash) {
+    public Reg1100(Long id, Reg1001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -106,14 +158,6 @@ public class Reg1100 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {

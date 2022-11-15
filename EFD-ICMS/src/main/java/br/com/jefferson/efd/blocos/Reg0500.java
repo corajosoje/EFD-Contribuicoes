@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -7,7 +9,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -35,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg0500.findByNivel", query = "SELECT r FROM Reg0500 r WHERE r.nivel = :nivel"),
     @NamedQuery(name = "Reg0500.findByCodCta", query = "SELECT r FROM Reg0500 r WHERE r.codCta = :codCta"),
     @NamedQuery(name = "Reg0500.findByNomeCta", query = "SELECT r FROM Reg0500 r WHERE r.nomeCta = :nomeCta")})
+@Registros(nivel = 2)
 public class Reg0500 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,28 +49,45 @@ public class Reg0500 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg0001 idPai;
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
+
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+
+    @Campos(posicao = 2, tipo = 'D')
     @Column(name = "DT_ALT")
     @Temporal(TemporalType.DATE)
     private Date dtAlt;
+
+    @Campos(posicao = 3, tipo = 'C')
     @Column(name = "COD_NAT_CC")
     private String codNatCc;
+
+    @Campos(posicao = 4, tipo = 'C')
     @Column(name = "IND_CTA")
     private String indCta;
+
+    @Campos(posicao = 5, tipo = 'I')
     @Column(name = "NIVEL")
     private int nivel;
+
+    @Campos(posicao = 6, tipo = 'C')
     @Column(name = "COD_CTA")
     private String codCta;
+
+    @Campos(posicao = 7, tipo = 'C')
     @Column(name = "NOME_CTA")
     private String nomeCta;
 
@@ -75,7 +98,7 @@ public class Reg0500 implements Serializable {
         this.id = id;
     }
 
-    public Reg0500(Long id, long idPai, long linha, String hash) {
+    public Reg0500(Long id, Reg0001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -90,12 +113,12 @@ public class Reg0500 implements Serializable {
         this.id = id;
     }
 
-    public long getIdPai() {
+    public Reg0001 getIdPai() {
         return idPai;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0001) idPai;
     }
 
     public long getLinha() {

@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -34,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1255.findByVlFcpStRestMot", query = "SELECT r FROM Reg1255 r WHERE r.vlFcpStRestMot = :vlFcpStRestMot"),
     @NamedQuery(name = "Reg1255.findByVlIcmsStComplMot", query = "SELECT r FROM Reg1255 r WHERE r.vlIcmsStComplMot = :vlIcmsStComplMot"),
     @NamedQuery(name = "Reg1255.findByVlFcpStComplMot", query = "SELECT r FROM Reg1255 r WHERE r.vlFcpStComplMot = :vlFcpStComplMot")})
+@Registros(nivel = 3)
 public class Reg1255 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,28 +47,50 @@ public class Reg1255 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg1250 idPai;
+
+    public Reg1250 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg1250) idPai;
+    }
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "COD_MOT_REST_COMPL")
     private String codMotRestCompl;
+
+    @Campos(posicao = 3, tipo = 'R')
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "VL_CREDITO_ICMS_OP_MOT")
     private BigDecimal vlCreditoIcmsOpMot;
+
+    @Campos(posicao = 4, tipo = 'R')
     @Column(name = "VL_ICMS_ST_REST_MOT")
     private BigDecimal vlIcmsStRestMot;
+
+    @Campos(posicao = 5, tipo = 'R')
     @Column(name = "VL_FCP_ST_REST_MOT")
     private BigDecimal vlFcpStRestMot;
+
+    @Campos(posicao = 6, tipo = 'R')
     @Column(name = "VL_ICMS_ST_COMPL_MOT")
     private BigDecimal vlIcmsStComplMot;
+
+    @Campos(posicao = 7, tipo = 'R')
     @Column(name = "VL_FCP_ST_COMPL_MOT")
     private BigDecimal vlFcpStComplMot;
 
@@ -74,7 +101,7 @@ public class Reg1255 implements Serializable {
         this.id = id;
     }
 
-    public Reg1255(Long id, long idPai, long linha, String hash) {
+    public Reg1255(Long id, Reg1250 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -87,14 +114,6 @@ public class Reg1255 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {

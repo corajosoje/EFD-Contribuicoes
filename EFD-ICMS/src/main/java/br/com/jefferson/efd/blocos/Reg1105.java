@@ -1,15 +1,23 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,6 +43,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1105.findByChvNfe", query = "SELECT r FROM Reg1105 r WHERE r.chvNfe = :chvNfe"),
     @NamedQuery(name = "Reg1105.findByDtDoc", query = "SELECT r FROM Reg1105 r WHERE r.dtDoc = :dtDoc"),
     @NamedQuery(name = "Reg1105.findByCodItem", query = "SELECT r FROM Reg1105 r WHERE r.codItem = :codItem")})
+@Registros(nivel = 3)
 public class Reg1105 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,30 +52,64 @@ public class Reg1105 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg1100 idPai;
+
+    public Reg1100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg1100) idPai;
+    }
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
+
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "COD_MOD")
     private String codMod;
+
+    @Campos(posicao = 3, tipo = 'C')
     @Column(name = "SER")
     private String ser;
+
+    @Campos(posicao = 4, tipo = 'I')
     @Column(name = "NUM_DOC")
     private int numDoc;
+
+    @Campos(posicao = 5, tipo = 'C')
     @Column(name = "CHV_NFE")
     private String chvNfe;
+
+    @Campos(posicao = 6, tipo = 'D')
     @Column(name = "DT_DOC")
     @Temporal(TemporalType.DATE)
     private Date dtDoc;
+
+    @Campos(posicao = 7, tipo = 'C')
     @Column(name = "COD_ITEM")
     private String codItem;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg1110> reg1110;
+
+    public List<Reg1110> getReg1110() {
+        return reg1110;
+    }
+
+    public void setReg1110(List<Reg1110> reg1110) {
+        this.reg1110 = reg1110;
+    }
 
     public Reg1105() {
     }
@@ -75,7 +118,7 @@ public class Reg1105 implements Serializable {
         this.id = id;
     }
 
-    public Reg1105(Long id, long idPai, long linha, String hash) {
+    public Reg1105(Long id, Reg1100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -88,14 +131,6 @@ public class Reg1105 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {
