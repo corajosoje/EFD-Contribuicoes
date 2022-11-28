@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -30,7 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1925.findByReg", query = "SELECT r FROM Reg1925 r WHERE r.reg = :reg"),
     @NamedQuery(name = "Reg1925.findByCodInfAdic", query = "SELECT r FROM Reg1925 r WHERE r.codInfAdic = :codInfAdic"),
     @NamedQuery(name = "Reg1925.findByVlInfAdic", query = "SELECT r FROM Reg1925 r WHERE r.vlInfAdic = :vlInfAdic"),
-    @NamedQuery(name = "Reg1925.findByDescComplAj", query = "SELECT r FROM Reg1925 r WHERE r.descComplAj = :descComplAj")})
+    @NamedQuery(name = "Reg1925.findByDescrComplAj", query = "SELECT r FROM Reg1925 r WHERE r.descrComplAj = :descrComplAj")})
+@Registros(nivel = 5)
 public class Reg1925 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,24 +44,35 @@ public class Reg1925 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg1920 idPai;
+
+    public Reg1920 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg1920) idPai;
+    }
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "COD_INF_ADIC")
     private String codInfAdic;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Campos(posicao = 3, tipo = 'R')
     @Column(name = "VL_INF_ADIC")
     private BigDecimal vlInfAdic;
-    @Column(name = "DESC_COMPL_AJ")
-    private String descComplAj;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "DESCR_COMPL_AJ")
+    private String descrComplAj;
 
     public Reg1925() {
     }
@@ -65,7 +81,7 @@ public class Reg1925 implements Serializable {
         this.id = id;
     }
 
-    public Reg1925(Long id, long idPai, long linha, String hash) {
+    public Reg1925(Long id, Reg1920 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -78,14 +94,6 @@ public class Reg1925 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {
@@ -129,11 +137,11 @@ public class Reg1925 implements Serializable {
     }
 
     public String getDescComplAj() {
-        return descComplAj;
+        return descrComplAj;
     }
 
     public void setDescComplAj(String descComplAj) {
-        this.descComplAj = descComplAj;
+        this.descrComplAj = descrComplAj;
     }
 
     @Override

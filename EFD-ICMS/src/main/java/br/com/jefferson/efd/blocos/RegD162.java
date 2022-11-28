@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +10,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -39,6 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD162.findByQtdVol", query = "SELECT r FROM RegD162 r WHERE r.qtdVol = :qtdVol"),
     @NamedQuery(name = "RegD162.findByPesoBrt", query = "SELECT r FROM RegD162 r WHERE r.pesoBrt = :pesoBrt"),
     @NamedQuery(name = "RegD162.findByPesoLiq", query = "SELECT r FROM RegD162 r WHERE r.pesoLiq = :pesoLiq")})
+@Registros(nivel = 4)
 public class RegD162 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,37 +53,17 @@ public class RegD162 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_MOD")
-    private String codMod;
-    @Column(name = "SER")
-    private String ser;
-    @Column(name = "NUM_DOC")
-    private int numDoc;
-    @Column(name = "DT_DOC")
-    @Temporal(TemporalType.DATE)
-    private Date dtDoc;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_DOC")
-    private BigDecimal vlDoc;
-    @Column(name = "VL_MERC")
-    private BigDecimal vlMerc;
-    @Column(name = "QTD_VOL")
-    private int qtdVol;
-    @Column(name = "PESO_BRT")
-    private BigDecimal pesoBrt;
-    @Column(name = "PESO_LIQ")
-    private BigDecimal pesoLiq;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD160 idPai;
+
+    public RegD160 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD160) idPai;
+    }
 
     public RegD162() {
     }
@@ -86,7 +72,7 @@ public class RegD162 implements Serializable {
         this.id = id;
     }
 
-    public RegD162(Long id, long idPai, long linha, String hash) {
+    public RegD162(Long id, RegD160 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -100,14 +86,43 @@ public class RegD162 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_MOD")
+    private String codMod;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "SER")
+    private String ser;
+    @Campos(posicao = 4, tipo = 'I')
+    @Column(name = "NUM_DOC")
+    private int numDoc;
+    @Campos(posicao = 5, tipo = 'D')
+    @Column(name = "DT_DOC")
+    @Temporal(TemporalType.DATE)
+    private Date dtDoc;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "VL_DOC")
+    private BigDecimal vlDoc;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "VL_MERC")
+    private BigDecimal vlMerc;
+    @Campos(posicao = 8, tipo = 'I')
+    @Column(name = "QTD_VOL")
+    private int qtdVol;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "PESO_BRT")
+    private BigDecimal pesoBrt;
+    @Campos(posicao = 10, tipo = 'R')
+    @Column(name = "PESO_LIQ")
+    private BigDecimal pesoLiq;
 
     public long getLinha() {
         return linha;

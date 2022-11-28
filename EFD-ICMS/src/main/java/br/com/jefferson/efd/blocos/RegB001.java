@@ -44,50 +44,17 @@ public class RegB001 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
     private Reg0000 idPai;
 
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
+    public Reg0000 getIdPai() {
+        return idPai;
+    }
 
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-
-    @Campos(posicao = 1, tipo = 'C')
-    @Column(name = "REG")
-    private String reg;
-
-    @Campos(posicao = 2, tipo = 'C')
-    @Column(name = "IND_MOV")
-    private String indMov;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
-    private List<RegB020> regB020;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
-    private List<RegB030> regB030;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
-    private List<RegB350> regB350;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
-    private List<RegB420> regB420;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
-    private List<RegB440> regB440;
-
-    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY, mappedBy = "idPai")
-    private RegB470 regB470;
-
-    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY, mappedBy = "idPai")
-    private RegB500 regB500;
-
-    @OneToOne(cascade = CascadeType.ALL, optional = true, fetch = FetchType.LAZY, mappedBy = "idPai")
-    private RegB990 regB990;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0000) idPai;
+    }
 
     public RegB001() {
     }
@@ -110,14 +77,98 @@ public class RegB001 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegB020> regB020;
 
-    public Reg0000 getIdPai() {
-        return idPai;
+    public List<RegB020> getRegB020() {
+        return regB020;
     }
 
-    public void setIdPai(Object idPai) {
-        this.idPai = (Reg0000) idPai;
+    public void setRegB020(List<RegB020> regB020) {
+        this.regB020 = regB020;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegB030> regB030;
+
+    public List<RegB030> getRegB030() {
+        return regB030;
+    }
+
+    public void setRegB030(List<RegB030> regB030) {
+        this.regB030 = regB030;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegB350> regB350;
+
+    public List<RegB350> getRegB350() {
+        return regB350;
+    }
+
+    public void setRegB350(List<RegB350> regB350) {
+        this.regB350 = regB350;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegB420> regB420;
+
+    public List<RegB420> getRegB420() {
+        return regB420;
+    }
+
+    public void setRegB420(List<RegB420> regB420) {
+        this.regB420 = regB420;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegB440> regB440;
+
+    public List<RegB440> getRegB440() {
+        return regB440;
+    }
+
+    public void setRegB440(List<RegB440> regB440) {
+        this.regB440 = regB440;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegB460> regB460;
+
+    public List<RegB460> getRegB460() {
+        return regB460;
+    }
+
+    public void setRegB460(List<RegB460> regB460) {
+        this.regB460 = regB460;
+    }
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegB470 regB470;
+
+    public RegB470 getRegB470() {
+        return regB470;
+    }
+
+    public void setRegB470(RegB470 regB470) {
+        this.regB470 = regB470;
+    }
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegB500 regB500;
+
+    public RegB500 getRegB500() {
+        return regB500;
+    }
+
+    public void setRegB500(RegB500 regB500) {
+        this.regB500 = regB500;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_MOV")
+    private String indMov;
 
     public long getLinha() {
         return linha;
@@ -149,70 +200,6 @@ public class RegB001 implements Serializable {
 
     public void setIndMov(String indMov) {
         this.indMov = indMov;
-    }
-
-    public List<RegB020> getRegB020() {
-        return regB020;
-    }
-
-    public void setRegB020(List<RegB020> regB020) {
-        this.regB020 = regB020;
-    }
-
-    public List<RegB030> getRegB030() {
-        return regB030;
-    }
-
-    public void setRegB030(List<RegB030> regB030) {
-        this.regB030 = regB030;
-    }
-
-    public List<RegB350> getRegB350() {
-        return regB350;
-    }
-
-    public void setRegB350(List<RegB350> regB350) {
-        this.regB350 = regB350;
-    }
-
-    public List<RegB420> getRegB420() {
-        return regB420;
-    }
-
-    public void setRegB420(List<RegB420> regB420) {
-        this.regB420 = regB420;
-    }
-
-    public List<RegB440> getRegB440() {
-        return regB440;
-    }
-
-    public void setRegB440(List<RegB440> regB440) {
-        this.regB440 = regB440;
-    }
-
-    public RegB470 getRegB470() {
-        return regB470;
-    }
-
-    public void setRegB470(RegB470 regB470) {
-        this.regB470 = regB470;
-    }
-
-    public RegB500 getRegB500() {
-        return regB500;
-    }
-
-    public void setRegB500(RegB500 regB500) {
-        this.regB500 = regB500;
-    }
-
-    public RegB990 getRegB990() {
-        return regB990;
-    }
-
-    public void setRegB990(RegB990 regB990) {
-        this.regB990 = regB990;
     }
 
     @Override

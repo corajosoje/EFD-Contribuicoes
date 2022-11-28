@@ -1,17 +1,25 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
+import static br.com.jefferson.efd.blocos.RegK235_.dtSaida;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,6 +45,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegK260.findByQtdSaida", query = "SELECT r FROM RegK260 r WHERE r.qtdSaida = :qtdSaida"),
     @NamedQuery(name = "RegK260.findByDtRet", query = "SELECT r FROM RegK260 r WHERE r.dtRet = :dtRet"),
     @NamedQuery(name = "RegK260.findByQtdRet", query = "SELECT r FROM RegK260 r WHERE r.qtdRet = :qtdRet")})
+@Registros(nivel = 3)
 public class RegK260 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,32 +54,17 @@ public class RegK260 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_OP_OS")
-    private String codOpOs;
-    @Column(name = "COD_ITEM")
-    private String codItem;
-    @Column(name = "DT_SAIDA")
-    @Temporal(TemporalType.DATE)
-    private Date dtSaida;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QTD_SAIDA")
-    private BigDecimal qtdSaida;
-    @Column(name = "DT_RET")
-    @Temporal(TemporalType.DATE)
-    private Date dtRet;
-    @Column(name = "QTD_RET")
-    private BigDecimal qtdRet;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegK100 idPai;
+
+    public RegK100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegK100) idPai;
+    }
 
     public RegK260() {
     }
@@ -79,7 +73,7 @@ public class RegK260 implements Serializable {
         this.id = id;
     }
 
-    public RegK260(Long id, long idPai, long linha, String hash) {
+    public RegK260(Long id, RegK100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -93,14 +87,45 @@ public class RegK260 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegK265> regK265;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegK265> getRegK265() {
+        return regK265;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegK265(List<RegK265> regK265) {
+        this.regK265 = regK265;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_OP_OS")
+    private String codOpOs;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "COD_ITEM")
+    private String codItem;
+    @Campos(posicao = 4, tipo = 'D')
+    @Column(name = "DT_SAIDA")
+    @Temporal(TemporalType.DATE)
+    private Date dtSaida;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "QTD_SAIDA")
+    private BigDecimal qtdSaida;
+    @Campos(posicao = 6, tipo = 'D')
+    @Column(name = "DT_RET")
+    @Temporal(TemporalType.DATE)
+    private Date dtRet;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "QTD_RET")
+    private BigDecimal qtdRet;
 
     public long getLinha() {
         return linha;

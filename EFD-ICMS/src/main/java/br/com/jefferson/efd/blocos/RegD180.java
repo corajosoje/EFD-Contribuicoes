@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +10,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -46,6 +51,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD180.findByNumDoc", query = "SELECT r FROM RegD180 r WHERE r.numDoc = :numDoc"),
     @NamedQuery(name = "RegD180.findByDtDoc", query = "SELECT r FROM RegD180 r WHERE r.dtDoc = :dtDoc"),
     @NamedQuery(name = "RegD180.findByVlDoc", query = "SELECT r FROM RegD180 r WHERE r.vlDoc = :vlDoc")})
+@Registros(nivel = 3)
 public class RegD180 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,51 +60,17 @@ public class RegD180 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "NUM_SEQ")
-    private int numSeq;
-    @Column(name = "IND_EMIT")
-    private String indEmit;
-    @Column(name = "CNPJ_CPF_EMIT")
-    private String cnpjCpfEmit;
-    @Column(name = "UF_EMIT")
-    private String ufEmit;
-    @Column(name = "IE_EMIT")
-    private String ieEmit;
-    @Column(name = "COD_MUN_ORIG")
-    private String codMunOrig;
-    @Column(name = "CNPJ_CPF_TOM")
-    private String cnpjCpfTom;
-    @Column(name = "UF_TOM")
-    private String ufTom;
-    @Column(name = "IE_TOM")
-    private String ieTom;
-    @Column(name = "COD_MUN_DEST")
-    private String codMunDest;
-    @Column(name = "COD_MOD")
-    private String codMod;
-    @Column(name = "SER")
-    private String ser;
-    @Column(name = "SUB")
-    private int sub;
-    @Column(name = "NUM_DOC")
-    private int numDoc;
-    @Column(name = "DT_DOC")
-    @Temporal(TemporalType.DATE)
-    private Date dtDoc;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_DOC")
-    private BigDecimal vlDoc;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD100 idPai;
+
+    public RegD100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD100) idPai;
+    }
 
     public RegD180() {
     }
@@ -107,7 +79,7 @@ public class RegD180 implements Serializable {
         this.id = id;
     }
 
-    public RegD180(Long id, long idPai, long linha, String hash) {
+    public RegD180(Long id, RegD100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -121,14 +93,64 @@ public class RegD180 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'I')
+    @Column(name = "NUM_SEQ")
+    private int numSeq;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "IND_EMIT")
+    private String indEmit;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "CNPJ_CPF_EMIT")
+    private String cnpjCpfEmit;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "UF_EMIT")
+    private String ufEmit;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "IE_EMIT")
+    private String ieEmit;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "COD_MUN_ORIG")
+    private String codMunOrig;
+    @Campos(posicao = 8, tipo = 'C')
+    @Column(name = "CNPJ_CPF_TOM")
+    private String cnpjCpfTom;
+    @Campos(posicao = 9, tipo = 'C')
+    @Column(name = "UF_TOM")
+    private String ufTom;
+    @Campos(posicao = 10, tipo = 'C')
+    @Column(name = "IE_TOM")
+    private String ieTom;
+    @Campos(posicao = 11, tipo = 'C')
+    @Column(name = "COD_MUN_DEST")
+    private String codMunDest;
+    @Campos(posicao = 12, tipo = 'C')
+    @Column(name = "COD_MOD")
+    private String codMod;
+    @Campos(posicao = 13, tipo = 'C')
+    @Column(name = "SER")
+    private String ser;
+    @Campos(posicao = 14, tipo = 'I')
+    @Column(name = "SUB")
+    private int sub;
+    @Campos(posicao = 15, tipo = 'I')
+    @Column(name = "NUM_DOC")
+    private int numDoc;
+    @Campos(posicao = 16, tipo = 'D')
+    @Column(name = "DT_DOC")
+    @Temporal(TemporalType.DATE)
+    private Date dtDoc;
+    @Campos(posicao = 17, tipo = 'R')
+    @Column(name = "VL_DOC")
+    private BigDecimal vlDoc;
 
     public long getLinha() {
         return linha;

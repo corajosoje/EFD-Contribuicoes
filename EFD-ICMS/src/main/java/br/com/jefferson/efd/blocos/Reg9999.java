@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -22,11 +24,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Reg9999.findAll", query = "SELECT r FROM Reg9999 r"),
     @NamedQuery(name = "Reg9999.findById", query = "SELECT r FROM Reg9999 r WHERE r.id = :id"),
-    @NamedQuery(name = "Reg9999.findByIdPai", query = "SELECT r FROM Reg9999 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "Reg9999.findByLinha", query = "SELECT r FROM Reg9999 r WHERE r.linha = :linha"),
     @NamedQuery(name = "Reg9999.findByHash", query = "SELECT r FROM Reg9999 r WHERE r.hash = :hash"),
     @NamedQuery(name = "Reg9999.findByReg", query = "SELECT r FROM Reg9999 r WHERE r.reg = :reg"),
     @NamedQuery(name = "Reg9999.findByQtdLin", query = "SELECT r FROM Reg9999 r WHERE r.qtdLin = :qtdLin")})
+@Registros(nivel = 0)
 public class Reg9999 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,17 +37,17 @@ public class Reg9999 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+    @Campos(posicao = 2, tipo = 'I')
     @Column(name = "QTD_LIN")
     private int qtdLin;
 
@@ -56,9 +58,8 @@ public class Reg9999 implements Serializable {
         this.id = id;
     }
 
-    public Reg9999(Long id, long idPai, long linha, String hash) {
+    public Reg9999(Long id, long linha, String hash) {
         this.id = id;
-        this.idPai = idPai;
         this.linha = linha;
         this.hash = hash;
     }
@@ -69,14 +70,6 @@ public class Reg9999 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {

@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg0460.findByReg", query = "SELECT r FROM Reg0460 r WHERE r.reg = :reg"),
     @NamedQuery(name = "Reg0460.findByCodObs", query = "SELECT r FROM Reg0460 r WHERE r.codObs = :codObs"),
     @NamedQuery(name = "Reg0460.findByTxt", query = "SELECT r FROM Reg0460 r WHERE r.txt = :txt")})
-@Registros(nivel = 3)
+@Registros(nivel = 2)
 public class Reg0460 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,30 +42,17 @@ public class Reg0460 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
-    private Reg0400 idPai;
+    private Reg0001 idPai;
 
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
+    public Reg0001 getIdPai() {
+        return idPai;
+    }
 
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-
-    @Campos(posicao = 1, tipo = 'C')
-    @Column(name = "REG")
-    private String reg;
-
-    @Campos(posicao = 2, tipo = 'C')
-    @Column(name = "COD_OBS")
-    private String codObs;
-
-    @Campos(posicao = 3, tipo = 'C')
-    @Column(name = "TXT")
-    private String txt;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0001) idPai;
+    }
 
     public Reg0460() {
     }
@@ -74,7 +61,7 @@ public class Reg0460 implements Serializable {
         this.id = id;
     }
 
-    public Reg0460(Long id, Reg0400 idPai, long linha, String hash) {
+    public Reg0460(Long id, Reg0001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -88,14 +75,21 @@ public class Reg0460 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public Reg0400 getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(Object idPai) {
-        this.idPai = (Reg0400) idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_OBS")
+    private String codObs;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "TXT")
+    private String txt;
 
     public long getLinha() {
         return linha;

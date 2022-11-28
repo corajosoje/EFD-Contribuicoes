@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -9,7 +10,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -36,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegK220.findByCodItemDest", query = "SELECT r FROM RegK220 r WHERE r.codItemDest = :codItemDest"),
     @NamedQuery(name = "RegK220.findByQtdOri", query = "SELECT r FROM RegK220 r WHERE r.qtdOri = :qtdOri"),
     @NamedQuery(name = "RegK220.findByQtdDest", query = "SELECT r FROM RegK220 r WHERE r.qtdDest = :qtdDest")})
+@Registros(nivel = 3)
 public class RegK220 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,29 +49,17 @@ public class RegK220 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "DT_MOV")
-    @Temporal(TemporalType.DATE)
-    private Date dtMov;
-    @Column(name = "COD_ITEM_ORI")
-    private String codItemOri;
-    @Column(name = "COD_ITEM_DEST")
-    private String codItemDest;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QTD_ORI")
-    private BigDecimal qtdOri;
-    @Column(name = "QTD_DEST")
-    private BigDecimal qtdDest;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegK100 idPai;
+
+    public RegK100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegK100) idPai;
+    }
 
     public RegK220() {
     }
@@ -75,7 +68,7 @@ public class RegK220 implements Serializable {
         this.id = id;
     }
 
-    public RegK220(Long id, long idPai, long linha, String hash) {
+    public RegK220(Long id, RegK100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -89,14 +82,31 @@ public class RegK220 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'D')
+    @Column(name = "DT_MOV")
+    @Temporal(TemporalType.DATE)
+    private Date dtMov;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "COD_ITEM_ORI")
+    private String codItemOri;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "COD_ITEM_DEST")
+    private String codItemDest;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "QTD_ORI")
+    private BigDecimal qtdOri;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "QTD_DEST")
+    private BigDecimal qtdDest;
 
     public long getLinha() {
         return linha;

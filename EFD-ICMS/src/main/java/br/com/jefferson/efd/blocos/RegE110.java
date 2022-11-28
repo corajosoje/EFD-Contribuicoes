@@ -1,16 +1,23 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -42,6 +49,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegE110.findByVlIcmsRecolher", query = "SELECT r FROM RegE110 r WHERE r.vlIcmsRecolher = :vlIcmsRecolher"),
     @NamedQuery(name = "RegE110.findByVlSldCredorTransportar", query = "SELECT r FROM RegE110 r WHERE r.vlSldCredorTransportar = :vlSldCredorTransportar"),
     @NamedQuery(name = "RegE110.findByDebEsp", query = "SELECT r FROM RegE110 r WHERE r.debEsp = :debEsp")})
+@Registros(nivel = 3)
 public class RegE110 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -50,46 +58,17 @@ public class RegE110 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_TOT_DEBITOS")
-    private BigDecimal vlTotDebitos;
-    @Column(name = "VL_AJ_DEBITOS")
-    private BigDecimal vlAjDebitos;
-    @Column(name = "VL_TOT_AJ_DEBITOS")
-    private BigDecimal vlTotAjDebitos;
-    @Column(name = "VL_ESTORNOS_CRED")
-    private BigDecimal vlEstornosCred;
-    @Column(name = "VL_TOT_CREDITOS")
-    private BigDecimal vlTotCreditos;
-    @Column(name = "VL_AJ_CREDITOS")
-    private BigDecimal vlAjCreditos;
-    @Column(name = "VL_TOT_AJ_CREDITOS")
-    private BigDecimal vlTotAjCreditos;
-    @Column(name = "VL_ESTORNOS_DEB")
-    private BigDecimal vlEstornosDeb;
-    @Column(name = "VL_SLD_CREDOR_ANT")
-    private BigDecimal vlSldCredorAnt;
-    @Column(name = "VL_SLD_APURADO")
-    private BigDecimal vlSldApurado;
-    @Column(name = "VL_TOT_DED")
-    private BigDecimal vlTotDed;
-    @Column(name = "VL_ICMS_RECOLHER")
-    private BigDecimal vlIcmsRecolher;
-    @Column(name = "VL_SLD_CREDOR_TRANSPORTAR")
-    private BigDecimal vlSldCredorTransportar;
-    @Column(name = "DEB_ESP")
-    private BigDecimal debEsp;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegE100 idPai;
+
+    public RegE100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegE100) idPai;
+    }
 
     public RegE110() {
     }
@@ -98,7 +77,7 @@ public class RegE110 implements Serializable {
         this.id = id;
     }
 
-    public RegE110(Long id, long idPai, long linha, String hash) {
+    public RegE110(Long id, RegE100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -112,14 +91,87 @@ public class RegE110 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE111> regE111;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegE111> getRegE111() {
+        return regE111;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegE111(List<RegE111> regE111) {
+        this.regE111 = regE111;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE115> regE115;
+
+    public List<RegE115> getRegE115() {
+        return regE115;
+    }
+
+    public void setRegE115(List<RegE115> regE115) {
+        this.regE115 = regE115;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE116> regE116;
+
+    public List<RegE116> getRegE116() {
+        return regE116;
+    }
+
+    public void setRegE116(List<RegE116> regE116) {
+        this.regE116 = regE116;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'R')
+    @Column(name = "VL_TOT_DEBITOS")
+    private BigDecimal vlTotDebitos;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "VL_AJ_DEBITOS")
+    private BigDecimal vlAjDebitos;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "VL_TOT_AJ_DEBITOS")
+    private BigDecimal vlTotAjDebitos;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "VL_ESTORNOS_CRED")
+    private BigDecimal vlEstornosCred;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "VL_TOT_CREDITOS")
+    private BigDecimal vlTotCreditos;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "VL_AJ_CREDITOS")
+    private BigDecimal vlAjCreditos;
+    @Campos(posicao = 8, tipo = 'R')
+    @Column(name = "VL_TOT_AJ_CREDITOS")
+    private BigDecimal vlTotAjCreditos;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "VL_ESTORNOS_DEB")
+    private BigDecimal vlEstornosDeb;
+    @Campos(posicao = 10, tipo = 'R')
+    @Column(name = "VL_SLD_CREDOR_ANT")
+    private BigDecimal vlSldCredorAnt;
+    @Campos(posicao = 11, tipo = 'R')
+    @Column(name = "VL_SLD_APURADO")
+    private BigDecimal vlSldApurado;
+    @Campos(posicao = 12, tipo = 'R')
+    @Column(name = "VL_TOT_DED")
+    private BigDecimal vlTotDed;
+    @Campos(posicao = 13, tipo = 'R')
+    @Column(name = "VL_ICMS_RECOLHER")
+    private BigDecimal vlIcmsRecolher;
+    @Campos(posicao = 14, tipo = 'R')
+    @Column(name = "VL_SLD_CREDOR_TRANSPORTAR")
+    private BigDecimal vlSldCredorTransportar;
+    @Campos(posicao = 15, tipo = 'R')
+    @Column(name = "DEB_ESP")
+    private BigDecimal debEsp;
 
     public long getLinha() {
         return linha;

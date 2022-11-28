@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -7,9 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -20,18 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "reg_1600")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Reg1500.findAll", query = "SELECT r FROM Reg1500 r"),
-    @NamedQuery(name = "Reg1500.findById", query = "SELECT r FROM Reg1500 r WHERE r.id = :id"),
-    @NamedQuery(name = "Reg1500.findByIdPai", query = "SELECT r FROM Reg1500 r WHERE r.idPai = :idPai"),
-    @NamedQuery(name = "Reg1500.findByLinha", query = "SELECT r FROM Reg1500 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "Reg1500.findByHash", query = "SELECT r FROM Reg1500 r WHERE r.hash = :hash"),
-    @NamedQuery(name = "Reg1500.findByReg", query = "SELECT r FROM Reg1500 r WHERE r.reg = :reg"),
-    @NamedQuery(name = "Reg1500.findByCodPart", query = "SELECT r FROM Reg1500 r WHERE r.codPart = :codPart"),
-    @NamedQuery(name = "Reg1500.findByTotCredito", query = "SELECT r FROM Reg1500 r WHERE r.totCredito = :totCredito"),
-    @NamedQuery(name = "Reg1500.findByTotDebito", query = "SELECT r FROM Reg1500 r WHERE r.totDebito = :totDebito")
-})
-
+@Registros(nivel = 2)
 public class Reg1600 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,23 +32,17 @@ public class Reg1600 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_PART")
-    private String codPart;
-    @Column(name = "TOT_CREDITO ")
-    private BigDecimal totCredito;
-    @Column(name = "TOT_DEBITO")
-    private BigDecimal totDebito;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg1001 idPai;
+
+    public Reg1001 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg1001) idPai;
+    }
 
     public Reg1600() {
     }
@@ -65,7 +51,7 @@ public class Reg1600 implements Serializable {
         this.id = id;
     }
 
-    public Reg1600(Long id, long idPai, long linha, String hash) {
+    public Reg1600(Long id, Reg1001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -79,14 +65,24 @@ public class Reg1600 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_PART")
+    private String codPart;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "TOT_CREDITO")
+    private BigDecimal totCredito;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "TOT_DEBITO")
+    private BigDecimal totDebito;
 
     public long getLinha() {
         return linha;

@@ -1,16 +1,22 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -38,6 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC470.findByAliqIcms", query = "SELECT r FROM RegC470 r WHERE r.aliqIcms = :aliqIcms"),
     @NamedQuery(name = "RegC470.findByVlPis", query = "SELECT r FROM RegC470 r WHERE r.vlPis = :vlPis"),
     @NamedQuery(name = "RegC470.findByVlCofins", query = "SELECT r FROM RegC470 r WHERE r.vlCofins = :vlCofins")})
+@Registros(nivel = 5)
 public class RegC470 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,38 +53,17 @@ public class RegC470 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_ITEM")
-    private String codItem;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QTD")
-    private BigDecimal qtd;
-    @Column(name = "QTD_CANC")
-    private BigDecimal qtdCanc;
-    @Column(name = "UNID")
-    private String unid;
-    @Column(name = "VL_ITEM")
-    private BigDecimal vlItem;
-    @Column(name = "CST_ICMS")
-    private String cstIcms;
-    @Column(name = "CFOP")
-    private String cfop;
-    @Column(name = "ALIQ_ICMS")
-    private BigDecimal aliqIcms;
-    @Column(name = "VL_PIS")
-    private BigDecimal vlPis;
-    @Column(name = "VL_COFINS")
-    private BigDecimal vlCofins;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC460 idPai;
+
+    public RegC460 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC460) idPai;
+    }
 
     public RegC470() {
     }
@@ -86,7 +72,7 @@ public class RegC470 implements Serializable {
         this.id = id;
     }
 
-    public RegC470(Long id, long idPai, long linha, String hash) {
+    public RegC470(Long id, RegC460 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -100,14 +86,55 @@ public class RegC470 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegC480 regC480;
 
-    public long getIdPai() {
-        return idPai;
+    public RegC480 getRegC480() {
+        return regC480;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegC480(RegC480 regC480) {
+        this.regC480 = regC480;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_ITEM")
+    private String codItem;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "QTD")
+    private BigDecimal qtd;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "QTD_CANC")
+    private BigDecimal qtdCanc;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "UNID")
+    private String unid;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "VL_ITEM")
+    private BigDecimal vlItem;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "CST_ICMS")
+    private String cstIcms;
+    @Campos(posicao = 8, tipo = 'C')
+    @Column(name = "CFOP")
+    private String cfop;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "ALIQ_ICMS")
+    private BigDecimal aliqIcms;
+    @Campos(posicao = 10, tipo = 'R')
+    @Column(name = "VL_PIS")
+    private BigDecimal vlPis;
+    @Campos(posicao = 11, tipo = 'R')
+    @Column(name = "VL_COFINS")
+    private BigDecimal vlCofins;
 
     public long getLinha() {
         return linha;

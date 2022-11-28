@@ -1,16 +1,23 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -31,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegE220.findByCodAjApur", query = "SELECT r FROM RegE220 r WHERE r.codAjApur = :codAjApur"),
     @NamedQuery(name = "RegE220.findByDescrComplAj", query = "SELECT r FROM RegE220 r WHERE r.descrComplAj = :descrComplAj"),
     @NamedQuery(name = "RegE220.findByVlAjApur", query = "SELECT r FROM RegE220 r WHERE r.vlAjApur = :vlAjApur")})
+@Registros(nivel = 4)
 public class RegE220 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,24 +47,17 @@ public class RegE220 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_AJ_APUR")
-    private String codAjApur;
-    @Column(name = "DESCR_COMPL_AJ")
-    private String descrComplAj;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_AJ_APUR")
-    private BigDecimal vlAjApur;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegE210 idPai;
+
+    public RegE210 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegE210) idPai;
+    }
 
     public RegE220() {
     }
@@ -65,7 +66,7 @@ public class RegE220 implements Serializable {
         this.id = id;
     }
 
-    public RegE220(Long id, long idPai, long linha, String hash) {
+    public RegE220(Long id, RegE210 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -79,14 +80,44 @@ public class RegE220 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE230> regE230;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegE230> getRegE230() {
+        return regE230;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegE230(List<RegE230> regE230) {
+        this.regE230 = regE230;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE240> regE240;
+
+    public List<RegE240> getRegE240() {
+        return regE240;
+    }
+
+    public void setRegE240(List<RegE240> regE240) {
+        this.regE240 = regE240;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_AJ_APUR")
+    private String codAjApur;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "DESCR_COMPL_AJ")
+    private String descrComplAj;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "VL_AJ_APUR")
+    private BigDecimal vlAjApur;
 
     public long getLinha() {
         return linha;

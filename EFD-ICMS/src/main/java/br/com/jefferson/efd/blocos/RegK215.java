@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -7,7 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -27,8 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegK215.findByLinha", query = "SELECT r FROM RegK215 r WHERE r.linha = :linha"),
     @NamedQuery(name = "RegK215.findByHash", query = "SELECT r FROM RegK215 r WHERE r.hash = :hash"),
     @NamedQuery(name = "RegK215.findByReg", query = "SELECT r FROM RegK215 r WHERE r.reg = :reg"),
-    @NamedQuery(name = "RegK215.findByCodItemDest", query = "SELECT r FROM RegK215 r WHERE r.codItemDest = :codItemDest"),
+    @NamedQuery(name = "RegK215.findByCodItemDes", query = "SELECT r FROM RegK215 r WHERE r.codItemDes = :codItemDes"),
     @NamedQuery(name = "RegK215.findByQtdDes", query = "SELECT r FROM RegK215 r WHERE r.qtdDes = :qtdDes")})
+@Registros(nivel = 4)
 public class RegK215 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,22 +43,17 @@ public class RegK215 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_ITEM_DEST")
-    private String codItemDest;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QTD_DES")
-    private BigDecimal qtdDes;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegK210 idPai;
+
+    public RegK210 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegK210) idPai;
+    }
 
     public RegK215() {
     }
@@ -61,7 +62,7 @@ public class RegK215 implements Serializable {
         this.id = id;
     }
 
-    public RegK215(Long id, long idPai, long linha, String hash) {
+    public RegK215(Long id, RegK210 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -75,14 +76,21 @@ public class RegK215 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_ITEM_DES")
+    private String codItemDes;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "QTD_DES")
+    private BigDecimal qtdDes;
 
     public long getLinha() {
         return linha;
@@ -108,12 +116,12 @@ public class RegK215 implements Serializable {
         this.reg = reg;
     }
 
-    public String getCodItemDest() {
-        return codItemDest;
+    public String getCodItemDes() {
+        return codItemDes;
     }
 
-    public void setCodItemDest(String codItemDest) {
-        this.codItemDest = codItemDest;
+    public void setCodItemDes(String codItemDes) {
+        this.codItemDes = codItemDes;
     }
 
     public BigDecimal getQtdDes() {

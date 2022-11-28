@@ -45,42 +45,17 @@ public class RegB510 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
     private RegB500 idPai;
 
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
+    public RegB500 getIdPai() {
+        return idPai;
+    }
 
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-
-    @Campos(posicao = 1, tipo = 'C')
-    @Column(name = "REG")
-    private String reg;
-
-    @Campos(posicao = 2, tipo = 'C')
-    @Column(name = "IND_PROF")
-    private String indProf;
-
-    @Campos(posicao = 3, tipo = 'C')
-    @Column(name = "IND_ESC")
-    private String indEsc;
-
-    @Campos(posicao = 4, tipo = 'C')
-    @Column(name = "IND_SOC")
-    private String indSoc;
-
-    @Campos(posicao = 5, tipo = 'C')
-    @Column(name = "CPF")
-    private String cpf;
-
-    @Campos(posicao = 6, tipo = 'C')
-    @Column(name = "NOME")
-    private String nome;
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegB500) idPai;
+    }
 
     public RegB510() {
     }
@@ -103,14 +78,30 @@ public class RegB510 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public RegB500 getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(Object idPai) {
-        this.idPai = (RegB500) idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_PROF")
+    private String indProf;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "IND_ESC")
+    private String indEsc;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "IND_SOC")
+    private String indSoc;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "CPF")
+    private String cpf;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "NOME")
+    private String nome;
 
     public long getLinha() {
         return linha;

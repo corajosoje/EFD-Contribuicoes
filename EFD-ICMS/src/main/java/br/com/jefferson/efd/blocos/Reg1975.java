@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -32,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1975.findByG310", query = "SELECT r FROM Reg1975 r WHERE r.g310 = :g310"),
     @NamedQuery(name = "Reg1975.findByG311", query = "SELECT r FROM Reg1975 r WHERE r.g311 = :g311"),
     @NamedQuery(name = "Reg1975.findByG312", query = "SELECT r FROM Reg1975 r WHERE r.g312 = :g312")})
+@Registros(nivel = 3)
 public class Reg1975 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,24 +45,36 @@ public class Reg1975 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg1970 idPai;
+
+    public Reg1970 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg1970) idPai;
+    }
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Campos(posicao = 2, tipo = 'R')
     @Column(name = "ALIQ_IMP_BASE")
     private BigDecimal aliqImpBase;
+    @Campos(posicao = 3, tipo = 'R')
     @Column(name = "G3_10")
     private BigDecimal g310;
+    @Campos(posicao = 4, tipo = 'R')
     @Column(name = "G3_11")
     private BigDecimal g311;
+    @Campos(posicao = 5, tipo = 'R')
     @Column(name = "G3_12")
     private BigDecimal g312;
 
@@ -68,7 +85,7 @@ public class Reg1975 implements Serializable {
         this.id = id;
     }
 
-    public Reg1975(Long id, long idPai, long linha, String hash) {
+    public Reg1975(Long id, Reg1970 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -81,14 +98,6 @@ public class Reg1975 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {

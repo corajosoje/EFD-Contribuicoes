@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -9,7 +10,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -35,6 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegK235.findByCodItem", query = "SELECT r FROM RegK235 r WHERE r.codItem = :codItem"),
     @NamedQuery(name = "RegK235.findByQtd", query = "SELECT r FROM RegK235 r WHERE r.qtd = :qtd"),
     @NamedQuery(name = "RegK235.findByCodInsSubst", query = "SELECT r FROM RegK235 r WHERE r.codInsSubst = :codInsSubst")})
+@Registros(nivel = 4)
 public class RegK235 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,27 +48,17 @@ public class RegK235 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "DT_SAIDA")
-    @Temporal(TemporalType.DATE)
-    private Date dtSaida;
-    @Column(name = "COD_ITEM")
-    private String codItem;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QTD")
-    private BigDecimal qtd;
-    @Column(name = "COD_INS_SUBST")
-    private String codInsSubst;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegK230 idPai;
+
+    public RegK230 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegK230) idPai;
+    }
 
     public RegK235() {
     }
@@ -72,7 +67,7 @@ public class RegK235 implements Serializable {
         this.id = id;
     }
 
-    public RegK235(Long id, long idPai, long linha, String hash) {
+    public RegK235(Long id, RegK230 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -86,14 +81,28 @@ public class RegK235 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'D')
+    @Column(name = "DT_SAIDA")
+    @Temporal(TemporalType.DATE)
+    private Date dtSaida;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "COD_ITEM")
+    private String codItem;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "QTD")
+    private BigDecimal qtd;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "COD_INS_SUBST")
+    private String codInsSubst;
 
     public long getLinha() {
         return linha;

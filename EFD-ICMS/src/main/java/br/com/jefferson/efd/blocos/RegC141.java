@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +10,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -33,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC141.findByNumParc", query = "SELECT r FROM RegC141 r WHERE r.numParc = :numParc"),
     @NamedQuery(name = "RegC141.findByDtVcto", query = "SELECT r FROM RegC141 r WHERE r.dtVcto = :dtVcto"),
     @NamedQuery(name = "RegC141.findByVlParc", query = "SELECT r FROM RegC141 r WHERE r.vlParc = :vlParc")})
+@Registros(nivel = 4)
 public class RegC141 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,25 +47,17 @@ public class RegC141 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "NUM_PARC")
-    private int numParc;
-    @Column(name = "DT_VCTO")
-    @Temporal(TemporalType.DATE)
-    private Date dtVcto;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_PARC")
-    private BigDecimal vlParc;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC140 idPai;
+
+    public RegC140 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC140) idPai;
+    }
 
     public RegC141() {
     }
@@ -68,7 +66,7 @@ public class RegC141 implements Serializable {
         this.id = id;
     }
 
-    public RegC141(Long id, long idPai, long linha, String hash) {
+    public RegC141(Long id, RegC140 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -82,14 +80,25 @@ public class RegC141 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'I')
+    @Column(name = "NUM_PARC")
+    private int numParc;
+    @Campos(posicao = 3, tipo = 'D')
+    @Column(name = "DT_VCTO")
+    @Temporal(TemporalType.DATE)
+    private Date dtVcto;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "VL_PARC")
+    private BigDecimal vlParc;
 
     public long getLinha() {
         return linha;

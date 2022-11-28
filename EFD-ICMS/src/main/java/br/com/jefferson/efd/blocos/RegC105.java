@@ -1,14 +1,19 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC105.findByHash", query = "SELECT r FROM RegC105 r WHERE r.hash = :hash"),
     @NamedQuery(name = "RegC105.findByReg", query = "SELECT r FROM RegC105 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC105.findByOper", query = "SELECT r FROM RegC105 r WHERE r.oper = :oper"),
-    @NamedQuery(name = "RegC105.findByCodUf", query = "SELECT r FROM RegC105 r WHERE r.codUf = :codUf")})
+    @NamedQuery(name = "RegC105.findByUf", query = "SELECT r FROM RegC105 r WHERE r.uf = :uf")})
+@Registros(nivel = 3)
 public class RegC105 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,21 +42,32 @@ public class RegC105 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC100 idPai;
+
+    public RegC100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC100) idPai;
+    }
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "OPER")
     private String oper;
-    @Column(name = "COD_UF")
-    private String codUf;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "UF")
+    private String uf;
 
     public RegC105() {
     }
@@ -59,7 +76,7 @@ public class RegC105 implements Serializable {
         this.id = id;
     }
 
-    public RegC105(Long id, long idPai, long linha, String hash) {
+    public RegC105(Long id, RegC100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -72,14 +89,6 @@ public class RegC105 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {
@@ -115,11 +124,11 @@ public class RegC105 implements Serializable {
     }
 
     public String getCodUf() {
-        return codUf;
+        return uf;
     }
 
-    public void setCodUf(String codUf) {
-        this.codUf = codUf;
+    public void setCodUf(String uf) {
+        this.uf = uf;
     }
 
     @Override

@@ -47,40 +47,17 @@ public class Reg0205 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
     private Reg0200 idPai;
 
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
+    public Reg0200 getIdPai() {
+        return idPai;
+    }
 
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-
-    @Campos(posicao = 1, tipo = 'C')
-    @Column(name = "REG")
-    private String reg;
-
-    @Campos(posicao = 2, tipo = 'C')
-    @Column(name = "DESCR_ANT_ITEM")
-    private String descrAntItem;
-
-    @Campos(posicao = 3, tipo = 'D')
-    @Column(name = "DT_INI")
-    @Temporal(TemporalType.DATE)
-    private Date dtIni;
-
-    @Campos(posicao = 4, tipo = 'C')
-    @Column(name = "DT_FIM")
-    @Temporal(TemporalType.DATE)
-    private Date dtFim;
-
-    @Campos(posicao = 5, tipo = 'C')
-    @Column(name = "COD_ANT_ITEM")
-    private String codAntItem;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0200) idPai;
+    }
 
     public Reg0205() {
     }
@@ -103,14 +80,29 @@ public class Reg0205 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public Reg0200 getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(Object idPai) {
-        this.idPai = (Reg0200) idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "DESCR_ANT_ITEM")
+    private String descrAntItem;
+    @Campos(posicao = 3, tipo = 'D')
+    @Column(name = "DT_INI")
+    @Temporal(TemporalType.DATE)
+    private Date dtIni;
+    @Campos(posicao = 4, tipo = 'D')
+    @Column(name = "DT_FIM")
+    @Temporal(TemporalType.DATE)
+    private Date dtFim;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "COD_ANT_ITEM")
+    private String codAntItem;
 
     public long getLinha() {
         return linha;

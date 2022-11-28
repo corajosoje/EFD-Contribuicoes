@@ -1,15 +1,19 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegG990.findByHash", query = "SELECT r FROM RegG990 r WHERE r.hash = :hash"),
     @NamedQuery(name = "RegG990.findByReg", query = "SELECT r FROM RegG990 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegG990.findByQtdLinG", query = "SELECT r FROM RegG990 r WHERE r.qtdLinG = :qtdLinG")})
+@Registros(nivel = 1)
 public class RegG990 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,19 +41,17 @@ public class RegG990 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "QTD_LIN_G")
-    private String qtdLinG;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg0000 idPai;
+
+    public Reg0000 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0000) idPai;
+    }
 
     public RegG990() {
     }
@@ -57,7 +60,7 @@ public class RegG990 implements Serializable {
         this.id = id;
     }
 
-    public RegG990(Long id, long idPai, long linha, String hash) {
+    public RegG990(Long id, Reg0000 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -71,14 +74,18 @@ public class RegG990 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'I')
+    @Column(name = "QTD_LIN_G")
+    private int qtdLinG;
 
     public long getLinha() {
         return linha;
@@ -104,11 +111,11 @@ public class RegG990 implements Serializable {
         this.reg = reg;
     }
 
-    public String getQtdLinG() {
+    public int getQtdLinG() {
         return qtdLinG;
     }
 
-    public void setQtdLinG(String qtdLinG) {
+    public void setQtdLinG(int qtdLinG) {
         this.qtdLinG = qtdLinG;
     }
 

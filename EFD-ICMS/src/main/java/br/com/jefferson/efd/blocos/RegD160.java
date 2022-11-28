@@ -1,15 +1,23 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -34,6 +42,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD160.findByCnpjCpfDest", query = "SELECT r FROM RegD160 r WHERE r.cnpjCpfDest = :cnpjCpfDest"),
     @NamedQuery(name = "RegD160.findByIeDest", query = "SELECT r FROM RegD160 r WHERE r.ieDest = :ieDest"),
     @NamedQuery(name = "RegD160.findByCodMunDest", query = "SELECT r FROM RegD160 r WHERE r.codMunDest = :codMunDest")})
+@Registros(nivel = 3)
 public class RegD160 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,31 +51,17 @@ public class RegD160 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "DESPACHO")
-    private String despacho;
-    @Column(name = "CNPJ_CPF_REM")
-    private String cnpjCpfRem;
-    @Column(name = "IE_REM")
-    private String ieRem;
-    @Column(name = "COD_MUN_ORI")
-    private String codMunOri;
-    @Column(name = "CNPJ_CPF_DEST")
-    private String cnpjCpfDest;
-    @Column(name = "IE_DEST")
-    private String ieDest;
-    @Column(name = "COD_MUN_DEST")
-    private String codMunDest;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD100 idPai;
+
+    public RegD100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD100) idPai;
+    }
 
     public RegD160() {
     }
@@ -75,7 +70,7 @@ public class RegD160 implements Serializable {
         this.id = id;
     }
 
-    public RegD160(Long id, long idPai, long linha, String hash) {
+    public RegD160(Long id, RegD100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -89,14 +84,56 @@ public class RegD160 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegD161 regD161;
 
-    public long getIdPai() {
-        return idPai;
+    public RegD161 getRegD161() {
+        return regD161;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegD161(RegD161 regD161) {
+        this.regD161 = regD161;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD162> regD162;
+
+    public List<RegD162> getRegD162() {
+        return regD162;
+    }
+
+    public void setRegD162(List<RegD162> regD162) {
+        this.regD162 = regD162;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "DESPACHO")
+    private String despacho;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "CNPJ_CPF_REM")
+    private String cnpjCpfRem;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "IE_REM")
+    private String ieRem;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "COD_MUN_ORI")
+    private String codMunOri;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "CNPJ_CPF_DEST")
+    private String cnpjCpfDest;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "IE_DEST")
+    private String ieDest;
+    @Campos(posicao = 8, tipo = 'C')
+    @Column(name = "COD_MUN_DEST")
+    private String codMunDest;
 
     public long getLinha() {
         return linha;

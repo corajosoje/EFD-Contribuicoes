@@ -1,16 +1,23 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegK290.findByDtIniOp", query = "SELECT r FROM RegK290 r WHERE r.dtIniOp = :dtIniOp"),
     @NamedQuery(name = "RegK290.findByDtFinOp", query = "SELECT r FROM RegK290 r WHERE r.dtFinOp = :dtFinOp"),
     @NamedQuery(name = "RegK290.findByCodDocOp", query = "SELECT r FROM RegK290 r WHERE r.codDocOp = :codDocOp")})
+@Registros(nivel = 3)
 public class RegK290 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,25 +49,17 @@ public class RegK290 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "DT_INI_OP")
-    @Temporal(TemporalType.DATE)
-    private Date dtIniOp;
-    @Column(name = "DT_FIN_OP")
-    @Temporal(TemporalType.DATE)
-    private Date dtFinOp;
-    @Column(name = "COD_DOC_OP")
-    private String codDocOp;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegK100 idPai;
+
+    public RegK100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegK100) idPai;
+    }
 
     public RegK290() {
     }
@@ -68,7 +68,7 @@ public class RegK290 implements Serializable {
         this.id = id;
     }
 
-    public RegK290(Long id, long idPai, long linha, String hash) {
+    public RegK290(Long id, RegK100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -82,14 +82,46 @@ public class RegK290 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegK291> regK291;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegK291> getRegK291() {
+        return regK291;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegK291(List<RegK291> regK291) {
+        this.regK291 = regK291;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegK292> regK292;
+
+    public List<RegK292> getRegK292() {
+        return regK292;
+    }
+
+    public void setRegK292(List<RegK292> regK292) {
+        this.regK292 = regK292;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'D')
+    @Column(name = "DT_INI_OP")
+    @Temporal(TemporalType.DATE)
+    private Date dtIniOp;
+    @Campos(posicao = 3, tipo = 'D')
+    @Column(name = "DT_FIN_OP")
+    @Temporal(TemporalType.DATE)
+    private Date dtFinOp;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "COD_DOC_OP")
+    private String codDocOp;
 
     public long getLinha() {
         return linha;

@@ -1,16 +1,23 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -34,6 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC140.findByNumTit", query = "SELECT r FROM RegC140 r WHERE r.numTit = :numTit"),
     @NamedQuery(name = "RegC140.findByQtdParc", query = "SELECT r FROM RegC140 r WHERE r.qtdParc = :qtdParc"),
     @NamedQuery(name = "RegC140.findByVlTit", query = "SELECT r FROM RegC140 r WHERE r.vlTit = :vlTit")})
+@Registros(nivel = 3)
 public class RegC140 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,30 +50,17 @@ public class RegC140 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "IND_EMIT")
-    private String indEmit;
-    @Column(name = "IND_TIT")
-    private String indTit;
-    @Column(name = "DESC_TIT")
-    private String descTit;
-    @Column(name = "NUM_TIT")
-    private String numTit;
-    @Column(name = "QTD_PARC")
-    private int qtdParc;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_TIT")
-    private BigDecimal vlTit;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC100 idPai;
+
+    public RegC100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC100) idPai;
+    }
 
     public RegC140() {
     }
@@ -74,7 +69,7 @@ public class RegC140 implements Serializable {
         this.id = id;
     }
 
-    public RegC140(Long id, long idPai, long linha, String hash) {
+    public RegC140(Long id, RegC100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -88,14 +83,43 @@ public class RegC140 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC141> regC141;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegC141> getRegC141() {
+        return regC141;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegC141(List<RegC141> regC141) {
+        this.regC141 = regC141;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_EMIT")
+    private String indEmit;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "IND_TIT")
+    private String indTit;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "DESC_TIT")
+    private String descTit;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "NUM_TIT")
+    private String numTit;
+    @Campos(posicao = 6, tipo = 'I')
+    @Column(name = "QTD_PARC")
+    private int qtdParc;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "VL_TIT")
+    private BigDecimal vlTit;
 
     public long getLinha() {
         return linha;

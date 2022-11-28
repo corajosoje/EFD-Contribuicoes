@@ -1,15 +1,23 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,6 +45,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD695.findByDtDocFin", query = "SELECT r FROM RegD695 r WHERE r.dtDocFin = :dtDocFin"),
     @NamedQuery(name = "RegD695.findByNomMest", query = "SELECT r FROM RegD695 r WHERE r.nomMest = :nomMest"),
     @NamedQuery(name = "RegD695.findByChvCodDig", query = "SELECT r FROM RegD695 r WHERE r.chvCodDig = :chvCodDig")})
+@Registros(nivel = 2)
 public class RegD695 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,35 +54,17 @@ public class RegD695 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_MOD")
-    private String codMod;
-    @Column(name = "SER")
-    private String ser;
-    @Column(name = "NRO_ORD_INI")
-    private int nroOrdIni;
-    @Column(name = "NRO_ORD_FIN")
-    private int nroOrdFin;
-    @Column(name = "DT_DOC_INI")
-    @Temporal(TemporalType.DATE)
-    private Date dtDocIni;
-    @Column(name = "DT_DOC_FIN")
-    @Temporal(TemporalType.DATE)
-    private Date dtDocFin;
-    @Column(name = "NOM_MEST")
-    private String nomMest;
-    @Column(name = "CHV_COD_DIG")
-    private String chvCodDig;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD001 idPai;
+
+    public RegD001 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD001) idPai;
+    }
 
     public RegD695() {
     }
@@ -82,7 +73,7 @@ public class RegD695 implements Serializable {
         this.id = id;
     }
 
-    public RegD695(Long id, long idPai, long linha, String hash) {
+    public RegD695(Long id, RegD001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -96,14 +87,51 @@ public class RegD695 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD696> regD696;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegD696> getRegD696() {
+        return regD696;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegD696(List<RegD696> regD696) {
+        this.regD696 = regD696;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_MOD")
+    private String codMod;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "SER")
+    private String ser;
+    @Campos(posicao = 4, tipo = 'I')
+    @Column(name = "NRO_ORD_INI")
+    private int nroOrdIni;
+    @Campos(posicao = 5, tipo = 'I')
+    @Column(name = "NRO_ORD_FIN")
+    private int nroOrdFin;
+    @Campos(posicao = 6, tipo = 'D')
+    @Column(name = "DT_DOC_INI")
+    @Temporal(TemporalType.DATE)
+    private Date dtDocIni;
+    @Campos(posicao = 7, tipo = 'D')
+    @Column(name = "DT_DOC_FIN")
+    @Temporal(TemporalType.DATE)
+    private Date dtDocFin;
+    @Campos(posicao = 8, tipo = 'C')
+    @Column(name = "NOM_MEST")
+    private String nomMest;
+    @Campos(posicao = 9, tipo = 'C')
+    @Column(name = "CHV_COD_DIG")
+    private String chvCodDig;
 
     public long getLinha() {
         return linha;

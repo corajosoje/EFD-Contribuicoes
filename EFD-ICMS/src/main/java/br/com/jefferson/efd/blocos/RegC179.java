@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,9 +9,12 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -33,6 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC179.findByIcmsStCompl", query = "SELECT r FROM RegC179 r WHERE r.icmsStCompl = :icmsStCompl"),
     @NamedQuery(name = "RegC179.findByBcRet", query = "SELECT r FROM RegC179 r WHERE r.bcRet = :bcRet"),
     @NamedQuery(name = "RegC179.findByIcmsRet", query = "SELECT r FROM RegC179 r WHERE r.icmsRet = :icmsRet")})
+@Registros(nivel = 4)
 public class RegC179 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,28 +46,17 @@ public class RegC179 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "BC_ST_ORIG_DEST")
-    private BigDecimal bcStOrigDest;
-    @Column(name = "ICMS_ST_REP")
-    private BigDecimal icmsStRep;
-    @Column(name = "ICMS_ST_COMPL")
-    private BigDecimal icmsStCompl;
-    @Column(name = "BC_RET")
-    private BigDecimal bcRet;
-    @Column(name = "ICMS_RET")
-    private BigDecimal icmsRet;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC170 idPai;
+
+    public RegC170 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC170) idPai;
+    }
 
     public RegC179() {
     }
@@ -71,7 +65,7 @@ public class RegC179 implements Serializable {
         this.id = id;
     }
 
-    public RegC179(Long id, long idPai, long linha, String hash) {
+    public RegC179(Long id, RegC170 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -85,14 +79,30 @@ public class RegC179 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'R')
+    @Column(name = "BC_ST_ORIG_DEST")
+    private BigDecimal bcStOrigDest;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "ICMS_ST_REP")
+    private BigDecimal icmsStRep;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "ICMS_ST_COMPL")
+    private BigDecimal icmsStCompl;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "BC_RET")
+    private BigDecimal bcRet;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "ICMS_RET")
+    private BigDecimal icmsRet;
 
     public long getLinha() {
         return linha;

@@ -1,15 +1,22 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegK001.findByHash", query = "SELECT r FROM RegK001 r WHERE r.hash = :hash"),
     @NamedQuery(name = "RegK001.findByReg", query = "SELECT r FROM RegK001 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegK001.findByIndMov", query = "SELECT r FROM RegK001 r WHERE r.indMov = :indMov")})
+@Registros(nivel = 1)
 public class RegK001 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,19 +44,17 @@ public class RegK001 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "IND_MOV")
-    private String indMov;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg0000 idPai;
+
+    public Reg0000 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0000) idPai;
+    }
 
     public RegK001() {
     }
@@ -57,7 +63,7 @@ public class RegK001 implements Serializable {
         this.id = id;
     }
 
-    public RegK001(Long id, long idPai, long linha, String hash) {
+    public RegK001(Long id, Reg0000 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -71,14 +77,38 @@ public class RegK001 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegK010 regK010;
 
-    public long getIdPai() {
-        return idPai;
+    public RegK010 getRegK010() {
+        return regK010;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegK010(RegK010 regK010) {
+        this.regK010 = regK010;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegK100> regK100;
+
+    public List<RegK100> getRegK100() {
+        return regK100;
+    }
+
+    public void setRegK100(List<RegK100> regK100) {
+        this.regK100 = regK100;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_MOV")
+    private String indMov;
 
     public long getLinha() {
         return linha;

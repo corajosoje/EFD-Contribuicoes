@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +10,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -56,6 +61,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC176.findByCodDa", query = "SELECT r FROM RegC176 r WHERE r.codDa = :codDa"),
     @NamedQuery(name = "RegC176.findByNumDa", query = "SELECT r FROM RegC176 r WHERE r.numDa = :numDa"),
     @NamedQuery(name = "RegC176.findByVlUnitResFcpSt", query = "SELECT r FROM RegC176 r WHERE r.vlUnitResFcpSt = :vlUnitResFcpSt")})
+@Registros(nivel = 4)
 public class RegC176 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,71 +70,17 @@ public class RegC176 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_MOD_ULT_E")
-    private String codModUltE;
-    @Column(name = "NUM_DOC_ULT_E")
-    private int numDocUltE;
-    @Column(name = "SER_ULT_E")
-    private String serUltE;
-    @Column(name = "DT_ULT_E")
-    @Temporal(TemporalType.DATE)
-    private Date dtUltE;
-    @Column(name = "COD_PART_ULT_E")
-    private String codPartUltE;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QUANT_ULT_E")
-    private BigDecimal quantUltE;
-    @Column(name = "VL_UNIT_ULT_E")
-    private BigDecimal vlUnitUltE;
-    @Column(name = "VL_UNIT_BC_ST")
-    private BigDecimal vlUnitBcSt;
-    @Column(name = "CHAVE_NFE_ULT_E")
-    private String chaveNfeUltE;
-    @Column(name = "NUM_ITEM_ULT_E")
-    private int numItemUltE;
-    @Column(name = "VL_UNIT_BC_ICMS_ULT_E")
-    private BigDecimal vlUnitBcIcmsUltE;
-    @Column(name = "ALIQ_ICMS_ULT_E")
-    private BigDecimal aliqIcmsUltE;
-    @Column(name = "VL_UNIT_LIMITE_BC_ICMS_ULT_E")
-    private BigDecimal vlUnitLimiteBcIcmsUltE;
-    @Column(name = "VL_UNIT_ICMS_ULT_E")
-    private BigDecimal vlUnitIcmsUltE;
-    @Column(name = "ALIQ_ST_ULT_E")
-    private BigDecimal aliqStUltE;
-    @Column(name = "VL_UNIT_RES")
-    private BigDecimal vlUnitRes;
-    @Column(name = "COD_RESP_RET")
-    private String codRespRet;
-    @Column(name = "COD_MOT_RES")
-    private String codMotRes;
-    @Column(name = "CHAVE_NFE_RET")
-    private String chaveNfeRet;
-    @Column(name = "COD_PART_NFE_RET")
-    private String codPartNfeRet;
-    @Column(name = "SER_NFE_RET")
-    private String serNfeRet;
-    @Column(name = "NUM_NFE_RET")
-    private int numNfeRet;
-    @Column(name = "ITEM_NFE_RET")
-    private int itemNfeRet;
-    @Column(name = "COD_DA")
-    private String codDa;
-    @Column(name = "NUM_DA")
-    private String numDa;
-    @Column(name = "VL_UNIT_RES_FCP_ST")
-    private BigDecimal vlUnitResFcpSt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC170 idPai;
+
+    public RegC170 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC170) idPai;
+    }
 
     public RegC176() {
     }
@@ -137,7 +89,7 @@ public class RegC176 implements Serializable {
         this.id = id;
     }
 
-    public RegC176(Long id, long idPai, long linha, String hash) {
+    public RegC176(Long id, RegC170 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -151,14 +103,94 @@ public class RegC176 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_MOD_ULT_E")
+    private String codModUltE;
+    @Campos(posicao = 3, tipo = 'I')
+    @Column(name = "NUM_DOC_ULT_E")
+    private int numDocUltE;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "SER_ULT_E")
+    private String serUltE;
+    @Campos(posicao = 5, tipo = 'D')
+    @Column(name = "DT_ULT_E")
+    @Temporal(TemporalType.DATE)
+    private Date dtUltE;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "COD_PART_ULT_E")
+    private String codPartUltE;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "QUANT_ULT_E")
+    private BigDecimal quantUltE;
+    @Campos(posicao = 8, tipo = 'R')
+    @Column(name = "VL_UNIT_ULT_E")
+    private BigDecimal vlUnitUltE;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "VL_UNIT_BC_ST")
+    private BigDecimal vlUnitBcSt;
+    @Campos(posicao = 10, tipo = 'C')
+    @Column(name = "CHAVE_NFE_ULT_E")
+    private String chaveNfeUltE;
+    @Campos(posicao = 11, tipo = 'I')
+    @Column(name = "NUM_ITEM_ULT_E")
+    private int numItemUltE;
+    @Campos(posicao = 12, tipo = 'R')
+    @Column(name = "VL_UNIT_BC_ICMS_ULT_E")
+    private BigDecimal vlUnitBcIcmsUltE;
+    @Campos(posicao = 13, tipo = 'R')
+    @Column(name = "ALIQ_ICMS_ULT_E")
+    private BigDecimal aliqIcmsUltE;
+    @Campos(posicao = 14, tipo = 'R')
+    @Column(name = "VL_UNIT_LIMITE_BC_ICMS_ULT_E ")
+    private BigDecimal vlUnitLimiteBcIcmsUltE;
+    @Campos(posicao = 15, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_ULT_E")
+    private BigDecimal vlUnitIcmsUltE;
+    @Campos(posicao = 16, tipo = 'R')
+    @Column(name = "ALIQ_ST_ULT_E")
+    private BigDecimal aliqStUltE;
+    @Campos(posicao = 17, tipo = 'R')
+    @Column(name = "VL_UNIT_RES")
+    private BigDecimal vlUnitRes;
+    @Campos(posicao = 18, tipo = 'C')
+    @Column(name = "COD_RESP_RET")
+    private String codRespRet;
+    @Campos(posicao = 19, tipo = 'C')
+    @Column(name = "COD_MOT_RES")
+    private String codMotRes;
+    @Campos(posicao = 20, tipo = 'C')
+    @Column(name = "CHAVE_NFE_RET")
+    private String chaveNfeRet;
+    @Campos(posicao = 21, tipo = 'C')
+    @Column(name = "COD_PART_NFE_RET")
+    private String codPartNfeRet;
+    @Campos(posicao = 22, tipo = 'C')
+    @Column(name = "SER_NFE_RET")
+    private String serNfeRet;
+    @Campos(posicao = 23, tipo = 'I')
+    @Column(name = "NUM_NFE_RET")
+    private int numNfeRet;
+    @Campos(posicao = 24, tipo = 'I')
+    @Column(name = "ITEM_NFE_RET")
+    private int itemNfeRet;
+    @Campos(posicao = 25, tipo = 'C')
+    @Column(name = "COD_DA")
+    private String codDa;
+    @Campos(posicao = 26, tipo = 'C')
+    @Column(name = "NUM_DA")
+    private String numDa;
+    @Campos(posicao = 27, tipo = 'R')
+    @Column(name = "VL_UNIT_RES_FCP_ST")
+    private BigDecimal vlUnitResFcpSt;
 
     public long getLinha() {
         return linha;

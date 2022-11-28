@@ -1,13 +1,17 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -32,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegE112.findByIndProc", query = "SELECT r FROM RegE112 r WHERE r.indProc = :indProc"),
     @NamedQuery(name = "RegE112.findByProc", query = "SELECT r FROM RegE112 r WHERE r.proc = :proc"),
     @NamedQuery(name = "RegE112.findByTxtCompl", query = "SELECT r FROM RegE112 r WHERE r.txtCompl = :txtCompl")})
+@Registros(nivel = 5)
 public class RegE112 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,27 +45,17 @@ public class RegE112 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "NUM_DA")
-    private String numDa;
-    @Column(name = "NUM_PROC")
-    private String numProc;
-    @Column(name = "IND_PROC")
-    private String indProc;
-    @Column(name = "PROC")
-    private String proc;
-    @Column(name = "TXT_COMPL")
-    private String txtCompl;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegE111 idPai;
+
+    public RegE111 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegE111) idPai;
+    }
 
     public RegE112() {
     }
@@ -69,7 +64,7 @@ public class RegE112 implements Serializable {
         this.id = id;
     }
 
-    public RegE112(Long id, long idPai, long linha, String hash) {
+    public RegE112(Long id, RegE111 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -83,14 +78,30 @@ public class RegE112 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "NUM_DA")
+    private String numDa;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "NUM_PROC")
+    private String numProc;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "IND_PROC")
+    private String indProc;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "PROC")
+    private String proc;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "TXT_COMPL")
+    private String txtCompl;
 
     public long getLinha() {
         return linha;

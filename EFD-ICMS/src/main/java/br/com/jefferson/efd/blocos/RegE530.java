@@ -1,16 +1,23 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -34,6 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegE530.findByIndDoc", query = "SELECT r FROM RegE530 r WHERE r.indDoc = :indDoc"),
     @NamedQuery(name = "RegE530.findByNumDoc", query = "SELECT r FROM RegE530 r WHERE r.numDoc = :numDoc"),
     @NamedQuery(name = "RegE530.findByDescrAj", query = "SELECT r FROM RegE530 r WHERE r.descrAj = :descrAj")})
+@Registros(nivel = 4)
 public class RegE530 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,30 +50,17 @@ public class RegE530 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "IND_AJ")
-    private String indAj;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_AJ")
-    private BigDecimal vlAj;
-    @Column(name = "COD_AJ")
-    private String codAj;
-    @Column(name = "IND_DOC")
-    private String indDoc;
-    @Column(name = "NUM_DOC")
-    private String numDoc;
-    @Column(name = "DESCR_AJ")
-    private String descrAj;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegE520 idPai;
+
+    public RegE520 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegE520) idPai;
+    }
 
     public RegE530() {
     }
@@ -74,7 +69,7 @@ public class RegE530 implements Serializable {
         this.id = id;
     }
 
-    public RegE530(Long id, long idPai, long linha, String hash) {
+    public RegE530(Long id, RegE520 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -88,14 +83,43 @@ public class RegE530 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE531> regE531;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegE531> getRegE531() {
+        return regE531;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegE531(List<RegE531> regE531) {
+        this.regE531 = regE531;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_AJ")
+    private String indAj;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "VL_AJ")
+    private BigDecimal vlAj;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "COD_AJ")
+    private String codAj;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "IND_DOC")
+    private String indDoc;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "NUM_DOC")
+    private String numDoc;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "DESCR_AJ")
+    private String descrAj;
 
     public long getLinha() {
         return linha;

@@ -1,16 +1,24 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -69,6 +77,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC500.findByMesDocRef", query = "SELECT r FROM RegC500 r WHERE r.mesDocRef = :mesDocRef"),
     @NamedQuery(name = "RegC500.findByEnerInjet", query = "SELECT r FROM RegC500 r WHERE r.enerInjet = :enerInjet"),
     @NamedQuery(name = "RegC500.findByOutrasDed", query = "SELECT r FROM RegC500 r WHERE r.outrasDed = :outrasDed")})
+@Registros(nivel = 2)
 public class RegC500 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,98 +86,17 @@ public class RegC500 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "IND_OPER")
-    private String indOper;
-    @Column(name = "IND_EMIT")
-    private String indEmit;
-    @Column(name = "COD_PART")
-    private String codPart;
-    @Column(name = "COD_MOD")
-    private String codMod;
-    @Column(name = "COD_SIT")
-    private String codSit;
-    @Column(name = "SER")
-    private String ser;
-    @Column(name = "SUB")
-    private int sub;
-    @Column(name = "COD_CONS")
-    private String codCons;
-    @Column(name = "NUM_DOC")
-    private int numDoc;
-    @Column(name = "DT_DOC")
-    @Temporal(TemporalType.DATE)
-    private Date dtDoc;
-    @Column(name = "DT_E_S")
-    @Temporal(TemporalType.DATE)
-    private Date dtES;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_DOC")
-    private BigDecimal vlDoc;
-    @Column(name = "VL_DESC")
-    private BigDecimal vlDesc;
-    @Column(name = "VL_FORN")
-    private BigDecimal vlForn;
-    @Column(name = "VL_SERV_NT")
-    private BigDecimal vlServNt;
-    @Column(name = "VL_TERC")
-    private BigDecimal vlTerc;
-    @Column(name = "VL_DA")
-    private BigDecimal vlDa;
-    @Column(name = "VL_BC_ICMS")
-    private BigDecimal vlBcIcms;
-    @Column(name = "VL_ICMS")
-    private BigDecimal vlIcms;
-    @Column(name = "VL_BC_ICMS_ST")
-    private BigDecimal vlBcIcmsSt;
-    @Column(name = "VL_ICMS_ST")
-    private BigDecimal vlIcmsSt;
-    @Column(name = "COD_INF")
-    private String codInf;
-    @Column(name = "VL_PIS")
-    private BigDecimal vlPis;
-    @Column(name = "VL_COFINS")
-    private BigDecimal vlCofins;
-    @Column(name = "TP_LIGACAO")
-    private String tpLigacao;
-    @Column(name = "COD_GRUPO_TENSAO")
-    private String codGrupoTensao;
-    @Column(name = "CHV_DOCE")
-    private String chvDoce;
-    @Column(name = "FIN_DOCE")
-    private String finDoce;
-    @Column(name = "CHV_DOCE_REF")
-    private String chvDoceRef;
-    @Column(name = "IND_DEST")
-    private String indDest;
-    @Column(name = "COD_MUN_DEST")
-    private String codMunDest;
-    @Column(name = "COD_CTA")
-    private String codCta;
-    @Column(name = "COD_MOD_DOC_REF")
-    private String codModDocRef;
-    @Column(name = "HASH_DOC_REF")
-    private String hashDocRef;
-    @Column(name = "SER_DOC_REF")
-    private String serDocRef;
-    @Column(name = "NUM_DOC_REF")
-    private int numDocRef;
-    @Column(name = "MES_DOC_REF")
-    private String mesDocRef;
-    @Column(name = "ENER_INJET")
-    private BigDecimal enerInjet;
-    @Column(name = "OUTRAS_DED")
-    private BigDecimal outrasDed;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC001 idPai;
+
+    public RegC001 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC001) idPai;
+    }
 
     public RegC500() {
     }
@@ -177,7 +105,7 @@ public class RegC500 implements Serializable {
         this.id = id;
     }
 
-    public RegC500(Long id, long idPai, long linha, String hash) {
+    public RegC500(Long id, RegC001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -191,14 +119,164 @@ public class RegC500 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC510> regC510;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegC510> getRegC510() {
+        return regC510;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegC510(List<RegC510> regC510) {
+        this.regC510 = regC510;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC590> regC590;
+
+    public List<RegC590> getRegC590() {
+        return regC590;
+    }
+
+    public void setRegC590(List<RegC590> regC590) {
+        this.regC590 = regC590;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC595> regC595;
+
+    public List<RegC595> getRegC595() {
+        return regC595;
+    }
+
+    public void setRegC595(List<RegC595> regC595) {
+        this.regC595 = regC595;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_OPER")
+    private String indOper;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "IND_EMIT")
+    private String indEmit;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "COD_PART")
+    private String codPart;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "COD_MOD")
+    private String codMod;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "COD_SIT")
+    private String codSit;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "SER")
+    private String ser;
+    @Campos(posicao = 8, tipo = 'I')
+    @Column(name = "SUB")
+    private int sub;
+    @Campos(posicao = 9, tipo = 'C')
+    @Column(name = "COD_CONS")
+    private String codCons;
+    @Campos(posicao = 10, tipo = 'I')
+    @Column(name = "NUM_DOC")
+    private int numDoc;
+    @Campos(posicao = 11, tipo = 'D')
+    @Column(name = "DT_DOC")
+    @Temporal(TemporalType.DATE)
+    private Date dtDoc;
+    @Campos(posicao = 12, tipo = 'D')
+    @Column(name = "DT_E_S")
+    @Temporal(TemporalType.DATE)
+    private Date dtES;
+    @Campos(posicao = 13, tipo = 'R')
+    @Column(name = "VL_DOC")
+    private BigDecimal vlDoc;
+    @Campos(posicao = 14, tipo = 'R')
+    @Column(name = "VL_DESC")
+    private BigDecimal vlDesc;
+    @Campos(posicao = 15, tipo = 'R')
+    @Column(name = "VL_FORN")
+    private BigDecimal vlForn;
+    @Campos(posicao = 16, tipo = 'R')
+    @Column(name = "VL_SERV_NT")
+    private BigDecimal vlServNt;
+    @Campos(posicao = 17, tipo = 'R')
+    @Column(name = "VL_TERC")
+    private BigDecimal vlTerc;
+    @Campos(posicao = 18, tipo = 'R')
+    @Column(name = "VL_DA")
+    private BigDecimal vlDa;
+    @Campos(posicao = 19, tipo = 'R')
+    @Column(name = "VL_BC_ICMS")
+    private BigDecimal vlBcIcms;
+    @Campos(posicao = 20, tipo = 'R')
+    @Column(name = "VL_ICMS")
+    private BigDecimal vlIcms;
+    @Campos(posicao = 21, tipo = 'R')
+    @Column(name = "VL_BC_ICMS_ST")
+    private BigDecimal vlBcIcmsSt;
+    @Campos(posicao = 22, tipo = 'R')
+    @Column(name = "VL_ICMS_ST")
+    private BigDecimal vlIcmsSt;
+    @Campos(posicao = 23, tipo = 'C')
+    @Column(name = "COD_INF")
+    private String codInf;
+    @Campos(posicao = 24, tipo = 'R')
+    @Column(name = "VL_PIS")
+    private BigDecimal vlPis;
+    @Campos(posicao = 25, tipo = 'R')
+    @Column(name = "VL_COFINS")
+    private BigDecimal vlCofins;
+    @Campos(posicao = 26, tipo = 'C')
+    @Column(name = "TP_LIGACAO")
+    private String tpLigacao;
+    @Campos(posicao = 27, tipo = 'C')
+    @Column(name = "COD_GRUPO_TENSAO")
+    private String codGrupoTensao;
+    @Campos(posicao = 28, tipo = 'C')
+    @Column(name = "CHV_DOCe")
+    private String chvDoce;
+    @Campos(posicao = 29, tipo = 'C')
+    @Column(name = "FIN_DOCe")
+    private String finDoce;
+    @Campos(posicao = 30, tipo = 'C')
+    @Column(name = "CHV_DOCe_REF")
+    private String chvDoceRef;
+    @Campos(posicao = 31, tipo = 'C')
+    @Column(name = "IND_DEST")
+    private String indDest;
+    @Campos(posicao = 32, tipo = 'C')
+    @Column(name = "COD_MUN_DEST")
+    private String codMunDest;
+    @Campos(posicao = 33, tipo = 'C')
+    @Column(name = "COD_CTA")
+    private String codCta;
+    @Campos(posicao = 34, tipo = 'C')
+    @Column(name = "COD_MOD_DOC_REF")
+    private String codModDocRef;
+    @Campos(posicao = 35, tipo = 'C')
+    @Column(name = "HASH_DOC_REF")
+    private String hashDocRef;
+    @Campos(posicao = 36, tipo = 'C')
+    @Column(name = "SER_DOC_REF")
+    private String serDocRef;
+    @Campos(posicao = 37, tipo = 'I')
+    @Column(name = "NUM_DOC_REF")
+    private int numDocRef;
+    @Campos(posicao = 38, tipo = 'C')
+    @Column(name = "MES_DOC_REF")
+    private String mesDocRef;
+    @Campos(posicao = 39, tipo = 'R')
+    @Column(name = "ENER_INJET")
+    private BigDecimal enerInjet;
+    @Campos(posicao = 40, tipo = 'R')
+    @Column(name = "OUTRAS_DED")
+    private BigDecimal outrasDed;
 
     public long getLinha() {
         return linha;

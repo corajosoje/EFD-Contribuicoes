@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegB990.findByHash", query = "SELECT r FROM RegB990 r WHERE r.hash = :hash"),
     @NamedQuery(name = "RegB990.findByReg", query = "SELECT r FROM RegB990 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegB990.findByQtdLinB", query = "SELECT r FROM RegB990 r WHERE r.qtdLinB = :qtdLinB")})
-@Registros(nivel = 2)
+@Registros(nivel = 1)
 public class RegB990 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,26 +41,17 @@ public class RegB990 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
-    private RegB001 idPai;
+    private Reg0000 idPai;
 
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
+    public Reg0000 getIdPai() {
+        return idPai;
+    }
 
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-
-    @Campos(posicao = 1, tipo = 'C')
-    @Column(name = "REG")
-    private String reg;
-
-    @Campos(posicao = 2, tipo = 'C')
-    @Column(name = "QTD_LIN_B")
-    private String qtdLinB;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0000) idPai;
+    }
 
     public RegB990() {
     }
@@ -69,7 +60,7 @@ public class RegB990 implements Serializable {
         this.id = id;
     }
 
-    public RegB990(Long id, RegB001 idPai, long linha, String hash) {
+    public RegB990(Long id, Reg0000 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -83,14 +74,18 @@ public class RegB990 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public RegB001 getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(Object idPai) {
-        this.idPai = (RegB001) idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'I')
+    @Column(name = "QTD_LIN_B")
+    private int qtdLinB;
 
     public long getLinha() {
         return linha;
@@ -116,11 +111,11 @@ public class RegB990 implements Serializable {
         this.reg = reg;
     }
 
-    public String getQtdLinB() {
+    public int getQtdLinB() {
         return qtdLinB;
     }
 
-    public void setQtdLinB(String qtdLinB) {
+    public void setQtdLinB(int qtdLinB) {
         this.qtdLinB = qtdLinB;
     }
 

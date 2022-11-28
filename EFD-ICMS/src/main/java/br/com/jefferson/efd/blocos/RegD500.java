@@ -1,17 +1,24 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,6 +61,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD500.findByVlCofins", query = "SELECT r FROM RegD500 r WHERE r.vlCofins = :vlCofins"),
     @NamedQuery(name = "RegD500.findByCodCta", query = "SELECT r FROM RegD500 r WHERE r.codCta = :codCta"),
     @NamedQuery(name = "RegD500.findByTpAssinante", query = "SELECT r FROM RegD500 r WHERE r.tpAssinante = :tpAssinante")})
+@Registros(nivel = 2)
 public class RegD500 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,66 +70,17 @@ public class RegD500 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "IND_OPER")
-    private String indOper;
-    @Column(name = "IND_EMIT")
-    private String indEmit;
-    @Column(name = "COD_PART")
-    private String codPart;
-    @Column(name = "COD_MOD")
-    private String codMod;
-    @Column(name = "COD_SIT")
-    private String codSit;
-    @Column(name = "SER")
-    private String ser;
-    @Column(name = "SUB")
-    private String sub;
-    @Column(name = "NUM_DOC")
-    private int numDoc;
-    @Column(name = "DT_DOC")
-    @Temporal(TemporalType.DATE)
-    private Date dtDoc;
-    @Column(name = "DT_A_P")
-    @Temporal(TemporalType.DATE)
-    private Date dtAP;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_DOC")
-    private BigDecimal vlDoc;
-    @Column(name = "VL_DESC")
-    private BigDecimal vlDesc;
-    @Column(name = "VL_SERV")
-    private BigDecimal vlServ;
-    @Column(name = "VL_SERV_NT")
-    private BigDecimal vlServNt;
-    @Column(name = "VL_TERC")
-    private BigDecimal vlTerc;
-    @Column(name = "VL_DA")
-    private BigDecimal vlDa;
-    @Column(name = "VL_BC_ICMS")
-    private BigDecimal vlBcIcms;
-    @Column(name = "VL_ICMS")
-    private BigDecimal vlIcms;
-    @Column(name = "COD_INF")
-    private String codInf;
-    @Column(name = "VL_PIS")
-    private BigDecimal vlPis;
-    @Column(name = "VL_COFINS")
-    private BigDecimal vlCofins;
-    @Column(name = "COD_CTA")
-    private String codCta;
-    @Column(name = "TP_ASSINANTE")
-    private String tpAssinante;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD001 idPai;
+
+    public RegD001 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD001) idPai;
+    }
 
     public RegD500() {
     }
@@ -130,7 +89,7 @@ public class RegD500 implements Serializable {
         this.id = id;
     }
 
-    public RegD500(Long id, long idPai, long linha, String hash) {
+    public RegD500(Long id, RegD001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -144,14 +103,116 @@ public class RegD500 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD510> regD510;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegD510> getRegD510() {
+        return regD510;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegD510(List<RegD510> regD510) {
+        this.regD510 = regD510;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD530> regD530;
+
+    public List<RegD530> getRegD530() {
+        return regD530;
+    }
+
+    public void setRegD530(List<RegD530> regD530) {
+        this.regD530 = regD530;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD590> regD590;
+
+    public List<RegD590> getRegD590() {
+        return regD590;
+    }
+
+    public void setRegD590(List<RegD590> regD590) {
+        this.regD590 = regD590;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_OPER")
+    private String indOper;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "IND_EMIT")
+    private String indEmit;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "COD_PART")
+    private String codPart;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "COD_MOD")
+    private String codMod;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "COD_SIT")
+    private String codSit;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "SER")
+    private String ser;
+    @Campos(posicao = 8, tipo = 'C')
+    @Column(name = "SUB")
+    private String sub;
+    @Campos(posicao = 9, tipo = 'I')
+    @Column(name = "NUM_DOC")
+    private int numDoc;
+    @Campos(posicao = 10, tipo = 'D')
+    @Column(name = "DT_DOC")
+    @Temporal(TemporalType.DATE)
+    private Date dtDoc;
+    @Campos(posicao = 11, tipo = 'D')
+    @Column(name = "DT_A_P")
+    @Temporal(TemporalType.DATE)
+    private Date dtAP;
+    @Campos(posicao = 12, tipo = 'R')
+    @Column(name = "VL_DOC")
+    private BigDecimal vlDoc;
+    @Campos(posicao = 13, tipo = 'R')
+    @Column(name = "VL_DESC")
+    private BigDecimal vlDesc;
+    @Campos(posicao = 14, tipo = 'R')
+    @Column(name = "VL_SERV")
+    private BigDecimal vlServ;
+    @Campos(posicao = 15, tipo = 'R')
+    @Column(name = "VL_SERV_NT")
+    private BigDecimal vlServNt;
+    @Campos(posicao = 16, tipo = 'R')
+    @Column(name = "VL_TERC")
+    private BigDecimal vlTerc;
+    @Campos(posicao = 17, tipo = 'R')
+    @Column(name = "VL_DA")
+    private BigDecimal vlDa;
+    @Campos(posicao = 18, tipo = 'R')
+    @Column(name = "VL_BC_ICMS")
+    private BigDecimal vlBcIcms;
+    @Campos(posicao = 19, tipo = 'R')
+    @Column(name = "VL_ICMS")
+    private BigDecimal vlIcms;
+    @Campos(posicao = 20, tipo = 'C')
+    @Column(name = "COD_INF")
+    private String codInf;
+    @Campos(posicao = 21, tipo = 'R')
+    @Column(name = "VL_PIS")
+    private BigDecimal vlPis;
+    @Campos(posicao = 22, tipo = 'R')
+    @Column(name = "VL_COFINS")
+    private BigDecimal vlCofins;
+    @Campos(posicao = 23, tipo = 'C')
+    @Column(name = "COD_CTA")
+    private String codCta;
+    @Campos(posicao = 24, tipo = 'C')
+    @Column(name = "TP_ASSINANTE")
+    private String tpAssinante;
 
     public long getLinha() {
         return linha;

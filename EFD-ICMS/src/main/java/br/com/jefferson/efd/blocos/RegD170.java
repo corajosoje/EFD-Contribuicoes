@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,9 +9,12 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -41,6 +45,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD170.findByVlFrt", query = "SELECT r FROM RegD170 r WHERE r.vlFrt = :vlFrt"),
     @NamedQuery(name = "RegD170.findByVeicId", query = "SELECT r FROM RegD170 r WHERE r.veicId = :veicId"),
     @NamedQuery(name = "RegD170.findByUfId", query = "SELECT r FROM RegD170 r WHERE r.ufId = :ufId")})
+@Registros(nivel = 3)
 public class RegD170 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,44 +54,17 @@ public class RegD170 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_PART_CONSG")
-    private String codPartConsg;
-    @Column(name = "COD_PART_RED")
-    private String codPartRed;
-    @Column(name = "COD_MUN_ORIG")
-    private String codMunOrig;
-    @Column(name = "COD_MUN_DEST")
-    private String codMunDest;
-    @Column(name = "OTM")
-    private String otm;
-    @Column(name = "IND_NAT_FRT")
-    private String indNatFrt;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_LIQ_FRT")
-    private BigDecimal vlLiqFrt;
-    @Column(name = "VL_GRIS")
-    private BigDecimal vlGris;
-    @Column(name = "VL_PDG")
-    private BigDecimal vlPdg;
-    @Column(name = "VL_OUT")
-    private BigDecimal vlOut;
-    @Column(name = "VL_FRT")
-    private BigDecimal vlFrt;
-    @Column(name = "VEIC_ID")
-    private String veicId;
-    @Column(name = "UF_ID")
-    private String ufId;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD100 idPai;
+
+    public RegD100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD100) idPai;
+    }
 
     public RegD170() {
     }
@@ -95,7 +73,7 @@ public class RegD170 implements Serializable {
         this.id = id;
     }
 
-    public RegD170(Long id, long idPai, long linha, String hash) {
+    public RegD170(Long id, RegD100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -109,14 +87,54 @@ public class RegD170 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_PART_CONSG")
+    private String codPartConsg;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "COD_PART_RED")
+    private String codPartRed;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "COD_MUN_ORIG")
+    private String codMunOrig;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "COD_MUN_DEST")
+    private String codMunDest;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "OTM")
+    private String otm;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "IND_NAT_FRT")
+    private String indNatFrt;
+    @Campos(posicao = 8, tipo = 'R')
+    @Column(name = "VL_LIQ_FRT")
+    private BigDecimal vlLiqFrt;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "VL_GRIS")
+    private BigDecimal vlGris;
+    @Campos(posicao = 10, tipo = 'R')
+    @Column(name = "VL_PDG")
+    private BigDecimal vlPdg;
+    @Campos(posicao = 11, tipo = 'R')
+    @Column(name = "VL_OUT")
+    private BigDecimal vlOut;
+    @Campos(posicao = 12, tipo = 'R')
+    @Column(name = "VL_FRT")
+    private BigDecimal vlFrt;
+    @Campos(posicao = 13, tipo = 'C')
+    @Column(name = "VEIC_ID")
+    private String veicId;
+    @Campos(posicao = 14, tipo = 'C')
+    @Column(name = "UF_ID")
+    private String ufId;
 
     public long getLinha() {
         return linha;

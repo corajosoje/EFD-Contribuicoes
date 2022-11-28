@@ -1,16 +1,23 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -37,6 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1310.findByValAjPerda", query = "SELECT r FROM Reg1310 r WHERE r.valAjPerda = :valAjPerda"),
     @NamedQuery(name = "Reg1310.findByValAjGanho", query = "SELECT r FROM Reg1310 r WHERE r.valAjGanho = :valAjGanho"),
     @NamedQuery(name = "Reg1310.findByFechFisico", query = "SELECT r FROM Reg1310 r WHERE r.fechFisico = :fechFisico")})
+@Registros(nivel = 3)
 public class Reg1310 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,36 +53,66 @@ public class Reg1310 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg1300 idPai;
+
+    public Reg1300 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg1300) idPai;
+    }
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "NUM_TANQUE")
     private String numTanque;
+    @Campos(posicao = 3, tipo = 'R')
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "ESTQ_ABERT")
     private BigDecimal estqAbert;
+    @Campos(posicao = 4, tipo = 'R')
     @Column(name = "VOL_ENTR")
     private BigDecimal volEntr;
+    @Campos(posicao = 5, tipo = 'R')
     @Column(name = "VOL_DISP")
     private BigDecimal volDisp;
+    @Campos(posicao = 6, tipo = 'R')
     @Column(name = "VOL_SAIDAS")
     private BigDecimal volSaidas;
+    @Campos(posicao = 7, tipo = 'R')
     @Column(name = "ESTQ_ESCR")
     private BigDecimal estqEscr;
+    @Campos(posicao = 8, tipo = 'R')
     @Column(name = "VAL_AJ_PERDA")
     private BigDecimal valAjPerda;
+    @Campos(posicao = 9, tipo = 'R')
     @Column(name = "VAL_AJ_GANHO")
     private BigDecimal valAjGanho;
+    @Campos(posicao = 10, tipo = 'R')
     @Column(name = "FECH_FISICO")
     private BigDecimal fechFisico;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg1320> reg1320;
+
+    public List<Reg1320> getReg1320() {
+        return reg1320;
+    }
+
+    public void setReg1320(List<Reg1320> reg1320) {
+        this.reg1320 = reg1320;
+    }
 
     public Reg1310() {
     }
@@ -83,7 +121,7 @@ public class Reg1310 implements Serializable {
         this.id = id;
     }
 
-    public Reg1310(Long id, long idPai, long linha, String hash) {
+    public Reg1310(Long id, Reg1300 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -96,14 +134,6 @@ public class Reg1310 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {

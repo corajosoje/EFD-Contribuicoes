@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -7,7 +9,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -35,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD530.findByPerFiscal", query = "SELECT r FROM RegD530 r WHERE r.perFiscal = :perFiscal"),
     @NamedQuery(name = "RegD530.findByCodArea", query = "SELECT r FROM RegD530 r WHERE r.codArea = :codArea"),
     @NamedQuery(name = "RegD530.findByTerminal", query = "SELECT r FROM RegD530 r WHERE r.terminal = :terminal")})
+@Registros(nivel = 3)
 public class RegD530 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,31 +49,17 @@ public class RegD530 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "IND_SERV")
-    private String indServ;
-    @Column(name = "DT_INI_SERV")
-    @Temporal(TemporalType.DATE)
-    private Date dtIniServ;
-    @Column(name = "DT_FIN_SERV")
-    @Temporal(TemporalType.DATE)
-    private Date dtFinServ;
-    @Column(name = "PER_FISCAL")
-    private String perFiscal;
-    @Column(name = "COD_AREA")
-    private String codArea;
-    @Column(name = "TERMINAL")
-    private int terminal;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD500 idPai;
+
+    public RegD500 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD500) idPai;
+    }
 
     public RegD530() {
     }
@@ -76,7 +68,7 @@ public class RegD530 implements Serializable {
         this.id = id;
     }
 
-    public RegD530(Long id, long idPai, long linha, String hash) {
+    public RegD530(Long id, RegD500 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -90,14 +82,35 @@ public class RegD530 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_SERV")
+    private String indServ;
+    @Campos(posicao = 3, tipo = 'D')
+    @Column(name = "DT_INI_SERV")
+    @Temporal(TemporalType.DATE)
+    private Date dtIniServ;
+    @Campos(posicao = 4, tipo = 'D')
+    @Column(name = "DT_FIN_SERV")
+    @Temporal(TemporalType.DATE)
+    private Date dtFinServ;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "PER_FISCAL")
+    private String perFiscal;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "COD_AREA")
+    private String codArea;
+    @Campos(posicao = 7, tipo = 'I')
+    @Column(name = "TERMINAL")
+    private int terminal;
 
     public long getLinha() {
         return linha;

@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import org.apache.logging.log4j.LogManager;
@@ -35,7 +34,8 @@ public class InsertReg {
     private static final SimpleDateFormat formato = new SimpleDateFormat("ddMMyyyy");
 
     public static void main(String[] args) throws Exception {
-        String arquivo = "C:\\Users\\88717\\Documents\\NetBeansProjects\\EFD-ICMS\\EFD-ICMS\\exemplos\\ArquivoMinimoParaTestes.txt";
+        String arquivo = "D:\\Receita BX\\Arquivos Centauro\\Escrituração Fiscal Digital\\06347409000165\\"
+                + "06347409006872-0623186220601-20220901-20220930-0-950FF25A1A03852F74B5E3154555155F30BE2168-SPED-EFD.txt";
         File file = new File(arquivo);
 
         //Classe Leitor
@@ -57,14 +57,18 @@ public class InsertReg {
         Object nivel3 = null;
         Object nivel4 = null;
         Object nivel5 = null;
+        Object nivel6 = null;
 
         while (true) {
             if (conteudo != null) {
                 log.trace("Linha: " + linha + " - Registro: " + conteudo);
 
                 //Começo da nova implementação
-                if (conteudo == null || conteudo.length() < 7) {
-                    throw new LeitorExeption("Registro inválido");
+                if (conteudo == null) {
+                } else if (conteudo.length() < 7) {
+
+                    log.trace("Fim do arquivo");
+                    break;
                 } else if (conteudo.substring(0, 1).equals("|")
                         && conteudo.substring(5, 6).equals("|")
                         && conteudo.substring(conteudo.length() - 1).equals("|")) {
@@ -94,7 +98,7 @@ public class InsertReg {
                                 preencherObjeto(campos, field, sped);
                             }
                         }
-                    } else {
+                    } else if ("9999".equals(campos[1])) {
                         Class<?> forName = Class.forName("br.com.jefferson.efd.blocos.Reg" + campos[1]);
                         Object newInstance = forName.getConstructor().newInstance();
 
@@ -108,7 +112,28 @@ public class InsertReg {
                         method = forName.getMethod("setLinha", long.class);
                         method.invoke(newInstance, linha);
 
+                        for (Field field : forName.getDeclaredFields()) {
+                            if (field.isAnnotationPresent(Campos.class)) {
+                                //fazer verificação de versão com a versão do arquivo
+                                preencherObjeto(campos, field, newInstance);
+                            }
+                        }
+                    } else {
+                        Class<?> forName = Class.forName("br.com.jefferson.efd.blocos.Reg" + campos[1]);
+                        Object newInstance = forName.getConstructor().newInstance();
+
+                        log.debug("Trabalhando na classe: " + "br.com.jefferson.efd.blocos.Reg" + campos[1] + " Quantidade de campos:" + campos.length);
+
+                        log.trace("Inserindo HASH: " + hashCode);
+                        method = forName.getMethod("setHash", String.class);
+                        method.invoke(newInstance, hashCode);
+
+                        log.trace("Inserindo linha: " + linha);
+                        method = forName.getMethod("setLinha", long.class);
+                        method.invoke(newInstance, linha);
+
                         int nivel = forName.getAnnotation(Registros.class).nivel();
+
                         for (Field field : forName.getDeclaredFields()) {
                             if (field.isAnnotationPresent(Campos.class)) {
                                 //fazer verificação de versão com a versão do arquivo
@@ -116,137 +141,56 @@ public class InsertReg {
                             }
                         }
 
-                        log.trace("Inserindo no registro pai");
-
                         method = forName.getMethod("setIdPai", Object.class);
-                        Class superior;
-                        Field field;
+
                         switch (nivel) {
                             case 1:
+                                log.trace("Inserindo no registro pai " + sped.getClass().getSimpleName());
                                 method.invoke(newInstance, sped);
 
-                                superior = sped.getClass();
-                                log.trace("Inserindo registro filho com : " + "set" + priMaiuscula(forName.getSimpleName()) + " na classe " + superior.getSimpleName());
-                                method = superior.getMethod("set" + priMaiuscula(forName.getSimpleName()), forName);
-                                method.invoke(sped, newInstance);
+                                preencherSuperior(sped, newInstance);
                                 nivel1 = newInstance;
                                 break;
                             case 2:
+                                log.trace("Inserindo no registro pai " + nivel1.getClass().getSimpleName());
                                 method.invoke(newInstance, nivel1);
 
-                                superior = nivel1.getClass();
-
-                                log.debug("Verificando campo: " + forName.getSimpleName().substring(0, 1).toLowerCase() + forName.getSimpleName().substring(1)
-                                        + " da classe " + superior.getSimpleName());
-                                field = superior.getDeclaredField(forName.getSimpleName().substring(0, 1).toLowerCase() + forName.getSimpleName().substring(1));
-                                if (field.isAnnotationPresent(OneToMany.class)) {
-                                    log.trace("Anotação OneToMany encontrada, pegando lista: " + "get" + priMaiuscula(forName.getSimpleName()) + " da classe " + superior.getSimpleName());
-                                    method = superior.getMethod("get" + priMaiuscula(forName.getSimpleName()));
-                                    List objects = (List) method.invoke(nivel1);
-                                    if (objects == null) {
-                                        objects = new ArrayList<>();
-                                    }
-                                    objects.add(newInstance);
-                                    log.trace("Inserindo registro filho com : " + "set" + priMaiuscula(forName.getSimpleName()) + " na classe " + superior.getSimpleName());
-                                    method = superior.getMethod("set" + priMaiuscula(forName.getSimpleName()), List.class);
-                                    method.invoke(nivel1, objects);
-                                } else if (field.isAnnotationPresent(OneToOne.class)) {
-                                    log.trace("Anotação OneToOne encontrada");
-                                    log.trace("Inserindo registro filho com : " + "set" + priMaiuscula(forName.getSimpleName()) + " na classe " + superior.getSimpleName());
-                                    method = superior.getMethod("set" + priMaiuscula(forName.getSimpleName()), forName);
-                                    method.invoke(nivel1, newInstance);
-                                } else {
-                                    log.trace("Anotação não encontrada");
-                                }
+                                preencherSuperior(nivel1, newInstance);
 
                                 nivel2 = newInstance;
                                 break;
                             case 3:
+                                log.trace("Inserindo no registro pai " + nivel2.getClass().getSimpleName());
                                 method.invoke(newInstance, nivel2);
 
-                                superior = nivel2.getClass();
-
-                                log.debug("Verificando campo: " + forName.getSimpleName().substring(0, 1).toLowerCase() + forName.getSimpleName().substring(1)
-                                        + " da classe " + superior.getSimpleName());
-                                field = superior.getDeclaredField(forName.getSimpleName().substring(0, 1).toLowerCase() + forName.getSimpleName().substring(1));
-                                if (field.isAnnotationPresent(OneToMany.class)) {
-                                    log.trace("Anotação OneToMany encontrada, pegando lista: " + "get" + priMaiuscula(forName.getSimpleName()) + " da classe " + superior.getSimpleName());
-                                    method = superior.getMethod("get" + priMaiuscula(forName.getSimpleName()));
-                                    List objects = (List) method.invoke(nivel2);
-                                    if (objects == null) {
-                                        objects = new ArrayList<>();
-                                    }
-                                    objects.add(newInstance);
-                                    log.trace("Inserindo registro filho com : " + "set" + priMaiuscula(forName.getSimpleName()) + " na classe " + superior.getSimpleName());
-                                    method = superior.getMethod("set" + priMaiuscula(forName.getSimpleName()), List.class);
-                                    method.invoke(nivel2, objects);
-                                } else if (field.isAnnotationPresent(OneToOne.class)) {
-                                    log.trace("Anotação OneToOne encontrada");
-                                    log.trace("Inserindo registro filho com : " + "set" + priMaiuscula(forName.getSimpleName()) + " na classe " + superior.getSimpleName());
-                                    method = superior.getMethod("set" + priMaiuscula(forName.getSimpleName()), forName);
-                                    method.invoke(nivel2, newInstance);
-                                } else {
-                                    log.trace("Anotação não encontrada");
-                                }
+                                preencherSuperior(nivel2, newInstance);
 
                                 nivel3 = newInstance;
                                 break;
                             case 4:
-                                method.invoke(newInstance, nivel3);
-                                superior = nivel3.getClass();
+                                log.trace("Inserindo no registro pai " + nivel3.getClass().getSimpleName());
 
-                                log.debug("Verificando campo: " + forName.getSimpleName().substring(0, 1).toLowerCase() + forName.getSimpleName().substring(1)
-                                        + " da classe " + superior.getSimpleName());
-                                field = superior.getDeclaredField(forName.getSimpleName().substring(0, 1).toLowerCase() + forName.getSimpleName().substring(1));
-                                if (field.isAnnotationPresent(OneToMany.class)) {
-                                    log.trace("Anotação OneToMany encontrada, pegando lista: " + "get" + priMaiuscula(forName.getSimpleName()) + " da classe " + superior.getSimpleName());
-                                    method = superior.getMethod("get" + priMaiuscula(forName.getSimpleName()));
-                                    List objects = (List) method.invoke(nivel3);
-                                    if (objects == null) {
-                                        objects = new ArrayList<>();
-                                    }
-                                    objects.add(newInstance);
-                                    log.trace("Inserindo registro filho com : " + "set" + priMaiuscula(forName.getSimpleName()) + " na classe " + superior.getSimpleName());
-                                    method = superior.getMethod("set" + priMaiuscula(forName.getSimpleName()), List.class);
-                                    method.invoke(nivel3, objects);
-                                } else if (field.isAnnotationPresent(OneToOne.class)) {
-                                    log.trace("Anotação OneToOne encontrada");
-                                    log.trace("Inserindo registro filho com : " + "set" + priMaiuscula(forName.getSimpleName()) + " na classe " + superior.getSimpleName());
-                                    method = superior.getMethod("set" + priMaiuscula(forName.getSimpleName()), forName);
-                                    method.invoke(nivel3, newInstance);
-                                } else {
-                                    log.trace("Anotação não encontrada");
-                                }
+                                method.invoke(newInstance, nivel3);
+
+                                preencherSuperior(nivel3, newInstance);
 
                                 nivel4 = newInstance;
                                 break;
                             case 5:
-                                method.invoke(newInstance, nivel4);
-                                superior = nivel4.getClass();
+                                log.trace("Inserindo no registro pai " + nivel4.getClass().getSimpleName());
 
-                                log.debug("Verificando campo: " + forName.getSimpleName().substring(0, 1).toLowerCase() + forName.getSimpleName().substring(1)
-                                        + " da classe " + superior.getSimpleName());
-                                field = superior.getDeclaredField(forName.getSimpleName().substring(0, 1).toLowerCase() + forName.getSimpleName().substring(1));
-                                if (field.isAnnotationPresent(OneToMany.class)) {
-                                    log.trace("Anotação OneToMany encontrada, pegando lista: " + "get" + priMaiuscula(forName.getSimpleName()) + " da classe " + superior.getSimpleName());
-                                    method = superior.getMethod("get" + priMaiuscula(forName.getSimpleName()));
-                                    List objects = (List) method.invoke(nivel4);
-                                    if (objects == null) {
-                                        objects = new ArrayList<>();
-                                    }
-                                    objects.add(newInstance);
-                                    log.trace("Inserindo registro filho com : " + "set" + priMaiuscula(forName.getSimpleName()) + " na classe " + superior.getSimpleName());
-                                    method = superior.getMethod("set" + priMaiuscula(forName.getSimpleName()), List.class);
-                                    method.invoke(nivel4, objects);
-                                } else if (field.isAnnotationPresent(OneToOne.class)) {
-                                    log.trace("Anotação OneToOne encontrada");
-                                    log.trace("Inserindo registro filho com : " + "set" + priMaiuscula(forName.getSimpleName()) + " na classe " + superior.getSimpleName());
-                                    method = superior.getMethod("set" + priMaiuscula(forName.getSimpleName()), forName);
-                                    method.invoke(nivel4, newInstance);
-                                } else {
-                                    log.trace("Anotação não encontrada");
-                                }
+                                method.invoke(newInstance, nivel4);
+                                preencherSuperior(nivel4, newInstance);
+
                                 nivel5 = newInstance;
+                                break;
+                            case 6:
+                                log.trace("Inserindo no registro pai " + nivel5.getClass().getSimpleName());
+
+                                method.invoke(newInstance, nivel4);
+                                preencherSuperior(nivel5, newInstance);
+
+                                nivel6 = newInstance;
                                 break;
                         }
                     }
@@ -263,23 +207,77 @@ public class InsertReg {
 
         log.trace("Iniciando Manager");
         EntityManager entityManager = ObjectFactory.getEntityManager();
-        entityManager.getTransaction().begin();
-        log.trace("Persistindo Sped");
-        entityManager.persist(sped);
-        entityManager.getTransaction().commit();
+        log.trace("Verificando duplicidade");
+        try {
+            Reg0000 verif = entityManager.createNamedQuery("Reg0000.findByHash", Reg0000.class).setParameter("hash", hashCode).getSingleResult();
+            if (verif == null) {
+                log.trace("Iniciando Transação");
+                entityManager.getTransaction().begin();
+                log.trace("Persistindo Sped");
+                entityManager.persist(sped);
+                entityManager.getTransaction().commit();
+            } else {
+                log.trace("Objeto retornado da verificação não é nulo");
+                log.trace("Arquivo do Sped já gravado no banco de dados");
+            }
+        } catch (javax.persistence.NoResultException ex) {
+            log.trace(":NoResult: Iniciando Transação!");
+            entityManager.getTransaction().begin();
+            log.trace("Persistindo Sped");
+            entityManager.persist(sped);
+            entityManager.getTransaction().commit();
+        }
         log.trace("Fechando Manager");
         entityManager.close();
         reader.close();
     }
 
+    private static void preencherSuperior(Object superiorInstance, Object newInstance) throws NoSuchFieldException, NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        Method method;
+        Class<?> forName = newInstance.getClass();
+        Class superior = superiorInstance.getClass();
+
+        log.debug("Verificando campo: " + forName.getSimpleName().substring(0, 1).toLowerCase() + forName.getSimpleName().substring(1)
+                + " da classe " + superior.getSimpleName());
+        Field field = superior.getDeclaredField(forName.getSimpleName().substring(0, 1).toLowerCase() + forName.getSimpleName().substring(1));
+        if (field.isAnnotationPresent(OneToMany.class)) {
+            log.trace("Anotação OneToMany encontrada, pegando lista: " + "get" + priMaiuscula(forName.getSimpleName()) + " da classe " + superior.getSimpleName());
+            method = superior.getMethod("get" + priMaiuscula(forName.getSimpleName()));
+            List objects = (List) method.invoke(superiorInstance);
+            if (objects == null) {
+                objects = new ArrayList<>();
+            }
+            objects.add(newInstance);
+            log.trace("Inserindo registro filho com : " + "set" + priMaiuscula(forName.getSimpleName()) + " na classe " + superior.getSimpleName());
+            method = superior.getMethod("set" + priMaiuscula(forName.getSimpleName()), List.class);
+            method.invoke(superiorInstance, objects);
+        } else if (field.isAnnotationPresent(OneToOne.class)) {
+            log.trace("Anotação OneToOne encontrada");
+            log.trace("Inserindo registro filho com : " + "set" + priMaiuscula(forName.getSimpleName()) + " na classe " + superior.getSimpleName());
+            method = superior.getMethod("set" + priMaiuscula(forName.getSimpleName()), forName);
+            method.invoke(superiorInstance, newInstance);
+        } else {
+            log.trace("Anotação não encontrada");
+        }
+    }
+
     private static void preencherObjeto(String[] campos, Field field, Object newInstance) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+
         Class forName = newInstance.getClass();
         Method method;
         Campos informacoes = field.getAnnotation(Campos.class);
         String metodo = "set" + priMaiuscula(field.getName());
-        log.debug("Invocando Metodo: " + metodo + " : "
-                + ((campos[informacoes.posicao()].equals("")) ? "Campo Vazio" : campos[informacoes.posicao()]));
-        if (!campos[informacoes.posicao()].equals("")) {
+        String dadoSped = "";
+        try {
+            dadoSped = campos[informacoes.posicao()];
+            log.debug("Invocando Metodo: " + metodo + " : "
+                    + ((dadoSped.equals("")) ? "Campo Vazio" : dadoSped));
+
+        } catch (java.lang.ArrayIndexOutOfBoundsException ex) {
+            log.debug("Campo não descrito no Sped");
+        }
+
+        if (!dadoSped.equals("")) {
 
             switch (informacoes.tipo()) {
                 case 'C': {
@@ -312,6 +310,7 @@ public class InsertReg {
                     throw new LeitorExeption("Campo tipo " + informacoes.tipo() + " não é reconhecido");
             }
         }
+
     }
 
     private static String priMaiuscula(String word) {

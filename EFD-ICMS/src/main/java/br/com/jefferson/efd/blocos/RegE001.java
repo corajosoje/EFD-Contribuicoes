@@ -1,15 +1,22 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -28,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegE001.findByHash", query = "SELECT r FROM RegE001 r WHERE r.hash = :hash"),
     @NamedQuery(name = "RegE001.findByReg", query = "SELECT r FROM RegE001 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegE001.findByIndMov", query = "SELECT r FROM RegE001 r WHERE r.indMov = :indMov")})
+@Registros(nivel = 1)
 public class RegE001 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,19 +44,17 @@ public class RegE001 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "IND_MOV")
-    private String indMov;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg0000 idPai;
+
+    public Reg0000 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0000) idPai;
+    }
 
     public RegE001() {
     }
@@ -57,7 +63,7 @@ public class RegE001 implements Serializable {
         this.id = id;
     }
 
-    public RegE001(Long id, long idPai, long linha, String hash) {
+    public RegE001(Long id, Reg0000 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -71,14 +77,58 @@ public class RegE001 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE100> regE100;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegE100> getRegE100() {
+        return regE100;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegE100(List<RegE100> regE100) {
+        this.regE100 = regE100;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE200> regE200;
+
+    public List<RegE200> getRegE200() {
+        return regE200;
+    }
+
+    public void setRegE200(List<RegE200> regE200) {
+        this.regE200 = regE200;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE300> regE300;
+
+    public List<RegE300> getRegE300() {
+        return regE300;
+    }
+
+    public void setRegE300(List<RegE300> regE300) {
+        this.regE300 = regE300;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE500> regE500;
+
+    public List<RegE500> getRegE500() {
+        return regE500;
+    }
+
+    public void setRegE500(List<RegE500> regE500) {
+        this.regE500 = regE500;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_MOV")
+    private String indMov;
 
     public long getLinha() {
         return linha;

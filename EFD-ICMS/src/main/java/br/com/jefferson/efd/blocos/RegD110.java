@@ -1,15 +1,23 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -31,6 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD110.findByCodItem", query = "SELECT r FROM RegD110 r WHERE r.codItem = :codItem"),
     @NamedQuery(name = "RegD110.findByVlServ", query = "SELECT r FROM RegD110 r WHERE r.vlServ = :vlServ"),
     @NamedQuery(name = "RegD110.findByVlOut", query = "SELECT r FROM RegD110 r WHERE r.vlOut = :vlOut")})
+@Registros(nivel = 3)
 public class RegD110 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,26 +48,17 @@ public class RegD110 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "NUM_ITEM")
-    private int numItem;
-    @Column(name = "COD_ITEM")
-    private String codItem;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_SERV")
-    private BigDecimal vlServ;
-    @Column(name = "VL_OUT")
-    private BigDecimal vlOut;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD100 idPai;
+
+    public RegD100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD100) idPai;
+    }
 
     public RegD110() {
     }
@@ -67,7 +67,7 @@ public class RegD110 implements Serializable {
         this.id = id;
     }
 
-    public RegD110(Long id, long idPai, long linha, String hash) {
+    public RegD110(Long id, RegD100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -81,14 +81,37 @@ public class RegD110 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD120> regD120;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegD120> getRegD120() {
+        return regD120;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegD120(List<RegD120> regD120) {
+        this.regD120 = regD120;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'I')
+    @Column(name = "NUM_ITEM")
+    private int numItem;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "COD_ITEM")
+    private String codItem;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "VL_SERV")
+    private BigDecimal vlServ;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "VL_OUT")
+    private BigDecimal vlOut;
 
     public long getLinha() {
         return linha;

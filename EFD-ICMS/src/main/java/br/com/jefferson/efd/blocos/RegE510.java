@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -7,7 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -32,6 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegE510.findByVlContIpi", query = "SELECT r FROM RegE510 r WHERE r.vlContIpi = :vlContIpi"),
     @NamedQuery(name = "RegE510.findByVlBcIpi", query = "SELECT r FROM RegE510 r WHERE r.vlBcIpi = :vlBcIpi"),
     @NamedQuery(name = "RegE510.findByVlIpi", query = "SELECT r FROM RegE510 r WHERE r.vlIpi = :vlIpi")})
+@Registros(nivel = 3)
 public class RegE510 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,28 +46,17 @@ public class RegE510 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "CFOP")
-    private String cfop;
-    @Column(name = "CST_IPI")
-    private String cstIpi;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_CONT_IPI")
-    private BigDecimal vlContIpi;
-    @Column(name = "VL_BC_IPI")
-    private BigDecimal vlBcIpi;
-    @Column(name = "VL_IPI")
-    private BigDecimal vlIpi;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegE500 idPai;
+
+    public RegE500 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegE500) idPai;
+    }
 
     public RegE510() {
     }
@@ -70,7 +65,7 @@ public class RegE510 implements Serializable {
         this.id = id;
     }
 
-    public RegE510(Long id, long idPai, long linha, String hash) {
+    public RegE510(Long id, RegE500 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -84,14 +79,30 @@ public class RegE510 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "CFOP")
+    private String cfop;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "CST_IPI")
+    private String cstIpi;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "VL_CONT_IPI")
+    private BigDecimal vlContIpi;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "VL_BC_IPI")
+    private BigDecimal vlBcIpi;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "VL_IPI")
+    private BigDecimal vlIpi;
 
     public long getLinha() {
         return linha;

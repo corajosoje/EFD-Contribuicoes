@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +10,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -39,6 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegE113.findByCodItem", query = "SELECT r FROM RegE113 r WHERE r.codItem = :codItem"),
     @NamedQuery(name = "RegE113.findByVlAjItem", query = "SELECT r FROM RegE113 r WHERE r.vlAjItem = :vlAjItem"),
     @NamedQuery(name = "RegE113.findByChvDoce", query = "SELECT r FROM RegE113 r WHERE r.chvDoce = :chvDoce")})
+@Registros(nivel = 5)
 public class RegE113 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,37 +53,17 @@ public class RegE113 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_PART")
-    private String codPart;
-    @Column(name = "COD_MOD")
-    private String codMod;
-    @Column(name = "SER")
-    private String ser;
-    @Column(name = "SUB")
-    private int sub;
-    @Column(name = "NUM_DOC")
-    private int numDoc;
-    @Column(name = "DT_DOC")
-    @Temporal(TemporalType.DATE)
-    private Date dtDoc;
-    @Column(name = "COD_ITEM")
-    private String codItem;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_AJ_ITEM")
-    private BigDecimal vlAjItem;
-    @Column(name = "CHV_DOCE")
-    private String chvDoce;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegE111 idPai;
+
+    public RegE111 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegE111) idPai;
+    }
 
     public RegE113() {
     }
@@ -86,7 +72,7 @@ public class RegE113 implements Serializable {
         this.id = id;
     }
 
-    public RegE113(Long id, long idPai, long linha, String hash) {
+    public RegE113(Long id, RegE111 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -100,14 +86,43 @@ public class RegE113 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_PART")
+    private String codPart;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "COD_MOD")
+    private String codMod;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "SER")
+    private String ser;
+    @Campos(posicao = 5, tipo = 'I')
+    @Column(name = "SUB")
+    private int sub;
+    @Campos(posicao = 6, tipo = 'I')
+    @Column(name = "NUM_DOC")
+    private int numDoc;
+    @Campos(posicao = 7, tipo = 'D')
+    @Column(name = "DT_DOC")
+    @Temporal(TemporalType.DATE)
+    private Date dtDoc;
+    @Campos(posicao = 8, tipo = 'C')
+    @Column(name = "COD_ITEM")
+    private String codItem;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "VL_AJ_ITEM")
+    private BigDecimal vlAjItem;
+    @Campos(posicao = 10, tipo = 'C')
+    @Column(name = "CHV_DOCe")
+    private String chvDoce;
 
     public long getLinha() {
         return linha;

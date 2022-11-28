@@ -1,17 +1,24 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,6 +43,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegK210.findByCodDocOs", query = "SELECT r FROM RegK210 r WHERE r.codDocOs = :codDocOs"),
     @NamedQuery(name = "RegK210.findByCodItemOri", query = "SELECT r FROM RegK210 r WHERE r.codItemOri = :codItemOri"),
     @NamedQuery(name = "RegK210.findByQtdOri", query = "SELECT r FROM RegK210 r WHERE r.qtdOri = :qtdOri")})
+@Registros(nivel = 3)
 public class RegK210 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,30 +52,17 @@ public class RegK210 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "DT_INI_OS")
-    @Temporal(TemporalType.DATE)
-    private Date dtIniOs;
-    @Column(name = "DT_FIN_OS")
-    @Temporal(TemporalType.DATE)
-    private Date dtFinOs;
-    @Column(name = "COD_DOC_OS")
-    private String codDocOs;
-    @Column(name = "COD_ITEM_ORI")
-    private String codItemOri;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QTD_ORI")
-    private BigDecimal qtdOri;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegK100 idPai;
+
+    public RegK100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegK100) idPai;
+    }
 
     public RegK210() {
     }
@@ -76,7 +71,7 @@ public class RegK210 implements Serializable {
         this.id = id;
     }
 
-    public RegK210(Long id, long idPai, long linha, String hash) {
+    public RegK210(Long id, RegK100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -90,14 +85,42 @@ public class RegK210 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegK215> regK215;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegK215> getRegK215() {
+        return regK215;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegK215(List<RegK215> regK215) {
+        this.regK215 = regK215;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'D')
+    @Column(name = "DT_INI_OS")
+    @Temporal(TemporalType.DATE)
+    private Date dtIniOs;
+    @Campos(posicao = 3, tipo = 'D')
+    @Column(name = "DT_FIN_OS")
+    @Temporal(TemporalType.DATE)
+    private Date dtFinOs;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "COD_DOC_OS")
+    private String codDocOs;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "COD_ITEM_ORI")
+    private String codItemOri;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "QTD_ORI")
+    private BigDecimal qtdOri;
 
     public long getLinha() {
         return linha;

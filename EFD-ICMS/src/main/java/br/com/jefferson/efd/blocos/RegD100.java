@@ -1,16 +1,25 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -54,6 +63,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD100.findByCodCta", query = "SELECT r FROM RegD100 r WHERE r.codCta = :codCta"),
     @NamedQuery(name = "RegD100.findByCodMunOrig", query = "SELECT r FROM RegD100 r WHERE r.codMunOrig = :codMunOrig"),
     @NamedQuery(name = "RegD100.findByCodMunDest", query = "SELECT r FROM RegD100 r WHERE r.codMunDest = :codMunDest")})
+@Registros(nivel = 2)
 public class RegD100 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -62,68 +72,17 @@ public class RegD100 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "IND_OPER")
-    private String indOper;
-    @Column(name = "IND_EMIT")
-    private String indEmit;
-    @Column(name = "COD_PART")
-    private String codPart;
-    @Column(name = "COD_MOD")
-    private String codMod;
-    @Column(name = "COD_SIT")
-    private String codSit;
-    @Column(name = "SER")
-    private String ser;
-    @Column(name = "SUB")
-    private String sub;
-    @Column(name = "NUM_DOC")
-    private int numDoc;
-    @Column(name = "CHV_CTE")
-    private String chvCte;
-    @Column(name = "DT_DOC")
-    @Temporal(TemporalType.DATE)
-    private Date dtDoc;
-    @Column(name = "DT_A_P")
-    @Temporal(TemporalType.DATE)
-    private Date dtAP;
-    @Column(name = "TP_CT_E")
-    private String tpCtE;
-    @Column(name = "CHV_CTE_REF")
-    private String chvCteRef;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_DOC")
-    private BigDecimal vlDoc;
-    @Column(name = "VL_DESC")
-    private BigDecimal vlDesc;
-    @Column(name = "IND_FRT")
-    private String indFrt;
-    @Column(name = "VL_SERV")
-    private BigDecimal vlServ;
-    @Column(name = "VL_BC_ICMS")
-    private BigDecimal vlBcIcms;
-    @Column(name = "VL_ICMS")
-    private BigDecimal vlIcms;
-    @Column(name = "VL_NT")
-    private BigDecimal vlNt;
-    @Column(name = "COD_INF")
-    private String codInf;
-    @Column(name = "COD_CTA")
-    private String codCta;
-    @Column(name = "COD_MUN_ORIG")
-    private String codMunOrig;
-    @Column(name = "COD_MUN_DEST")
-    private String codMunDest;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD001 idPai;
+
+    public RegD001 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD001) idPai;
+    }
 
     public RegD100() {
     }
@@ -132,7 +91,7 @@ public class RegD100 implements Serializable {
         this.id = id;
     }
 
-    public RegD100(Long id, long idPai, long linha, String hash) {
+    public RegD100(Long id, RegD001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -146,14 +105,189 @@ public class RegD100 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegD101 regD101;
 
-    public long getIdPai() {
-        return idPai;
+    public RegD101 getRegD101() {
+        return regD101;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegD101(RegD101 regD101) {
+        this.regD101 = regD101;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD110> regD110;
+
+    public List<RegD110> getRegD110() {
+        return regD110;
+    }
+
+    public void setRegD110(List<RegD110> regD110) {
+        this.regD110 = regD110;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD130> regD130;
+
+    public List<RegD130> getRegD130() {
+        return regD130;
+    }
+
+    public void setRegD130(List<RegD130> regD130) {
+        this.regD130 = regD130;
+    }
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegD140 regD140;
+
+    public RegD140 getRegD140() {
+        return regD140;
+    }
+
+    public void setRegD140(RegD140 regD140) {
+        this.regD140 = regD140;
+    }
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegD150 regD150;
+
+    public RegD150 getRegD150() {
+        return regD150;
+    }
+
+    public void setRegD150(RegD150 regD150) {
+        this.regD150 = regD150;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD160> regD160;
+
+    public List<RegD160> getRegD160() {
+        return regD160;
+    }
+
+    public void setRegD160(List<RegD160> regD160) {
+        this.regD160 = regD160;
+    }
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegD170 regD170;
+
+    public RegD170 getRegD170() {
+        return regD170;
+    }
+
+    public void setRegD170(RegD170 regD170) {
+        this.regD170 = regD170;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD180> regD180;
+
+    public List<RegD180> getRegD180() {
+        return regD180;
+    }
+
+    public void setRegD180(List<RegD180> regD180) {
+        this.regD180 = regD180;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD190> regD190;
+
+    public List<RegD190> getRegD190() {
+        return regD190;
+    }
+
+    public void setRegD190(List<RegD190> regD190) {
+        this.regD190 = regD190;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD195> regD195;
+
+    public List<RegD195> getRegD195() {
+        return regD195;
+    }
+
+    public void setRegD195(List<RegD195> regD195) {
+        this.regD195 = regD195;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_OPER")
+    private String indOper;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "IND_EMIT")
+    private String indEmit;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "COD_PART")
+    private String codPart;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "COD_MOD")
+    private String codMod;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "COD_SIT")
+    private String codSit;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "SER")
+    private String ser;
+    @Campos(posicao = 8, tipo = 'C')
+    @Column(name = "SUB")
+    private String sub;
+    @Campos(posicao = 9, tipo = 'I')
+    @Column(name = "NUM_DOC")
+    private int numDoc;
+    @Campos(posicao = 10, tipo = 'C')
+    @Column(name = "CHV_CTE")
+    private String chvCte;
+    @Campos(posicao = 11, tipo = 'D')
+    @Column(name = "DT_DOC")
+    @Temporal(TemporalType.DATE)
+    private Date dtDoc;
+    @Campos(posicao = 12, tipo = 'D')
+    @Column(name = "DT_A_P")
+    @Temporal(TemporalType.DATE)
+    private Date dtAP;
+    @Campos(posicao = 13, tipo = 'I')
+    @Column(name = "TP_CT_E")
+    private int tpCtE;
+    @Campos(posicao = 14, tipo = 'C')
+    @Column(name = "CHV_CTE_REF")
+    private String chvCteRef;
+    @Campos(posicao = 15, tipo = 'R')
+    @Column(name = "VL_DOC")
+    private BigDecimal vlDoc;
+    @Campos(posicao = 16, tipo = 'R')
+    @Column(name = "VL_DESC")
+    private BigDecimal vlDesc;
+    @Campos(posicao = 17, tipo = 'C')
+    @Column(name = "IND_FRT")
+    private String indFrt;
+    @Campos(posicao = 18, tipo = 'R')
+    @Column(name = "VL_SERV")
+    private BigDecimal vlServ;
+    @Campos(posicao = 19, tipo = 'R')
+    @Column(name = "VL_BC_ICMS")
+    private BigDecimal vlBcIcms;
+    @Campos(posicao = 20, tipo = 'R')
+    @Column(name = "VL_ICMS")
+    private BigDecimal vlIcms;
+    @Campos(posicao = 21, tipo = 'R')
+    @Column(name = "VL_NT")
+    private BigDecimal vlNt;
+    @Campos(posicao = 22, tipo = 'C')
+    @Column(name = "COD_INF")
+    private String codInf;
+    @Campos(posicao = 23, tipo = 'C')
+    @Column(name = "COD_CTA")
+    private String codCta;
+    @Campos(posicao = 24, tipo = 'C')
+    @Column(name = "COD_MUN_ORIG")
+    private String codMunOrig;
+    @Campos(posicao = 25, tipo = 'C')
+    @Column(name = "COD_MUN_DEST")
+    private String codMunDest;
 
     public long getLinha() {
         return linha;
@@ -267,11 +401,11 @@ public class RegD100 implements Serializable {
         this.dtAP = dtAP;
     }
 
-    public String getTpCtE() {
+    public int getTpCtE() {
         return tpCtE;
     }
 
-    public void setTpCtE(String tpCtE) {
+    public void setTpCtE(int tpCtE) {
         this.tpCtE = tpCtE;
     }
 

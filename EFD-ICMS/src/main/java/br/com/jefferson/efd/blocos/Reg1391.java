@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +10,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -49,6 +54,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1391.findByCodItem", query = "SELECT r FROM Reg1391 r WHERE r.codItem = :codItem"),
     @NamedQuery(name = "Reg1391.findByTpResiduo", query = "SELECT r FROM Reg1391 r WHERE r.tpResiduo = :tpResiduo"),
     @NamedQuery(name = "Reg1391.findByQtdResiduo", query = "SELECT r FROM Reg1391 r WHERE r.qtdResiduo = :qtdResiduo")})
+@Registros(nivel = 3)
 public class Reg1391 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,55 +63,103 @@ public class Reg1391 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg1390 idPai;
+
+    public Reg1390 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg1390) idPai;
+    }
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+
+    @Campos(posicao = 2, tipo = 'D')
     @Column(name = "DT_REGISTRO")
     @Temporal(TemporalType.DATE)
     private Date dtRegistro;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
+    @Campos(posicao = 3, tipo = 'R')
     @Column(name = "QTD")
     private BigDecimal qtd;
+
+    @Campos(posicao = 4, tipo = 'R')
     @Column(name = "ESTQ_INI")
     private BigDecimal estqIni;
+
+    @Campos(posicao = 5, tipo = 'R')
     @Column(name = "QTD_PRODUZ")
     private BigDecimal qtdProduz;
+
+    @Campos(posicao = 6, tipo = 'R')
     @Column(name = "ENT_ANID_HID")
     private BigDecimal entAnidHid;
+
+    @Campos(posicao = 7, tipo = 'R')
     @Column(name = "OUTR_ENTR")
     private BigDecimal outrEntr;
+
+    @Campos(posicao = 8, tipo = 'R')
     @Column(name = "PERDA")
     private BigDecimal perda;
+
+    @Campos(posicao = 9, tipo = 'R')
     @Column(name = "CONS")
     private BigDecimal cons;
+
+    @Campos(posicao = 10, tipo = 'R')
     @Column(name = "SAI_ANI_HID")
     private BigDecimal saiAniHid;
+
+    @Campos(posicao = 11, tipo = 'R')
     @Column(name = "SAIDAS")
     private BigDecimal saidas;
+
+    @Campos(posicao = 12, tipo = 'R')
     @Column(name = "ESTQ_FIN")
     private BigDecimal estqFin;
+
+    @Campos(posicao = 13, tipo = 'R')
     @Column(name = "ESTQ_INI_MEL")
     private BigDecimal estqIniMel;
+
+    @Campos(posicao = 14, tipo = 'R')
     @Column(name = "PROD_DIA_MEL")
     private BigDecimal prodDiaMel;
+
+    @Campos(posicao = 15, tipo = 'R')
     @Column(name = "UTIL_MEL")
     private BigDecimal utilMel;
+
+    @Campos(posicao = 16, tipo = 'R')
     @Column(name = "PROD_ALC_MEL")
     private BigDecimal prodAlcMel;
+
+    @Campos(posicao = 17, tipo = 'C')
     @Column(name = "OBS")
     private String obs;
+
+    @Campos(posicao = 18, tipo = 'C')
     @Column(name = "COD_ITEM")
     private String codItem;
+
+    @Campos(posicao = 19, tipo = 'C')
     @Column(name = "TP_RESIDUO")
     private String tpResiduo;
+
+    @Campos(posicao = 20, tipo = 'R')
     @Column(name = "QTD_RESIDUO")
     private BigDecimal qtdResiduo;
 
@@ -116,7 +170,7 @@ public class Reg1391 implements Serializable {
         this.id = id;
     }
 
-    public Reg1391(Long id, long idPai, long linha, String hash) {
+    public Reg1391(Long id, Reg1390 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -129,14 +183,6 @@ public class Reg1391 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {

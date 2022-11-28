@@ -1,16 +1,24 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,6 +53,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD400.findByVlPis", query = "SELECT r FROM RegD400 r WHERE r.vlPis = :vlPis"),
     @NamedQuery(name = "RegD400.findByVlCofins", query = "SELECT r FROM RegD400 r WHERE r.vlCofins = :vlCofins"),
     @NamedQuery(name = "RegD400.findByCodCta", query = "SELECT r FROM RegD400 r WHERE r.codCta = :codCta")})
+@Registros(nivel = 2)
 public class RegD400 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,49 +62,17 @@ public class RegD400 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_PART")
-    private String codPart;
-    @Column(name = "COD_MOD")
-    private String codMod;
-    @Column(name = "COD_SIT")
-    private String codSit;
-    @Column(name = "SER")
-    private String ser;
-    @Column(name = "SUB")
-    private int sub;
-    @Column(name = "NUM_DOC")
-    private int numDoc;
-    @Column(name = "DT_DOC")
-    @Temporal(TemporalType.DATE)
-    private Date dtDoc;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_DOC")
-    private BigDecimal vlDoc;
-    @Column(name = "VL_DESC")
-    private BigDecimal vlDesc;
-    @Column(name = "VL_SERV")
-    private BigDecimal vlServ;
-    @Column(name = "VL_BC_ICMS")
-    private BigDecimal vlBcIcms;
-    @Column(name = "VL_ICMS")
-    private BigDecimal vlIcms;
-    @Column(name = "VL_PIS")
-    private BigDecimal vlPis;
-    @Column(name = "VL_COFINS")
-    private BigDecimal vlCofins;
-    @Column(name = "COD_CTA")
-    private String codCta;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD001 idPai;
+
+    public RegD001 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD001) idPai;
+    }
 
     public RegD400() {
     }
@@ -104,7 +81,7 @@ public class RegD400 implements Serializable {
         this.id = id;
     }
 
-    public RegD400(Long id, long idPai, long linha, String hash) {
+    public RegD400(Long id, RegD001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -118,14 +95,81 @@ public class RegD400 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD410> regD410;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegD410> getRegD410() {
+        return regD410;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegD410(List<RegD410> regD410) {
+        this.regD410 = regD410;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD420> regD420;
+
+    public List<RegD420> getRegD420() {
+        return regD420;
+    }
+
+    public void setRegD420(List<RegD420> regD420) {
+        this.regD420 = regD420;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_PART")
+    private String codPart;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "COD_MOD")
+    private String codMod;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "COD_SIT")
+    private String codSit;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "SER")
+    private String ser;
+    @Campos(posicao = 6, tipo = 'I')
+    @Column(name = "SUB")
+    private int sub;
+    @Campos(posicao = 7, tipo = 'I')
+    @Column(name = "NUM_DOC")
+    private int numDoc;
+    @Campos(posicao = 8, tipo = 'D')
+    @Column(name = "DT_DOC")
+    @Temporal(TemporalType.DATE)
+    private Date dtDoc;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "VL_DOC")
+    private BigDecimal vlDoc;
+    @Campos(posicao = 10, tipo = 'R')
+    @Column(name = "VL_DESC")
+    private BigDecimal vlDesc;
+    @Campos(posicao = 11, tipo = 'R')
+    @Column(name = "VL_SERV")
+    private BigDecimal vlServ;
+    @Campos(posicao = 12, tipo = 'R')
+    @Column(name = "VL_BC_ICMS")
+    private BigDecimal vlBcIcms;
+    @Campos(posicao = 13, tipo = 'R')
+    @Column(name = "VL_ICMS")
+    private BigDecimal vlIcms;
+    @Campos(posicao = 14, tipo = 'R')
+    @Column(name = "VL_PIS")
+    private BigDecimal vlPis;
+    @Campos(posicao = 15, tipo = 'R')
+    @Column(name = "VL_COFINS")
+    private BigDecimal vlCofins;
+    @Campos(posicao = 16, tipo = 'C')
+    @Column(name = "COD_CTA")
+    private String codCta;
 
     public long getLinha() {
         return linha;

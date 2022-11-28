@@ -41,26 +41,17 @@ public class Reg0206 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
     private Reg0200 idPai;
 
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
+    public Reg0200 getIdPai() {
+        return idPai;
+    }
 
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-
-    @Campos(posicao = 1, tipo = 'C')
-    @Column(name = "REG")
-    private String reg;
-
-    @Campos(posicao = 2, tipo = 'C')
-    @Column(name = "COD_COMB")
-    private String codComb;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0200) idPai;
+    }
 
     public Reg0206() {
     }
@@ -83,14 +74,18 @@ public class Reg0206 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public Reg0200 getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(Object idPai) {
-        this.idPai = (Reg0200) idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_COMB")
+    private String codComb;
 
     public long getLinha() {
         return linha;

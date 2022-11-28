@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -7,7 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -39,6 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC165.findByNomMot", query = "SELECT r FROM RegC165 r WHERE r.nomMot = :nomMot"),
     @NamedQuery(name = "RegC165.findByCpf", query = "SELECT r FROM RegC165 r WHERE r.cpf = :cpf"),
     @NamedQuery(name = "RegC165.findByUfId", query = "SELECT r FROM RegC165 r WHERE r.ufId = :ufId")})
+@Registros(nivel = 3)
 public class RegC165 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,42 +53,17 @@ public class RegC165 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_PART")
-    private String codPart;
-    @Column(name = "VEIC_ID")
-    private String veicId;
-    @Column(name = "COD_AUT")
-    private String codAut;
-    @Column(name = "NR_PASSE")
-    private String nrPasse;
-    @Column(name = "HORA")
-    private int hora;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "TEMPER")
-    private BigDecimal temper;
-    @Column(name = "QTD_VOL")
-    private int qtdVol;
-    @Column(name = "PESO_BRT")
-    private BigDecimal pesoBrt;
-    @Column(name = "PESO_LIQ")
-    private BigDecimal pesoLiq;
-    @Column(name = "NOM_MOT")
-    private String nomMot;
-    @Column(name = "CPF")
-    private String cpf;
-    @Column(name = "UF_ID")
-    private String ufId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC100 idPai;
+
+    public RegC100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC100) idPai;
+    }
 
     public RegC165() {
     }
@@ -91,7 +72,7 @@ public class RegC165 implements Serializable {
         this.id = id;
     }
 
-    public RegC165(Long id, long idPai, long linha, String hash) {
+    public RegC165(Long id, RegC100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -105,14 +86,51 @@ public class RegC165 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_PART")
+    private String codPart;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "VEIC_ID")
+    private String veicId;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "COD_AUT")
+    private String codAut;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "NR_PASSE")
+    private String nrPasse;
+    @Campos(posicao = 6, tipo = 'I')
+    @Column(name = "HORA")
+    private int hora;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "TEMPER")
+    private BigDecimal temper;
+    @Campos(posicao = 8, tipo = 'I')
+    @Column(name = "QTD_VOL")
+    private int qtdVol;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "PESO_BRT")
+    private BigDecimal pesoBrt;
+    @Campos(posicao = 10, tipo = 'R')
+    @Column(name = "PESO_LIQ")
+    private BigDecimal pesoLiq;
+    @Campos(posicao = 11, tipo = 'C')
+    @Column(name = "NOM_MOT")
+    private String nomMot;
+    @Campos(posicao = 12, tipo = 'C')
+    @Column(name = "CPF")
+    private String cpf;
+    @Campos(posicao = 13, tipo = 'C')
+    @Column(name = "UF_ID")
+    private String ufId;
 
     public long getLinha() {
         return linha;

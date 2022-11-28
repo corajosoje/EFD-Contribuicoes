@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -31,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegE115.findByCodInfAdic", query = "SELECT r FROM RegE115 r WHERE r.codInfAdic = :codInfAdic"),
     @NamedQuery(name = "RegE115.findByVlInfAdic", query = "SELECT r FROM RegE115 r WHERE r.vlInfAdic = :vlInfAdic"),
     @NamedQuery(name = "RegE115.findByDescrComplAj", query = "SELECT r FROM RegE115 r WHERE r.descrComplAj = :descrComplAj")})
+@Registros(nivel = 4)
 public class RegE115 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,24 +44,17 @@ public class RegE115 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_INF_ADIC")
-    private String codInfAdic;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_INF_ADIC")
-    private BigDecimal vlInfAdic;
-    @Column(name = "DESCR_COMPL_AJ")
-    private String descrComplAj;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegE110 idPai;
+
+    public RegE110 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegE110) idPai;
+    }
 
     public RegE115() {
     }
@@ -65,7 +63,7 @@ public class RegE115 implements Serializable {
         this.id = id;
     }
 
-    public RegE115(Long id, long idPai, long linha, String hash) {
+    public RegE115(Long id, RegE110 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -79,14 +77,24 @@ public class RegE115 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_INF_ADIC")
+    private String codInfAdic;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "VL_INF_ADIC")
+    private BigDecimal vlInfAdic;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "DESCR_COMPL_AJ")
+    private String descrComplAj;
 
     public long getLinha() {
         return linha;

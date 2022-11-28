@@ -1,16 +1,25 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,7 +47,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC460.findByVlPis", query = "SELECT r FROM RegC460 r WHERE r.vlPis = :vlPis"),
     @NamedQuery(name = "RegC460.findByVlCofins", query = "SELECT r FROM RegC460 r WHERE r.vlCofins = :vlCofins"),
     @NamedQuery(name = "RegC460.findByCpfCnpj", query = "SELECT r FROM RegC460 r WHERE r.cpfCnpj = :cpfCnpj"),
-    @NamedQuery(name = "RegC460.findByNomeAdq", query = "SELECT r FROM RegC460 r WHERE r.nomeAdq = :nomeAdq")})
+    @NamedQuery(name = "RegC460.findByNomAdq", query = "SELECT r FROM RegC460 r WHERE r.nomAdq = :nomAdq")})
+@Registros(nivel = 4)
 public class RegC460 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,37 +57,17 @@ public class RegC460 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_MOD")
-    private String codMod;
-    @Column(name = "COD_SIT")
-    private String codSit;
-    @Column(name = "NUM_DOC")
-    private int numDoc;
-    @Column(name = "DT_DOC")
-    @Temporal(TemporalType.DATE)
-    private Date dtDoc;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_DOC")
-    private BigDecimal vlDoc;
-    @Column(name = "VL_PIS")
-    private BigDecimal vlPis;
-    @Column(name = "VL_COFINS")
-    private BigDecimal vlCofins;
-    @Column(name = "CPF_CNPJ")
-    private String cpfCnpj;
-    @Column(name = "NOME_ADQ")
-    private String nomeAdq;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC405 idPai;
+
+    public RegC405 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC405) idPai;
+    }
 
     public RegC460() {
     }
@@ -86,7 +76,7 @@ public class RegC460 implements Serializable {
         this.id = id;
     }
 
-    public RegC460(Long id, long idPai, long linha, String hash) {
+    public RegC460(Long id, RegC405 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -100,14 +90,63 @@ public class RegC460 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegC465 regC465;
 
-    public long getIdPai() {
-        return idPai;
+    public RegC465 getRegC465() {
+        return regC465;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegC465(RegC465 regC465) {
+        this.regC465 = regC465;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC470> regC470;
+
+    public List<RegC470> getRegC470() {
+        return regC470;
+    }
+
+    public void setRegC470(List<RegC470> regC470) {
+        this.regC470 = regC470;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_MOD")
+    private String codMod;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "COD_SIT")
+    private String codSit;
+    @Campos(posicao = 4, tipo = 'I')
+    @Column(name = "NUM_DOC")
+    private int numDoc;
+    @Campos(posicao = 5, tipo = 'D')
+    @Column(name = "DT_DOC")
+    @Temporal(TemporalType.DATE)
+    private Date dtDoc;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "VL_DOC")
+    private BigDecimal vlDoc;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "VL_PIS")
+    private BigDecimal vlPis;
+    @Campos(posicao = 8, tipo = 'R')
+    @Column(name = "VL_COFINS")
+    private BigDecimal vlCofins;
+    @Campos(posicao = 9, tipo = 'C')
+    @Column(name = "CPF_CNPJ")
+    private String cpfCnpj;
+    @Campos(posicao = 10, tipo = 'C')
+    @Column(name = "NOM_ADQ")
+    private String nomAdq;
 
     public long getLinha() {
         return linha;
@@ -197,12 +236,12 @@ public class RegC460 implements Serializable {
         this.cpfCnpj = cpfCnpj;
     }
 
-    public String getNomeAdq() {
-        return nomeAdq;
+    public String getNomAdq() {
+        return nomAdq;
     }
 
-    public void setNomeAdq(String nomeAdq) {
-        this.nomeAdq = nomeAdq;
+    public void setNomAdq(String nomAdq) {
+        this.nomAdq = nomAdq;
     }
 
     @Override

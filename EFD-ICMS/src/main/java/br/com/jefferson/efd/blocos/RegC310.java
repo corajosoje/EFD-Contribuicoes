@@ -1,13 +1,17 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -28,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC310.findByHash", query = "SELECT r FROM RegC310 r WHERE r.hash = :hash"),
     @NamedQuery(name = "RegC310.findByReg", query = "SELECT r FROM RegC310 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC310.findByNumDocCanc", query = "SELECT r FROM RegC310 r WHERE r.numDocCanc = :numDocCanc")})
+@Registros(nivel = 3)
 public class RegC310 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,19 +41,17 @@ public class RegC310 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "NUM_DOC_CANC")
-    private int numDocCanc;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC300 idPai;
+
+    public RegC300 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC300) idPai;
+    }
 
     public RegC310() {
     }
@@ -57,7 +60,7 @@ public class RegC310 implements Serializable {
         this.id = id;
     }
 
-    public RegC310(Long id, long idPai, long linha, String hash) {
+    public RegC310(Long id, RegC300 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -71,14 +74,18 @@ public class RegC310 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'I')
+    @Column(name = "NUM_DOC_CANC")
+    private int numDocCanc;
 
     public long getLinha() {
         return linha;

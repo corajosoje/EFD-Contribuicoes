@@ -1,15 +1,22 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -29,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC595.findByReg", query = "SELECT r FROM RegC595 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC595.findByCodObs", query = "SELECT r FROM RegC595 r WHERE r.codObs = :codObs"),
     @NamedQuery(name = "RegC595.findByTxtCompl", query = "SELECT r FROM RegC595 r WHERE r.txtCompl = :txtCompl")})
+@Registros(nivel = 3)
 public class RegC595 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,21 +45,17 @@ public class RegC595 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_OBS")
-    private String codObs;
-    @Column(name = "TXT_COMPL")
-    private String txtCompl;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC500 idPai;
+
+    public RegC500 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC500) idPai;
+    }
 
     public RegC595() {
     }
@@ -60,7 +64,7 @@ public class RegC595 implements Serializable {
         this.id = id;
     }
 
-    public RegC595(Long id, long idPai, long linha, String hash) {
+    public RegC595(Long id, RegC500 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -74,14 +78,31 @@ public class RegC595 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC597> regC597;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegC597> getRegC597() {
+        return regC597;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegC597(List<RegC597> regC597) {
+        this.regC597 = regC597;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_OBS")
+    private String codObs;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "TXT_COMPL")
+    private String txtCompl;
 
     public long getLinha() {
         return linha;

@@ -1,14 +1,19 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC177.findByHash", query = "SELECT r FROM RegC177 r WHERE r.hash = :hash"),
     @NamedQuery(name = "RegC177.findByReg", query = "SELECT r FROM RegC177 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC177.findByCodInfItem", query = "SELECT r FROM RegC177 r WHERE r.codInfItem = :codInfItem")})
+@Registros(nivel = 4)
 public class RegC177 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,19 +41,17 @@ public class RegC177 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_INF_ITEM")
-    private String codInfItem;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC170 idPai;
+
+    public RegC170 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC170) idPai;
+    }
 
     public RegC177() {
     }
@@ -56,7 +60,7 @@ public class RegC177 implements Serializable {
         this.id = id;
     }
 
-    public RegC177(Long id, long idPai, long linha, String hash) {
+    public RegC177(Long id, RegC170 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -70,14 +74,18 @@ public class RegC177 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_INF_ITEM")
+    private String codInfItem;
 
     public long getLinha() {
         return linha;

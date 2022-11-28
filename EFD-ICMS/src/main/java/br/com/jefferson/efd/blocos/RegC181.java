@@ -1,5 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +10,10 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -50,6 +55,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC181.findByVlUnitFcpStConvRest", query = "SELECT r FROM RegC181 r WHERE r.vlUnitFcpStConvRest = :vlUnitFcpStConvRest"),
     @NamedQuery(name = "RegC181.findByVlUnitIcmsStConvCompl", query = "SELECT r FROM RegC181 r WHERE r.vlUnitIcmsStConvCompl = :vlUnitIcmsStConvCompl"),
     @NamedQuery(name = "RegC181.findByVlUnitFcpStConvCompl", query = "SELECT r FROM RegC181 r WHERE r.vlUnitFcpStConvCompl = :vlUnitFcpStConvCompl")})
+@Registros(nivel = 4)
 public class RegC181 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -58,59 +64,17 @@ public class RegC181 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_MOT_REST_COMPL")
-    private String codMotRestCompl;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QUANT_CONV")
-    private BigDecimal quantConv;
-    @Column(name = "UNID")
-    private String unid;
-    @Column(name = "COD_MOD_SAIDA")
-    private String codModSaida;
-    @Column(name = "SERIE_SAIDA")
-    private String serieSaida;
-    @Column(name = "ECF_FAB_SAIDA")
-    private String ecfFabSaida;
-    @Column(name = "NUM_DOC_SAIDA")
-    private int numDocSaida;
-    @Column(name = "CHV_DFE_SAIDA")
-    private String chvDfeSaida;
-    @Column(name = "DT_DOC_SAIDA")
-    @Temporal(TemporalType.DATE)
-    private Date dtDocSaida;
-    @Column(name = "NUM_ITEM_SAIDA")
-    private int numItemSaida;
-    @Column(name = "VL_UNIT_CONV_SAIDA")
-    private BigDecimal vlUnitConvSaida;
-    @Column(name = "VL_UNIT_ICMS_OP_ESTOQUE_CONV_SAIDA")
-    private BigDecimal vlUnitIcmsOpEstoqueConvSaida;
-    @Column(name = "VL_UNIT_ICMS_ST_ESTOQUE_CONV_SAIDA")
-    private BigDecimal vlUnitIcmsStEstoqueConvSaida;
-    @Column(name = "VL_UNIT_FCP_ICMS_ST_ESTOQUE_CONV_SAIDA")
-    private BigDecimal vlUnitFcpIcmsStEstoqueConvSaida;
-    @Column(name = "VL_UNIT_ICMS_NA_OPERACAO_CONV_SAIDA")
-    private BigDecimal vlUnitIcmsNaOperacaoConvSaida;
-    @Column(name = "VL_UNIT_ICMS_OP_CONV_SAIDA")
-    private BigDecimal vlUnitIcmsOpConvSaida;
-    @Column(name = "VL_UNIT_ICMS_ST_CONV_REST")
-    private BigDecimal vlUnitIcmsStConvRest;
-    @Column(name = "VL_UNIT_FCP_ST_CONV_REST")
-    private BigDecimal vlUnitFcpStConvRest;
-    @Column(name = "VL_UNIT_ICMS_ST_CONV_COMPL")
-    private BigDecimal vlUnitIcmsStConvCompl;
-    @Column(name = "VL_UNIT_FCP_ST_CONV_COMPL")
-    private BigDecimal vlUnitFcpStConvCompl;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC170 idPai;
+
+    public RegC170 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC170) idPai;
+    }
 
     public RegC181() {
     }
@@ -119,7 +83,7 @@ public class RegC181 implements Serializable {
         this.id = id;
     }
 
-    public RegC181(Long id, long idPai, long linha, String hash) {
+    public RegC181(Long id, RegC170 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -133,14 +97,76 @@ public class RegC181 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_MOT_REST_COMPL")
+    private String codMotRestCompl;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "QUANT_CONV")
+    private BigDecimal quantConv;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "UNID")
+    private String unid;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "COD_MOD_SAIDA")
+    private String codModSaida;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "SERIE_SAIDA")
+    private String serieSaida;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "ECF_FAB_SAIDA")
+    private String ecfFabSaida;
+    @Campos(posicao = 8, tipo = 'I')
+    @Column(name = "NUM_DOC_SAIDA")
+    private int numDocSaida;
+    @Campos(posicao = 9, tipo = 'C')
+    @Column(name = "CHV_DFE_SAIDA")
+    private String chvDfeSaida;
+    @Campos(posicao = 10, tipo = 'D')
+    @Column(name = "DT_DOC_SAIDA")
+    @Temporal(TemporalType.DATE)
+    private Date dtDocSaida;
+    @Campos(posicao = 11, tipo = 'I')
+    @Column(name = "NUM_ITEM_SAIDA ")
+    private int numItemSaida;
+    @Campos(posicao = 12, tipo = 'R')
+    @Column(name = "VL_UNIT_CONV_SAIDA")
+    private BigDecimal vlUnitConvSaida;
+    @Campos(posicao = 13, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_OP_ESTOQUE_CONV_SAIDA")
+    private BigDecimal vlUnitIcmsOpEstoqueConvSaida;
+    @Campos(posicao = 14, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_ST_ESTOQUE_CONV_SAIDA")
+    private BigDecimal vlUnitIcmsStEstoqueConvSaida;
+    @Campos(posicao = 15, tipo = 'R')
+    @Column(name = "VL_UNIT_FCP_ICMS_ST_ESTOQUE_CONV_SAIDA")
+    private BigDecimal vlUnitFcpIcmsStEstoqueConvSaida;
+    @Campos(posicao = 16, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_NA_OPERACAO_CONV_SAIDA")
+    private BigDecimal vlUnitIcmsNaOperacaoConvSaida;
+    @Campos(posicao = 17, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_OP_CONV_SAIDA")
+    private BigDecimal vlUnitIcmsOpConvSaida;
+    @Campos(posicao = 18, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_ST_CONV_REST")
+    private BigDecimal vlUnitIcmsStConvRest;
+    @Campos(posicao = 19, tipo = 'R')
+    @Column(name = "VL_UNIT_FCP_ST_CONV_REST")
+    private BigDecimal vlUnitFcpStConvRest;
+    @Campos(posicao = 20, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_ST_CONV_COMPL")
+    private BigDecimal vlUnitIcmsStConvCompl;
+    @Campos(posicao = 21, tipo = 'R')
+    @Column(name = "VL_UNIT_FCP_ST_CONV_COMPL")
+    private BigDecimal vlUnitFcpStConvCompl;
 
     public long getLinha() {
         return linha;

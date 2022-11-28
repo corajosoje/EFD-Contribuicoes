@@ -1,16 +1,23 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -34,6 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC425.findByVlItem", query = "SELECT r FROM RegC425 r WHERE r.vlItem = :vlItem"),
     @NamedQuery(name = "RegC425.findByVlPis", query = "SELECT r FROM RegC425 r WHERE r.vlPis = :vlPis"),
     @NamedQuery(name = "RegC425.findByVlCofins", query = "SELECT r FROM RegC425 r WHERE r.vlCofins = :vlCofins")})
+@Registros(nivel = 5)
 public class RegC425 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,30 +50,17 @@ public class RegC425 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_ITEM")
-    private String codItem;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QTD")
-    private BigDecimal qtd;
-    @Column(name = "UNID")
-    private String unid;
-    @Column(name = "VL_ITEM")
-    private BigDecimal vlItem;
-    @Column(name = "VL_PIS")
-    private BigDecimal vlPis;
-    @Column(name = "VL_COFINS")
-    private BigDecimal vlCofins;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC420 idPai;
+
+    public RegC420 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC420) idPai;
+    }
 
     public RegC425() {
     }
@@ -74,7 +69,7 @@ public class RegC425 implements Serializable {
         this.id = id;
     }
 
-    public RegC425(Long id, long idPai, long linha, String hash) {
+    public RegC425(Long id, RegC420 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -88,14 +83,43 @@ public class RegC425 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC430> regC430;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegC430> getRegC430() {
+        return regC430;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegC430(List<RegC430> regC430) {
+        this.regC430 = regC430;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_ITEM")
+    private String codItem;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "QTD")
+    private BigDecimal qtd;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "UNID")
+    private String unid;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "VL_ITEM")
+    private BigDecimal vlItem;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "VL_PIS")
+    private BigDecimal vlPis;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "VL_COFINS")
+    private BigDecimal vlCofins;
 
     public long getLinha() {
         return linha;

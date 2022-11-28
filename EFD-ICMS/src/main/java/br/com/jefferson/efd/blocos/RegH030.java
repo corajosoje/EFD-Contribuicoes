@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,9 +9,12 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -32,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegH030.findByVlBcIcmsSt", query = "SELECT r FROM RegH030 r WHERE r.vlBcIcmsSt = :vlBcIcmsSt"),
     @NamedQuery(name = "RegH030.findByVlIcmsSt", query = "SELECT r FROM RegH030 r WHERE r.vlIcmsSt = :vlIcmsSt"),
     @NamedQuery(name = "RegH030.findByVlFcp", query = "SELECT r FROM RegH030 r WHERE r.vlFcp = :vlFcp")})
+@Registros(nivel = 4)
 public class RegH030 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,26 +45,17 @@ public class RegH030 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_ICMS_OP")
-    private BigDecimal vlIcmsOp;
-    @Column(name = "VL_BC_ICMS_ST")
-    private BigDecimal vlBcIcmsSt;
-    @Column(name = "VL_ICMS_ST")
-    private BigDecimal vlIcmsSt;
-    @Column(name = "VL_FCP")
-    private BigDecimal vlFcp;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegH010 idPai;
+
+    public RegH010 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegH010) idPai;
+    }
 
     public RegH030() {
     }
@@ -68,7 +64,7 @@ public class RegH030 implements Serializable {
         this.id = id;
     }
 
-    public RegH030(Long id, long idPai, long linha, String hash) {
+    public RegH030(Long id, RegH010 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -82,14 +78,27 @@ public class RegH030 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'R')
+    @Column(name = "VL_ICMS_OP")
+    private BigDecimal vlIcmsOp;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "VL_BC_ICMS_ST")
+    private BigDecimal vlBcIcmsSt;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "VL_ICMS_ST")
+    private BigDecimal vlIcmsSt;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "VL_FCP")
+    private BigDecimal vlFcp;
 
     public long getLinha() {
         return linha;

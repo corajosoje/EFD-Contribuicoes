@@ -1,13 +1,17 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -36,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC115.findByIeEntg", query = "SELECT r FROM RegC115 r WHERE r.ieEntg = :ieEntg"),
     @NamedQuery(name = "RegC115.findByCpfEntg", query = "SELECT r FROM RegC115 r WHERE r.cpfEntg = :cpfEntg"),
     @NamedQuery(name = "RegC115.findByCodMunEntg", query = "SELECT r FROM RegC115 r WHERE r.codMunEntg = :codMunEntg")})
+@Registros(nivel = 4)
 public class RegC115 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,35 +49,17 @@ public class RegC115 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "IND_CARGA")
-    private String indCarga;
-    @Column(name = "CNPJ_COL")
-    private String cnpjCol;
-    @Column(name = "IE_COL")
-    private String ieCol;
-    @Column(name = "CPF_COL")
-    private String cpfCol;
-    @Column(name = "COD_MUN_COL")
-    private String codMunCol;
-    @Column(name = "CNPJ_ENTG")
-    private String cnpjEntg;
-    @Column(name = "IE_ENTG")
-    private String ieEntg;
-    @Column(name = "CPF_ENTG")
-    private String cpfEntg;
-    @Column(name = "COD_MUN_ENTG")
-    private String codMunEntg;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC110 idPai;
+
+    public RegC110 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC110) idPai;
+    }
 
     public RegC115() {
     }
@@ -81,7 +68,7 @@ public class RegC115 implements Serializable {
         this.id = id;
     }
 
-    public RegC115(Long id, long idPai, long linha, String hash) {
+    public RegC115(Long id, RegC110 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -95,14 +82,42 @@ public class RegC115 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_CARGA")
+    private String indCarga;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "CNPJ_COL")
+    private String cnpjCol;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "IE_COL")
+    private String ieCol;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "CPF_COL")
+    private String cpfCol;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "COD_MUN_COL")
+    private String codMunCol;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "CNPJ_ENTG")
+    private String cnpjEntg;
+    @Campos(posicao = 8, tipo = 'C')
+    @Column(name = "IE_ENTG")
+    private String ieEntg;
+    @Campos(posicao = 9, tipo = 'C')
+    @Column(name = "CPF_­ENTG")
+    private String cpf­Entg;
+    @Campos(posicao = 10, tipo = 'C')
+    @Column(name = "COD_MUN_ENTG")
+    private String codMunEntg;
 
     public long getLinha() {
         return linha;

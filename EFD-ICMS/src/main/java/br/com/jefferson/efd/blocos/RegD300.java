@@ -1,16 +1,24 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,6 +57,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD300.findByVlRedBc", query = "SELECT r FROM RegD300 r WHERE r.vlRedBc = :vlRedBc"),
     @NamedQuery(name = "RegD300.findByCodObs", query = "SELECT r FROM RegD300 r WHERE r.codObs = :codObs"),
     @NamedQuery(name = "RegD300.findByCodCta", query = "SELECT r FROM RegD300 r WHERE r.codCta = :codCta")})
+@Registros(nivel = 2)
 public class RegD300 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,57 +66,17 @@ public class RegD300 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_MOD")
-    private String codMod;
-    @Column(name = "SER")
-    private String ser;
-    @Column(name = "SUB")
-    private int sub;
-    @Column(name = "NUM_DOC_INI")
-    private int numDocIni;
-    @Column(name = "NUM_DOC_FIN")
-    private int numDocFin;
-    @Column(name = "CST_ICMS")
-    private String cstIcms;
-    @Column(name = "CFOP")
-    private String cfop;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "ALIQ_ICMS")
-    private BigDecimal aliqIcms;
-    @Column(name = "DT_DOC")
-    @Temporal(TemporalType.DATE)
-    private Date dtDoc;
-    @Column(name = "VL_OPR")
-    private BigDecimal vlOpr;
-    @Column(name = "VL_DESC")
-    private BigDecimal vlDesc;
-    @Column(name = "VL_SERV")
-    private BigDecimal vlServ;
-    @Column(name = "VL_SEG")
-    private BigDecimal vlSeg;
-    @Column(name = "VL_OUT_DESP")
-    private BigDecimal vlOutDesp;
-    @Column(name = "VL_BC_ICMS")
-    private BigDecimal vlBcIcms;
-    @Column(name = "VL_ICMS")
-    private BigDecimal vlIcms;
-    @Column(name = "VL_RED_BC")
-    private BigDecimal vlRedBc;
-    @Column(name = "COD_OBS")
-    private String codObs;
-    @Column(name = "COD_CTA")
-    private String codCta;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD001 idPai;
+
+    public RegD001 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD001) idPai;
+    }
 
     public RegD300() {
     }
@@ -116,7 +85,7 @@ public class RegD300 implements Serializable {
         this.id = id;
     }
 
-    public RegD300(Long id, long idPai, long linha, String hash) {
+    public RegD300(Long id, RegD001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -130,14 +99,93 @@ public class RegD300 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD301> regD301;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegD301> getRegD301() {
+        return regD301;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegD301(List<RegD301> regD301) {
+        this.regD301 = regD301;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD310> regD310;
+
+    public List<RegD310> getRegD310() {
+        return regD310;
+    }
+
+    public void setRegD310(List<RegD310> regD310) {
+        this.regD310 = regD310;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_MOD")
+    private String codMod;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "SER")
+    private String ser;
+    @Campos(posicao = 4, tipo = 'I')
+    @Column(name = "SUB")
+    private int sub;
+    @Campos(posicao = 5, tipo = 'I')
+    @Column(name = "NUM_DOC_INI")
+    private int numDocIni;
+    @Campos(posicao = 6, tipo = 'I')
+    @Column(name = "NUM_DOC_FIN")
+    private int numDocFin;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "CST_ICMS")
+    private String cstIcms;
+    @Campos(posicao = 8, tipo = 'C')
+    @Column(name = "CFOP")
+    private String cfop;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "ALIQ_ICMS")
+    private BigDecimal aliqIcms;
+    @Campos(posicao = 10, tipo = 'D')
+    @Column(name = "DT_DOC")
+    @Temporal(TemporalType.DATE)
+    private Date dtDoc;
+    @Campos(posicao = 11, tipo = 'R')
+    @Column(name = "VL_OPR")
+    private BigDecimal vlOpr;
+    @Campos(posicao = 12, tipo = 'R')
+    @Column(name = "VL_DESC")
+    private BigDecimal vlDesc;
+    @Campos(posicao = 13, tipo = 'R')
+    @Column(name = "VL_SERV")
+    private BigDecimal vlServ;
+    @Campos(posicao = 14, tipo = 'R')
+    @Column(name = "VL_SEG")
+    private BigDecimal vlSeg;
+    @Campos(posicao = 15, tipo = 'R')
+    @Column(name = "VL_OUT_DESP")
+    private BigDecimal vlOutDesp;
+    @Campos(posicao = 16, tipo = 'R')
+    @Column(name = "VL_BC_ICMS")
+    private BigDecimal vlBcIcms;
+    @Campos(posicao = 17, tipo = 'R')
+    @Column(name = "VL_ICMS")
+    private BigDecimal vlIcms;
+    @Campos(posicao = 18, tipo = 'R')
+    @Column(name = "VL_RED_BC")
+    private BigDecimal vlRedBc;
+    @Campos(posicao = 19, tipo = 'C')
+    @Column(name = "COD_OBS")
+    private String codObs;
+    @Campos(posicao = 20, tipo = 'C')
+    @Column(name = "COD_CTA")
+    private String codCta;
 
     public long getLinha() {
         return linha;

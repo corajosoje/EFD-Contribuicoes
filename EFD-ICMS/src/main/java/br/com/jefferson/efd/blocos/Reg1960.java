@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,7 +9,10 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -40,6 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1960.findByG109", query = "SELECT r FROM Reg1960 r WHERE r.g109 = :g109"),
     @NamedQuery(name = "Reg1960.findByG110", query = "SELECT r FROM Reg1960 r WHERE r.g110 = :g110"),
     @NamedQuery(name = "Reg1960.findByG111", query = "SELECT r FROM Reg1960 r WHERE r.g111 = :g111")})
+@Registros(nivel = 2)
 public class Reg1960 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,40 +53,60 @@ public class Reg1960 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg1001 idPai;
+
+    public Reg1001 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg1001) idPai;
+    }
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+    @Campos(posicao = 2, tipo = 'I')
     @Column(name = "IND_AP")
-    private String indAp;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    private int indAp;
+    @Campos(posicao = 3, tipo = 'R')
     @Column(name = "G1_01")
     private BigDecimal g101;
+    @Campos(posicao = 4, tipo = 'R')
     @Column(name = "G1_02")
     private BigDecimal g102;
+    @Campos(posicao = 5, tipo = 'R')
     @Column(name = "G1_03")
     private BigDecimal g103;
+    @Campos(posicao = 6, tipo = 'R')
     @Column(name = "G1_04")
     private BigDecimal g104;
+    @Campos(posicao = 7, tipo = 'R')
     @Column(name = "G1_05")
     private BigDecimal g105;
+    @Campos(posicao = 8, tipo = 'R')
     @Column(name = "G1_06")
     private BigDecimal g106;
+    @Campos(posicao = 9, tipo = 'R')
     @Column(name = "G1_07")
     private BigDecimal g107;
+    @Campos(posicao = 10, tipo = 'R')
     @Column(name = "G1_08")
     private BigDecimal g108;
+    @Campos(posicao = 11, tipo = 'R')
     @Column(name = "G1_09")
     private BigDecimal g109;
+    @Campos(posicao = 12, tipo = 'R')
     @Column(name = "G1_10")
     private BigDecimal g110;
+    @Campos(posicao = 13, tipo = 'R')
     @Column(name = "G1_11")
     private BigDecimal g111;
 
@@ -92,7 +117,7 @@ public class Reg1960 implements Serializable {
         this.id = id;
     }
 
-    public Reg1960(Long id, long idPai, long linha, String hash) {
+    public Reg1960(Long id, Reg1001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -105,14 +130,6 @@ public class Reg1960 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {
@@ -139,11 +156,11 @@ public class Reg1960 implements Serializable {
         this.reg = reg;
     }
 
-    public String getIndAp() {
+    public int getIndAp() {
         return indAp;
     }
 
-    public void setIndAp(String indAp) {
+    public void setIndAp(int indAp) {
         this.indAp = indAp;
     }
 

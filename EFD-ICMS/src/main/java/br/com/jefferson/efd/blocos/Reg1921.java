@@ -1,16 +1,23 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -31,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1921.findByCodAjApur", query = "SELECT r FROM Reg1921 r WHERE r.codAjApur = :codAjApur"),
     @NamedQuery(name = "Reg1921.findByDescrComplAj", query = "SELECT r FROM Reg1921 r WHERE r.descrComplAj = :descrComplAj"),
     @NamedQuery(name = "Reg1921.findByVlAjApur", query = "SELECT r FROM Reg1921 r WHERE r.vlAjApur = :vlAjApur")})
+@Registros(nivel = 5)
 public class Reg1921 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,24 +47,58 @@ public class Reg1921 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg1920 idPai;
+
+    public Reg1920 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg1920) idPai;
+    }
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "COD_AJ_APUR")
     private String codAjApur;
+    @Campos(posicao = 3, tipo = 'C')
     @Column(name = "DESCR_COMPL_AJ")
     private String descrComplAj;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Campos(posicao = 4, tipo = 'R')
     @Column(name = "VL_AJ_APUR")
     private BigDecimal vlAjApur;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg1922> reg1922;
+
+    public List<Reg1922> getReg1922() {
+        return reg1922;
+    }
+
+    public void setReg1922(List<Reg1922> reg1922) {
+        this.reg1922 = reg1922;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<Reg1923> reg1923;
+
+    public List<Reg1923> getReg1923() {
+        return reg1923;
+    }
+
+    public void setReg1923(List<Reg1923> reg1923) {
+        this.reg1923 = reg1923;
+    }
 
     public Reg1921() {
     }
@@ -65,7 +107,7 @@ public class Reg1921 implements Serializable {
         this.id = id;
     }
 
-    public Reg1921(Long id, long idPai, long linha, String hash) {
+    public Reg1921(Long id, Reg1920 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -78,14 +120,6 @@ public class Reg1921 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {

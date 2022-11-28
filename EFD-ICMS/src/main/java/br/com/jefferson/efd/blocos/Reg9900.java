@@ -1,12 +1,17 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -28,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg9900.findByReg", query = "SELECT r FROM Reg9900 r WHERE r.reg = :reg"),
     @NamedQuery(name = "Reg9900.findByRegBlc", query = "SELECT r FROM Reg9900 r WHERE r.regBlc = :regBlc"),
     @NamedQuery(name = "Reg9900.findByQtdRegBlc", query = "SELECT r FROM Reg9900 r WHERE r.qtdRegBlc = :qtdRegBlc")})
+@Registros(nivel = 2)
 public class Reg9900 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,21 +42,17 @@ public class Reg9900 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "REG_BLC")
-    private String regBlc;
-    @Column(name = "QTD_REG_BLC")
-    private int qtdRegBlc;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private Reg9001 idPai;
+
+    public Reg9001 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg9001) idPai;
+    }
 
     public Reg9900() {
     }
@@ -59,7 +61,7 @@ public class Reg9900 implements Serializable {
         this.id = id;
     }
 
-    public Reg9900(Long id, long idPai, long linha, String hash) {
+    public Reg9900(Long id, Reg9001 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -73,14 +75,21 @@ public class Reg9900 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "REG_BLC")
+    private String regBlc;
+    @Campos(posicao = 3, tipo = 'I')
+    @Column(name = "QTD_REG_BLC")
+    private int qtdRegBlc;
 
     public long getLinha() {
         return linha;

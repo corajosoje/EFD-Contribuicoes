@@ -1,14 +1,19 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -33,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD161.findByCnpjCpfEntg", query = "SELECT r FROM RegD161 r WHERE r.cnpjCpfEntg = :cnpjCpfEntg"),
     @NamedQuery(name = "RegD161.findByIeEntg", query = "SELECT r FROM RegD161 r WHERE r.ieEntg = :ieEntg"),
     @NamedQuery(name = "RegD161.findByCodMunEntg", query = "SELECT r FROM RegD161 r WHERE r.codMunEntg = :codMunEntg")})
+@Registros(nivel = 4)
 public class RegD161 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,31 +47,17 @@ public class RegD161 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "IND_CARGA")
-    private String indCarga;
-    @Column(name = "CNPJ_CPF_COL")
-    private String cnpjCpfCol;
-    @Column(name = "IE_COL")
-    private String ieCol;
-    @Column(name = "COD_MUN_COL")
-    private String codMunCol;
-    @Column(name = "CNPJ_CPF_ENTG")
-    private String cnpjCpfEntg;
-    @Column(name = "IE_ENTG")
-    private String ieEntg;
-    @Column(name = "COD_MUN_ENTG")
-    private String codMunEntg;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD160 idPai;
+
+    public RegD160 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD160) idPai;
+    }
 
     public RegD161() {
     }
@@ -74,7 +66,7 @@ public class RegD161 implements Serializable {
         this.id = id;
     }
 
-    public RegD161(Long id, long idPai, long linha, String hash) {
+    public RegD161(Long id, RegD160 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -88,14 +80,36 @@ public class RegD161 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'I')
+    @Column(name = "IND_CARGA")
+    private int indCarga;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "CNPJ_CPF_COL")
+    private String cnpjCpfCol;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "IE_COL")
+    private String ieCol;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "COD_MUN_COL")
+    private String codMunCol;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "CNPJ_CPF_ENTG")
+    private String cnpjCpfEntg;
+    @Campos(posicao = 7, tipo = 'C')
+    @Column(name = "IE_ENTG")
+    private String ieEntg;
+    @Campos(posicao = 8, tipo = 'C')
+    @Column(name = "COD_MUN_ENTG")
+    private String codMunEntg;
 
     public long getLinha() {
         return linha;
@@ -121,11 +135,11 @@ public class RegD161 implements Serializable {
         this.reg = reg;
     }
 
-    public String getIndCarga() {
+    public int getIndCarga() {
         return indCarga;
     }
 
-    public void setIndCarga(String indCarga) {
+    public void setIndCarga(int indCarga) {
         this.indCarga = indCarga;
     }
 

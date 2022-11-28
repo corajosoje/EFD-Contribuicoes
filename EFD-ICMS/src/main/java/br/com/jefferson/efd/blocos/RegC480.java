@@ -1,6 +1,7 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -8,9 +9,12 @@ import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -34,7 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC480.findByVlUnitConv", query = "SELECT r FROM RegC480 r WHERE r.vlUnitConv = :vlUnitConv"),
     @NamedQuery(name = "RegC480.findByVlUnitIcmsNaOperacaoConv", query = "SELECT r FROM RegC480 r WHERE r.vlUnitIcmsNaOperacaoConv = :vlUnitIcmsNaOperacaoConv"),
     @NamedQuery(name = "RegC480.findByVlUnitIcmsOpConv", query = "SELECT r FROM RegC480 r WHERE r.vlUnitIcmsOpConv = :vlUnitIcmsOpConv"),
-    @NamedQuery(name = "RegC480.findByVlUnitBcIcmsStEstoqueConv", query = "SELECT r FROM RegC480 r WHERE r.vlUnitBcIcmsStEstoqueConv = :vlUnitBcIcmsStEstoqueConv"),
+    @NamedQuery(name = "RegC480.findByVlUnitIcmsOpEstoqueConv", query = "SELECT r FROM RegC480 r WHERE r.vlUnitIcmsOpEstoqueConv = :vlUnitIcmsOpEstoqueConv"),
     @NamedQuery(name = "RegC480.findByVlUnitIcmsStEstoqueConv", query = "SELECT r FROM RegC480 r WHERE r.vlUnitIcmsStEstoqueConv = :vlUnitIcmsStEstoqueConv"),
     @NamedQuery(name = "RegC480.findByVlUnitFcpIcmsStEstoqueConv", query = "SELECT r FROM RegC480 r WHERE r.vlUnitFcpIcmsStEstoqueConv = :vlUnitFcpIcmsStEstoqueConv"),
     @NamedQuery(name = "RegC480.findByVlUnitIcmsStConvRest", query = "SELECT r FROM RegC480 r WHERE r.vlUnitIcmsStConvRest = :vlUnitIcmsStConvRest"),
@@ -43,6 +47,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC480.findByVlUnitFcpStConvCompl", query = "SELECT r FROM RegC480 r WHERE r.vlUnitFcpStConvCompl = :vlUnitFcpStConvCompl"),
     @NamedQuery(name = "RegC480.findByCstIcms", query = "SELECT r FROM RegC480 r WHERE r.cstIcms = :cstIcms"),
     @NamedQuery(name = "RegC480.findByCfop", query = "SELECT r FROM RegC480 r WHERE r.cfop = :cfop")})
+@Registros(nivel = 6)
 public class RegC480 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,48 +56,17 @@ public class RegC480 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_MOT_REST_COMPL")
-    private String codMotRestCompl;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QUANT_CONV")
-    private BigDecimal quantConv;
-    @Column(name = "UNID")
-    private String unid;
-    @Column(name = "VL_UNIT_CONV")
-    private BigDecimal vlUnitConv;
-    @Column(name = "VL_UNIT_ICMS_NA_OPERACAO_CONV")
-    private BigDecimal vlUnitIcmsNaOperacaoConv;
-    @Column(name = "VL_UNIT_ICMS_OP_CONV")
-    private BigDecimal vlUnitIcmsOpConv;
-    @Column(name = "VL_UNIT_BC_ICMS_ST_ESTOQUE_CONV")
-    private BigDecimal vlUnitBcIcmsStEstoqueConv;
-    @Column(name = "VL_UNIT_ICMS_ST_ESTOQUE_CONV")
-    private BigDecimal vlUnitIcmsStEstoqueConv;
-    @Column(name = "VL_UNIT_FCP_ICMS_ST_ESTOQUE_CONV")
-    private BigDecimal vlUnitFcpIcmsStEstoqueConv;
-    @Column(name = "VL_UNIT_ICMS_ST_CONV_REST")
-    private BigDecimal vlUnitIcmsStConvRest;
-    @Column(name = "VL_UNIT_FCP_ST_CONV_REST")
-    private BigDecimal vlUnitFcpStConvRest;
-    @Column(name = "VL_UNIT_ICMS_ST_CONV_COMPL")
-    private BigDecimal vlUnitIcmsStConvCompl;
-    @Column(name = "VL_UNIT_FCP_ST_CONV_COMPL")
-    private BigDecimal vlUnitFcpStConvCompl;
-    @Column(name = "CST_ICMS")
-    private String cstIcms;
-    @Column(name = "CFOP")
-    private String cfop;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC470 idPai;
+
+    public RegC470 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC470) idPai;
+    }
 
     public RegC480() {
     }
@@ -101,7 +75,7 @@ public class RegC480 implements Serializable {
         this.id = id;
     }
 
-    public RegC480(Long id, long idPai, long linha, String hash) {
+    public RegC480(Long id, RegC470 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -115,13 +89,67 @@ public class RegC480 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_MOT_REST_COMPL")
+    private String codMotRestCompl;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "QUANT_CONV")
+    private BigDecimal quantConv;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "UNID")
+    private String unid;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "VL_UNIT_CONV")
+    private BigDecimal vlUnitConv;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_NA_OPERACAO_CONV")
+    private BigDecimal vlUnitIcmsNaOperacaoConv;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_OP_CONV")
+    private BigDecimal vlUnitIcmsOpConv;
+    @Campos(posicao = 8, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_OP_ESTOQUE_CONV")
+    private BigDecimal vlUnitIcmsOpEstoqueConv;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_ST_ESTOQUE_CONV")
+    private BigDecimal vlUnitIcmsStEstoqueConv;
+    @Campos(posicao = 10, tipo = 'R')
+    @Column(name = "VL_UNIT_FCP_ICMS_ST_ESTOQUE_CONV")
+    private BigDecimal vlUnitFcpIcmsStEstoqueConv;
+    @Campos(posicao = 11, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_ST_CONV_REST")
+    private BigDecimal vlUnitIcmsStConvRest;
+    @Campos(posicao = 12, tipo = 'R')
+    @Column(name = "VL_UNIT_FCP_ST_CONV_REST")
+    private BigDecimal vlUnitFcpStConvRest;
+    @Campos(posicao = 13, tipo = 'R')
+    @Column(name = "VL_UNIT_ICMS_ST_CONV_COMPL")
+    private BigDecimal vlUnitIcmsStConvCompl;
+    @Campos(posicao = 14, tipo = 'R')
+    @Column(name = "VL_UNIT_FCP_ST_CONV_COMPL")
+    private BigDecimal vlUnitFcpStConvCompl;
+    @Campos(posicao = 15, tipo = 'C')
+    @Column(name = "CST_ICMS")
+    private String cstIcms;
+    @Campos(posicao = 16, tipo = 'C')
+    @Column(name = "CFOP")
+    private String cfop;
 
-    public long getIdPai() {
-        return idPai;
+    public BigDecimal getVlUnitIcmsOpEstoqueConv() {
+        return vlUnitIcmsOpEstoqueConv;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setVlUnitIcmsOpEstoqueConv(BigDecimal vlUnitIcmsOpEstoqueConv) {
+        this.vlUnitIcmsOpEstoqueConv = vlUnitIcmsOpEstoqueConv;
     }
 
     public long getLinha() {
@@ -194,14 +222,6 @@ public class RegC480 implements Serializable {
 
     public void setVlUnitIcmsOpConv(BigDecimal vlUnitIcmsOpConv) {
         this.vlUnitIcmsOpConv = vlUnitIcmsOpConv;
-    }
-
-    public BigDecimal getVlUnitBcIcmsStEstoqueConv() {
-        return vlUnitBcIcmsStEstoqueConv;
-    }
-
-    public void setVlUnitBcIcmsStEstoqueConv(BigDecimal vlUnitBcIcmsStEstoqueConv) {
-        this.vlUnitBcIcmsStEstoqueConv = vlUnitBcIcmsStEstoqueConv;
     }
 
     public BigDecimal getVlUnitIcmsStEstoqueConv() {

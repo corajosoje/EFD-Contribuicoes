@@ -1,15 +1,22 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -29,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC110.findByReg", query = "SELECT r FROM RegC110 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC110.findByCodInf", query = "SELECT r FROM RegC110 r WHERE r.codInf = :codInf"),
     @NamedQuery(name = "RegC110.findByTxtCompl", query = "SELECT r FROM RegC110 r WHERE r.txtCompl = :txtCompl")})
+@Registros(nivel = 3)
 public class RegC110 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,19 +45,30 @@ public class RegC110 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC100 idPai;
+
+    public RegC100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC100) idPai;
+    }
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
     @Column(name = "HASH")
     private String hash;
+    @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
+    @Campos(posicao = 2, tipo = 'C')
     @Column(name = "COD_INF")
     private String codInf;
+    @Campos(posicao = 3, tipo = 'C')
     @Column(name = "TXT_COMPL")
     private String txtCompl;
 
@@ -60,7 +79,7 @@ public class RegC110 implements Serializable {
         this.id = id;
     }
 
-    public RegC110(Long id, long idPai, long linha, String hash) {
+    public RegC110(Long id, RegC100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -73,14 +92,6 @@ public class RegC110 implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
     }
 
     public long getLinha() {
@@ -121,6 +132,66 @@ public class RegC110 implements Serializable {
 
     public void setTxtCompl(String txtCompl) {
         this.txtCompl = txtCompl;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC111> regC111;
+
+    public List<RegC111> getRegC111() {
+        return regC111;
+    }
+
+    public void setRegC111(List<RegC111> regC111) {
+        this.regC111 = regC111;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC112> regC112;
+
+    public List<RegC112> getRegC112() {
+        return regC112;
+    }
+
+    public void setRegC112(List<RegC112> regC112) {
+        this.regC112 = regC112;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC113> regC113;
+
+    public List<RegC113> getRegC113() {
+        return regC113;
+    }
+
+    public void setRegC113(List<RegC113> regC113) {
+        this.regC113 = regC113;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC114> regC114;
+
+    public List<RegC114> getRegC114() {
+        return regC114;
+    }
+
+    public void setRegC114(List<RegC114> regC114) {
+        this.regC114 = regC114;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC115> regC115;
+
+    public List<RegC115> getRegC115() {
+        return regC115;
+    }
+
+    public void setRegC115(List<RegC115> regC115) {
+        this.regC115 = regC115;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC116> regC116;
+
+    public List<RegC116> getRegC116() {
+        return regC116;
+    }
+
+    public void setRegC116(List<RegC116> regC116) {
+        this.regC116 = regC116;
     }
 
     @Override

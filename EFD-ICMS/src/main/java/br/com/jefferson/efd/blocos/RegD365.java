@@ -1,15 +1,23 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -31,6 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD365.findByVlrAcumTot", query = "SELECT r FROM RegD365 r WHERE r.vlrAcumTot = :vlrAcumTot"),
     @NamedQuery(name = "RegD365.findByNrTot", query = "SELECT r FROM RegD365 r WHERE r.nrTot = :nrTot"),
     @NamedQuery(name = "RegD365.findByDescrNrTot", query = "SELECT r FROM RegD365 r WHERE r.descrNrTot = :descrNrTot")})
+@Registros(nivel = 4)
 public class RegD365 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,26 +48,17 @@ public class RegD365 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_TOT_PAR")
-    private String codTotPar;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VLR_ACUM_TOT")
-    private BigDecimal vlrAcumTot;
-    @Column(name = "NR_TOT")
-    private int nrTot;
-    @Column(name = "DESCR_NR_TOT")
-    private String descrNrTot;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD355 idPai;
+
+    public RegD355 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD355) idPai;
+    }
 
     public RegD365() {
     }
@@ -67,7 +67,7 @@ public class RegD365 implements Serializable {
         this.id = id;
     }
 
-    public RegD365(Long id, long idPai, long linha, String hash) {
+    public RegD365(Long id, RegD355 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -81,14 +81,37 @@ public class RegD365 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD370> regD370;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegD370> getRegD370() {
+        return regD370;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegD370(List<RegD370> regD370) {
+        this.regD370 = regD370;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_TOT_PAR")
+    private String codTotPar;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "VLR_ACUM_TOT")
+    private BigDecimal vlrAcumTot;
+    @Campos(posicao = 4, tipo = 'I')
+    @Column(name = "NR_TOT")
+    private int nrTot;
+    @Campos(posicao = 5, tipo = 'C')
+    @Column(name = "DESCR_NR_TOT")
+    private String descrNrTot;
 
     public long getLinha() {
         return linha;

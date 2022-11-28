@@ -1,15 +1,22 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -29,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD195.findByReg", query = "SELECT r FROM RegD195 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegD195.findByCodObs", query = "SELECT r FROM RegD195 r WHERE r.codObs = :codObs"),
     @NamedQuery(name = "RegD195.findByTxtCompl", query = "SELECT r FROM RegD195 r WHERE r.txtCompl = :txtCompl")})
+@Registros(nivel = 3)
 public class RegD195 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,21 +45,17 @@ public class RegD195 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "COD_OBS")
-    private String codObs;
-    @Column(name = "TXT_COMPL")
-    private String txtCompl;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD100 idPai;
+
+    public RegD100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD100) idPai;
+    }
 
     public RegD195() {
     }
@@ -60,7 +64,7 @@ public class RegD195 implements Serializable {
         this.id = id;
     }
 
-    public RegD195(Long id, long idPai, long linha, String hash) {
+    public RegD195(Long id, RegD100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -74,14 +78,31 @@ public class RegD195 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD197> regD197;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegD197> getRegD197() {
+        return regD197;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegD197(List<RegD197> regD197) {
+        this.regD197 = regD197;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_OBS")
+    private String codObs;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "TXT_COMPL")
+    private String txtCompl;
 
     public long getLinha() {
         return linha;

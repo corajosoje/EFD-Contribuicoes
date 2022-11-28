@@ -1,15 +1,23 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -41,6 +49,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegE210.findByVlIcmsRecolSt", query = "SELECT r FROM RegE210 r WHERE r.vlIcmsRecolSt = :vlIcmsRecolSt"),
     @NamedQuery(name = "RegE210.findByVlSldCredStTransportar", query = "SELECT r FROM RegE210 r WHERE r.vlSldCredStTransportar = :vlSldCredStTransportar"),
     @NamedQuery(name = "RegE210.findByDebEspSt", query = "SELECT r FROM RegE210 r WHERE r.debEspSt = :debEspSt")})
+@Registros(nivel = 3)
 public class RegE210 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,46 +58,17 @@ public class RegE210 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "IND_MOV_ST")
-    private String indMovSt;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VL_SLD_CRED_ANT_ST")
-    private BigDecimal vlSldCredAntSt;
-    @Column(name = "VL_DEVOL_ST")
-    private BigDecimal vlDevolSt;
-    @Column(name = "VL_RESSARC_ST")
-    private BigDecimal vlRessarcSt;
-    @Column(name = "VL_OUT_CRED_ST")
-    private BigDecimal vlOutCredSt;
-    @Column(name = "VL_AJ_CREDITOS_ST")
-    private BigDecimal vlAjCreditosSt;
-    @Column(name = "VL_RETENCAO_ST")
-    private BigDecimal vlRetencaoSt;
-    @Column(name = "VL_OUT_DEB_ST")
-    private BigDecimal vlOutDebSt;
-    @Column(name = "VL_AJ_DEBITOS_ST")
-    private BigDecimal vlAjDebitosSt;
-    @Column(name = "VL_SLD_DEV_ANT_ST")
-    private BigDecimal vlSldDevAntSt;
-    @Column(name = "VL_DEDUCOES_ST")
-    private BigDecimal vlDeducoesSt;
-    @Column(name = "VL_ICMS_RECOL_ST")
-    private BigDecimal vlIcmsRecolSt;
-    @Column(name = "VL_SLD_CRED_ST_TRANSPORTAR")
-    private BigDecimal vlSldCredStTransportar;
-    @Column(name = "DEB_ESP_ST")
-    private BigDecimal debEspSt;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegE200 idPai;
+
+    public RegE200 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegE200) idPai;
+    }
 
     public RegE210() {
     }
@@ -97,7 +77,7 @@ public class RegE210 implements Serializable {
         this.id = id;
     }
 
-    public RegE210(Long id, long idPai, long linha, String hash) {
+    public RegE210(Long id, RegE200 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -111,14 +91,77 @@ public class RegE210 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE220> regE220;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegE220> getRegE220() {
+        return regE220;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegE220(List<RegE220> regE220) {
+        this.regE220 = regE220;
     }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegE250> regE250;
+
+    public List<RegE250> getRegE250() {
+        return regE250;
+    }
+
+    public void setRegE250(List<RegE250> regE250) {
+        this.regE250 = regE250;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "IND_MOV_ST")
+    private String indMovSt;
+    @Campos(posicao = 3, tipo = 'R')
+    @Column(name = "VL_SLD_CRED_ANT_ST")
+    private BigDecimal vlSldCredAntSt;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "VL_DEVOL_ST")
+    private BigDecimal vlDevolSt;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "VL_RESSARC_ST")
+    private BigDecimal vlRessarcSt;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "VL_OUT_CRED_ST")
+    private BigDecimal vlOutCredSt;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "VL_AJ_CREDITOS_ST")
+    private BigDecimal vlAjCreditosSt;
+    @Campos(posicao = 8, tipo = 'R')
+    @Column(name = "VL_RETENCAO_ST")
+    private BigDecimal vlRetencaoSt;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "VL_OUT_DEB_ST")
+    private BigDecimal vlOutDebSt;
+    @Campos(posicao = 10, tipo = 'R')
+    @Column(name = "VL_AJ_DEBITOS_ST")
+    private BigDecimal vlAjDebitosSt;
+    @Campos(posicao = 11, tipo = 'R')
+    @Column(name = "VL_SLD_DEV_ANT_ST")
+    private BigDecimal vlSldDevAntSt;
+    @Campos(posicao = 12, tipo = 'R')
+    @Column(name = "VL_DEDUCOES_ST")
+    private BigDecimal vlDeducoesSt;
+    @Campos(posicao = 13, tipo = 'R')
+    @Column(name = "VL_ICMS_RECOL_ST")
+    private BigDecimal vlIcmsRecolSt;
+    @Campos(posicao = 14, tipo = 'R')
+    @Column(name = "VL_SLD_CRED_ST_TRANSPORTAR")
+    private BigDecimal vlSldCredStTransportar;
+    @Campos(posicao = 15, tipo = 'R')
+    @Column(name = "DEB_ESP_ST")
+    private BigDecimal debEspSt;
 
     public long getLinha() {
         return linha;

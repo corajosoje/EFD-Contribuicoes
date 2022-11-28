@@ -1,15 +1,24 @@
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -64,6 +73,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC170.findByVlCofins", query = "SELECT r FROM RegC170 r WHERE r.vlCofins = :vlCofins"),
     @NamedQuery(name = "RegC170.findByCodCta", query = "SELECT r FROM RegC170 r WHERE r.codCta = :codCta"),
     @NamedQuery(name = "RegC170.findByVlAbatNt", query = "SELECT r FROM RegC170 r WHERE r.vlAbatNt = :vlAbatNt")})
+@Registros(nivel = 3)
 public class RegC170 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -72,92 +82,17 @@ public class RegC170 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "NUM_ITEM")
-    private int numItem;
-    @Column(name = "COD_ITEM")
-    private String codItem;
-    @Column(name = "DESCR_COMPL")
-    private String descrCompl;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "QTD")
-    private BigDecimal qtd;
-    @Column(name = "UNID")
-    private String unid;
-    @Column(name = "VL_ITEM")
-    private BigDecimal vlItem;
-    @Column(name = "VL_DESC")
-    private BigDecimal vlDesc;
-    @Column(name = "IND_MOV")
-    private String indMov;
-    @Column(name = "CST_ICMS")
-    private String cstIcms;
-    @Column(name = "CFOP")
-    private String cfop;
-    @Column(name = "COD_NAT")
-    private String codNat;
-    @Column(name = "VL_BC_ICMS")
-    private BigDecimal vlBcIcms;
-    @Column(name = "ALIQ_ICMS")
-    private BigDecimal aliqIcms;
-    @Column(name = "VL_ICMS")
-    private BigDecimal vlIcms;
-    @Column(name = "VL_BC_ICMS_ST")
-    private BigDecimal vlBcIcmsSt;
-    @Column(name = "ALIQ_ST")
-    private BigDecimal aliqSt;
-    @Column(name = "VL_ICMS_ST")
-    private BigDecimal vlIcmsSt;
-    @Column(name = "IND_APUR")
-    private String indApur;
-    @Column(name = "CST_IPI")
-    private String cstIpi;
-    @Column(name = "COD_ENQ")
-    private String codEnq;
-    @Column(name = "VL_BC_IPI")
-    private BigDecimal vlBcIpi;
-    @Column(name = "ALIQ_IPI")
-    private BigDecimal aliqIpi;
-    @Column(name = "VL_IPI")
-    private BigDecimal vlIpi;
-    @Column(name = "CST_PIS")
-    private String cstPis;
-    @Column(name = "VL_BC_PIS")
-    private BigDecimal vlBcPis;
-    @Column(name = "ALIQ_PIS_PERC")
-    private BigDecimal aliqPisPerc;
-    @Column(name = "QUANT_BC_PIS")
-    private BigDecimal quantBcPis;
-    @Column(name = "ALIQ_PIS_REAIS")
-    private BigDecimal aliqPisReais;
-    @Column(name = "VL_PIS")
-    private BigDecimal vlPis;
-    @Column(name = "CST_COFINS")
-    private String cstCofins;
-    @Column(name = "VL_BC_COFINS")
-    private BigDecimal vlBcCofins;
-    @Column(name = "ALIQ_COFINS_PERC")
-    private BigDecimal aliqCofinsPerc;
-    @Column(name = "QUANT_BC_COFINS")
-    private BigDecimal quantBcCofins;
-    @Column(name = "ALIQ_COFINS_REAIS")
-    private BigDecimal aliqCofinsReais;
-    @Column(name = "VL_COFINS")
-    private BigDecimal vlCofins;
-    @Column(name = "COD_CTA")
-    private String codCta;
-    @Column(name = "VL_ABAT_NT")
-    private BigDecimal vlAbatNt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegC100 idPai;
+
+    public RegC100 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegC100) idPai;
+    }
 
     public RegC170() {
     }
@@ -166,7 +101,7 @@ public class RegC170 implements Serializable {
         this.id = id;
     }
 
-    public RegC170(Long id, long idPai, long linha, String hash) {
+    public RegC170(Long id, RegC100 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -180,14 +115,236 @@ public class RegC170 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC171> regC171;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegC171> getRegC171() {
+        return regC171;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegC171(List<RegC171> regC171) {
+        this.regC171 = regC171;
     }
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegC172 regC172;
+
+    public RegC172 getRegC172() {
+        return regC172;
+    }
+
+    public void setRegC172(RegC172 regC172) {
+        this.regC172 = regC172;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC173> regC173;
+
+    public List<RegC173> getRegC173() {
+        return regC173;
+    }
+
+    public void setRegC173(List<RegC173> regC173) {
+        this.regC173 = regC173;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC174> regC174;
+
+    public List<RegC174> getRegC174() {
+        return regC174;
+    }
+
+    public void setRegC174(List<RegC174> regC174) {
+        this.regC174 = regC174;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC175> regC175;
+
+    public List<RegC175> getRegC175() {
+        return regC175;
+    }
+
+    public void setRegC175(List<RegC175> regC175) {
+        this.regC175 = regC175;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC176> regC176;
+
+    public List<RegC176> getRegC176() {
+        return regC176;
+    }
+
+    public void setRegC176(List<RegC176> regC176) {
+        this.regC176 = regC176;
+    }
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegC177 regC177;
+
+    public RegC177 getRegC177() {
+        return regC177;
+    }
+
+    public void setRegC177(RegC177 regC177) {
+        this.regC177 = regC177;
+    }
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegC178 regC178;
+
+    public RegC178 getRegC178() {
+        return regC178;
+    }
+
+    public void setRegC178(RegC178 regC178) {
+        this.regC178 = regC178;
+    }
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegC179 regC179;
+
+    public RegC179 getRegC179() {
+        return regC179;
+    }
+
+    public void setRegC179(RegC179 regC179) {
+        this.regC179 = regC179;
+    }
+    @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private RegC180 regC180;
+
+    public RegC180 getRegC180() {
+        return regC180;
+    }
+
+    public void setRegC180(RegC180 regC180) {
+        this.regC180 = regC180;
+    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegC181> regC181;
+
+    public List<RegC181> getRegC181() {
+        return regC181;
+    }
+
+    public void setRegC181(List<RegC181> regC181) {
+        this.regC181 = regC181;
+    }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'I')
+    @Column(name = "NUM_ITEM")
+    private int numItem;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "COD_ITEM")
+    private String codItem;
+    @Campos(posicao = 4, tipo = 'C')
+    @Column(name = "DESCR_COMPL")
+    private String descrCompl;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "QTD")
+    private BigDecimal qtd;
+    @Campos(posicao = 6, tipo = 'C')
+    @Column(name = "UNID")
+    private String unid;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "VL_ITEM")
+    private BigDecimal vlItem;
+    @Campos(posicao = 8, tipo = 'R')
+    @Column(name = "VL_DESC")
+    private BigDecimal vlDesc;
+    @Campos(posicao = 9, tipo = 'C')
+    @Column(name = "IND_MOV")
+    private String indMov;
+    @Campos(posicao = 10, tipo = 'C')
+    @Column(name = "CST_ICMS")
+    private String cstIcms;
+    @Campos(posicao = 11, tipo = 'C')
+    @Column(name = "CFOP")
+    private String cfop;
+    @Campos(posicao = 12, tipo = 'C')
+    @Column(name = "COD_NAT")
+    private String codNat;
+    @Campos(posicao = 13, tipo = 'R')
+    @Column(name = "VL_BC_ICMS")
+    private BigDecimal vlBcIcms;
+    @Campos(posicao = 14, tipo = 'R')
+    @Column(name = "ALIQ_ICMS")
+    private BigDecimal aliqIcms;
+    @Campos(posicao = 15, tipo = 'R')
+    @Column(name = "VL_ICMS")
+    private BigDecimal vlIcms;
+    @Campos(posicao = 16, tipo = 'R')
+    @Column(name = "VL_BC_ICMS_ST")
+    private BigDecimal vlBcIcmsSt;
+    @Campos(posicao = 17, tipo = 'R')
+    @Column(name = "ALIQ_ST")
+    private BigDecimal aliqSt;
+    @Campos(posicao = 18, tipo = 'R')
+    @Column(name = "VL_ICMS_ST")
+    private BigDecimal vlIcmsSt;
+    @Campos(posicao = 19, tipo = 'C')
+    @Column(name = "IND_APUR")
+    private String indApur;
+    @Campos(posicao = 20, tipo = 'C')
+    @Column(name = "CST_IPI")
+    private String cstIpi;
+    @Campos(posicao = 21, tipo = 'C')
+    @Column(name = "COD_ENQ")
+    private String codEnq;
+    @Campos(posicao = 22, tipo = 'R')
+    @Column(name = "VL_BC_IPI")
+    private BigDecimal vlBcIpi;
+    @Campos(posicao = 23, tipo = 'R')
+    @Column(name = "ALIQ_IPI")
+    private BigDecimal aliqIpi;
+    @Campos(posicao = 24, tipo = 'R')
+    @Column(name = "VL_IPI")
+    private BigDecimal vlIpi;
+    @Campos(posicao = 25, tipo = 'C')
+    @Column(name = "CST_PIS")
+    private String cstPis;
+    @Campos(posicao = 26, tipo = 'R')
+    @Column(name = "VL_BC_PIS")
+    private BigDecimal vlBcPis;
+    @Campos(posicao = 27, tipo = 'R')
+    @Column(name = "ALIQ_PIS_PERC")
+    private BigDecimal aliqPisPerc;
+    @Campos(posicao = 28, tipo = 'R')
+    @Column(name = "QUANT_BC_PIS")
+    private BigDecimal quantBcPis;
+    @Campos(posicao = 29, tipo = 'R')
+    @Column(name = "ALIQ_PIS_REAIS")
+    private BigDecimal aliqPisReais;
+    @Campos(posicao = 30, tipo = 'R')
+    @Column(name = "VL_PIS")
+    private BigDecimal vlPis;
+    @Campos(posicao = 31, tipo = 'C')
+    @Column(name = "CST_COFINS")
+    private String cstCofins;
+    @Campos(posicao = 32, tipo = 'R')
+    @Column(name = "VL_BC_COFINS")
+    private BigDecimal vlBcCofins;
+    @Campos(posicao = 33, tipo = 'R')
+    @Column(name = "ALIQ_COFINS_PERC")
+    private BigDecimal aliqCofinsPerc;
+    @Campos(posicao = 34, tipo = 'R')
+    @Column(name = "QUANT_BC_COFINS")
+    private BigDecimal quantBcCofins;
+    @Campos(posicao = 35, tipo = 'R')
+    @Column(name = "ALIQ_COFINS_REAIS")
+    private BigDecimal aliqCofinsReais;
+    @Campos(posicao = 36, tipo = 'R')
+    @Column(name = "VL_COFINS")
+    private BigDecimal vlCofins;
+    @Campos(posicao = 37, tipo = 'C')
+    @Column(name = "COD_CTA")
+    private String codCta;
+    @Campos(posicao = 38, tipo = 'R')
+    @Column(name = "VL_ABAT_NT")
+    private BigDecimal vlAbatNt;
 
     public long getLinha() {
         return linha;

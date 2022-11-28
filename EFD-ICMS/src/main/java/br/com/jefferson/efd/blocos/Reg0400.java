@@ -5,9 +5,7 @@ import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -45,36 +42,17 @@ public class Reg0400 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
     private Reg0001 idPai;
 
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
+    public Reg0001 getIdPai() {
+        return idPai;
+    }
 
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-
-    @Campos(posicao = 1, tipo = 'C')
-    @Column(name = "REG")
-    private String reg;
-
-    @Campos(posicao = 2, tipo = 'C')
-    @Column(name = "COD_NAT")
-    private String codNat;
-
-    @Campos(posicao = 3, tipo = 'C')
-    @Column(name = "DESCR_NAT")
-    private String descrNat;
-    
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
-    private List<Reg0450> reg0450;
-    
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
-    private List<Reg0460> reg0460;
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0001) idPai;
+    }
 
     public Reg0400() {
     }
@@ -98,13 +76,21 @@ public class Reg0400 implements Serializable {
         this.id = id;
     }
 
-    public Reg0001 getIdPai() {
-        return idPai;
-    }
-
-    public void setIdPai(Object idPai) {
-        this.idPai = (Reg0001) idPai;
-    }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "COD_NAT")
+    private String codNat;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "DESCR_NAT")
+    private String descrNat;
 
     public long getLinha() {
         return linha;
@@ -144,22 +130,6 @@ public class Reg0400 implements Serializable {
 
     public void setDescrNat(String descrNat) {
         this.descrNat = descrNat;
-    }
-
-    public List<Reg0450> getReg0450() {
-        return reg0450;
-    }
-
-    public void setReg0450(List<Reg0450> reg0450) {
-        this.reg0450 = reg0450;
-    }
-
-    public List<Reg0460> getReg0460() {
-        return reg0460;
-    }
-
-    public void setReg0460(List<Reg0460> reg0460) {
-        this.reg0460 = reg0460;
     }
 
     @Override

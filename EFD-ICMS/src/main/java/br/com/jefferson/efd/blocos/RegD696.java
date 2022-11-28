@@ -1,16 +1,25 @@
-
 package br.com.jefferson.efd.blocos;
 
+import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.annotations.Registros;
+import static br.com.jefferson.efd.blocos.Reg1510_.vlBcIcmsSt;
+import static br.com.jefferson.efd.blocos.Reg1510_.vlIcmsSt;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -34,10 +43,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD696.findByVlOpr", query = "SELECT r FROM RegD696 r WHERE r.vlOpr = :vlOpr"),
     @NamedQuery(name = "RegD696.findByVlBcIcms", query = "SELECT r FROM RegD696 r WHERE r.vlBcIcms = :vlBcIcms"),
     @NamedQuery(name = "RegD696.findByVlIcms", query = "SELECT r FROM RegD696 r WHERE r.vlIcms = :vlIcms"),
-    @NamedQuery(name = "RegD696.findByVlBcIcmsSt", query = "SELECT r FROM RegD696 r WHERE r.vlBcIcmsSt = :vlBcIcmsSt"),
-    @NamedQuery(name = "RegD696.findByVlIcmsSt", query = "SELECT r FROM RegD696 r WHERE r.vlIcmsSt = :vlIcmsSt"),
+    @NamedQuery(name = "RegD696.findByVlBcIcmsUf", query = "SELECT r FROM RegD696 r WHERE r.vlBcIcmsUf = :vlBcIcmsUf"),
+    @NamedQuery(name = "RegD696.findByVlIcmsUf", query = "SELECT r FROM RegD696 r WHERE r.vlIcmsUf = :vlIcmsUf"),
     @NamedQuery(name = "RegD696.findByVlRedBc", query = "SELECT r FROM RegD696 r WHERE r.vlRedBc = :vlRedBc"),
     @NamedQuery(name = "RegD696.findByCodObs", query = "SELECT r FROM RegD696 r WHERE r.codObs = :codObs")})
+@Registros(nivel = 3)
 public class RegD696 implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,38 +56,17 @@ public class RegD696 implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @Column(name = "ID_PAI")
-    private long idPai;
-    @Basic(optional = false)
-    @Column(name = "LINHA")
-    private long linha;
-    @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
-    @Column(name = "REG")
-    private String reg;
-    @Column(name = "CST_ICMS")
-    private String cstIcms;
-    @Column(name = "CFOP")
-    private String cfop;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "ALIQ_ICMS")
-    private BigDecimal aliqIcms;
-    @Column(name = "VL_OPR")
-    private BigDecimal vlOpr;
-    @Column(name = "VL_BC_ICMS")
-    private BigDecimal vlBcIcms;
-    @Column(name = "VL_ICMS")
-    private BigDecimal vlIcms;
-    @Column(name = "VL_BC_ICMS_ST")
-    private BigDecimal vlBcIcmsSt;
-    @Column(name = "VL_ICMS_ST")
-    private BigDecimal vlIcmsSt;
-    @Column(name = "VL_RED_BC")
-    private BigDecimal vlRedBc;
-    @Column(name = "COD_OBS")
-    private String codObs;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PAI", nullable = false)
+    private RegD695 idPai;
+
+    public RegD695 getIdPai() {
+        return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (RegD695) idPai;
+    }
 
     public RegD696() {
     }
@@ -86,7 +75,7 @@ public class RegD696 implements Serializable {
         this.id = id;
     }
 
-    public RegD696(Long id, long idPai, long linha, String hash) {
+    public RegD696(Long id, RegD695 idPai, long linha, String hash) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
@@ -100,14 +89,55 @@ public class RegD696 implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    @Basic(optional = false)
+    @Column(name = "LINHA")
+    private long linha;
+    @Basic(optional = false)
+    @Column(name = "HASH")
+    private String hash;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
+    private List<RegD697> regD697;
 
-    public long getIdPai() {
-        return idPai;
+    public List<RegD697> getRegD697() {
+        return regD697;
     }
 
-    public void setIdPai(long idPai) {
-        this.idPai = idPai;
+    public void setRegD697(List<RegD697> regD697) {
+        this.regD697 = regD697;
     }
+    @Campos(posicao = 1, tipo = 'C')
+    @Column(name = "REG")
+    private String reg;
+    @Campos(posicao = 2, tipo = 'C')
+    @Column(name = "CST_ICMS")
+    private String cstIcms;
+    @Campos(posicao = 3, tipo = 'C')
+    @Column(name = "CFOP")
+    private String cfop;
+    @Campos(posicao = 4, tipo = 'R')
+    @Column(name = "ALIQ_ICMS")
+    private BigDecimal aliqIcms;
+    @Campos(posicao = 5, tipo = 'R')
+    @Column(name = "VL_OPR")
+    private BigDecimal vlOpr;
+    @Campos(posicao = 6, tipo = 'R')
+    @Column(name = "VL_BC_ICMS")
+    private BigDecimal vlBcIcms;
+    @Campos(posicao = 7, tipo = 'R')
+    @Column(name = "VL_ICMS")
+    private BigDecimal vlIcms;
+    @Campos(posicao = 8, tipo = 'R')
+    @Column(name = "VL_BC_ICMS_UF")
+    private BigDecimal vlBcIcmsUf;
+    @Campos(posicao = 9, tipo = 'R')
+    @Column(name = "VL_ICMS_UF")
+    private BigDecimal vlIcmsUf;
+    @Campos(posicao = 10, tipo = 'R')
+    @Column(name = "VL_RED_BC")
+    private BigDecimal vlRedBc;
+    @Campos(posicao = 11, tipo = 'C')
+    @Column(name = "COD_OBS")
+    private String codObs;
 
     public long getLinha() {
         return linha;
@@ -181,20 +211,20 @@ public class RegD696 implements Serializable {
         this.vlIcms = vlIcms;
     }
 
-    public BigDecimal getVlBcIcmsSt() {
-        return vlBcIcmsSt;
+    public BigDecimal getVlBcIcmsUf() {
+        return vlBcIcmsUf;
     }
 
-    public void setVlBcIcmsSt(BigDecimal vlBcIcmsSt) {
-        this.vlBcIcmsSt = vlBcIcmsSt;
+    public void setVlBcIcmsUf(BigDecimal vlBcIcmsUf) {
+        this.vlBcIcmsUf = vlBcIcmsUf;
     }
 
-    public BigDecimal getVlIcmsSt() {
-        return vlIcmsSt;
+    public BigDecimal getVlIcmsUf() {
+        return vlIcmsUf;
     }
 
-    public void setVlIcmsSt(BigDecimal vlIcmsSt) {
-        this.vlIcmsSt = vlIcmsSt;
+    public void setVlIcmsUf(BigDecimal vlIcmsUf) {
+        this.vlIcmsUf = vlIcmsUf;
     }
 
     public BigDecimal getVlRedBc() {
