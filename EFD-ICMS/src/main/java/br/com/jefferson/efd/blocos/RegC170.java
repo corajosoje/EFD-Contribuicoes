@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC170.findById", query = "SELECT r FROM RegC170 r WHERE r.id = :id"),
     @NamedQuery(name = "RegC170.findByIdPai", query = "SELECT r FROM RegC170 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegC170.findByLinha", query = "SELECT r FROM RegC170 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegC170.findByHash", query = "SELECT r FROM RegC170 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegC170.findByHashfile", query = "SELECT r FROM RegC170 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegC170.findByReg", query = "SELECT r FROM RegC170 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC170.findByNumItem", query = "SELECT r FROM RegC170 r WHERE r.numItem = :numItem"),
     @NamedQuery(name = "RegC170.findByCodItem", query = "SELECT r FROM RegC170 r WHERE r.codItem = :codItem"),
@@ -78,7 +78,7 @@ public class RegC170 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -101,11 +101,11 @@ public class RegC170 implements Serializable {
         this.id = id;
     }
 
-    public RegC170(Long id, RegC100 idPai, long linha, String hash) {
+    public RegC170(Long id, RegC100 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -119,8 +119,8 @@ public class RegC170 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<RegC171> regC171;
 
@@ -244,16 +244,16 @@ public class RegC170 implements Serializable {
     @Column(name = "DESCR_COMPL")
     private String descrCompl;
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "QTD")
+    @Column(name = "QTD", precision = 15, scale = 6)
     private BigDecimal qtd;
     @Campos(posicao = 6, tipo = 'C')
     @Column(name = "UNID")
     private String unid;
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "VL_ITEM")
+    @Column(name = "VL_ITEM", precision = 15, scale = 6)
     private BigDecimal vlItem;
     @Campos(posicao = 8, tipo = 'R')
-    @Column(name = "VL_DESC")
+    @Column(name = "VL_DESC", precision = 15, scale = 6)
     private BigDecimal vlDesc;
     @Campos(posicao = 9, tipo = 'C')
     @Column(name = "IND_MOV")
@@ -268,22 +268,22 @@ public class RegC170 implements Serializable {
     @Column(name = "COD_NAT")
     private String codNat;
     @Campos(posicao = 13, tipo = 'R')
-    @Column(name = "VL_BC_ICMS")
+    @Column(name = "VL_BC_ICMS", precision = 15, scale = 6)
     private BigDecimal vlBcIcms;
     @Campos(posicao = 14, tipo = 'R')
-    @Column(name = "ALIQ_ICMS")
+    @Column(name = "ALIQ_ICMS", precision = 15, scale = 6)
     private BigDecimal aliqIcms;
     @Campos(posicao = 15, tipo = 'R')
-    @Column(name = "VL_ICMS")
+    @Column(name = "VL_ICMS", precision = 15, scale = 6)
     private BigDecimal vlIcms;
     @Campos(posicao = 16, tipo = 'R')
-    @Column(name = "VL_BC_ICMS_ST")
+    @Column(name = "VL_BC_ICMS_ST", precision = 15, scale = 6)
     private BigDecimal vlBcIcmsSt;
     @Campos(posicao = 17, tipo = 'R')
-    @Column(name = "ALIQ_ST")
+    @Column(name = "ALIQ_ST", precision = 15, scale = 6)
     private BigDecimal aliqSt;
     @Campos(posicao = 18, tipo = 'R')
-    @Column(name = "VL_ICMS_ST")
+    @Column(name = "VL_ICMS_ST", precision = 15, scale = 6)
     private BigDecimal vlIcmsSt;
     @Campos(posicao = 19, tipo = 'C')
     @Column(name = "IND_APUR")
@@ -295,55 +295,55 @@ public class RegC170 implements Serializable {
     @Column(name = "COD_ENQ")
     private String codEnq;
     @Campos(posicao = 22, tipo = 'R')
-    @Column(name = "VL_BC_IPI")
+    @Column(name = "VL_BC_IPI", precision = 15, scale = 6)
     private BigDecimal vlBcIpi;
     @Campos(posicao = 23, tipo = 'R')
-    @Column(name = "ALIQ_IPI")
+    @Column(name = "ALIQ_IPI", precision = 15, scale = 6)
     private BigDecimal aliqIpi;
     @Campos(posicao = 24, tipo = 'R')
-    @Column(name = "VL_IPI")
+    @Column(name = "VL_IPI", precision = 15, scale = 6)
     private BigDecimal vlIpi;
     @Campos(posicao = 25, tipo = 'C')
     @Column(name = "CST_PIS")
     private String cstPis;
     @Campos(posicao = 26, tipo = 'R')
-    @Column(name = "VL_BC_PIS")
+    @Column(name = "VL_BC_PIS", precision = 15, scale = 6)
     private BigDecimal vlBcPis;
     @Campos(posicao = 27, tipo = 'R')
-    @Column(name = "ALIQ_PIS_PERC")
+    @Column(name = "ALIQ_PIS_PERC", precision = 15, scale = 6)
     private BigDecimal aliqPisPerc;
     @Campos(posicao = 28, tipo = 'R')
-    @Column(name = "QUANT_BC_PIS")
+    @Column(name = "QUANT_BC_PIS", precision = 15, scale = 6)
     private BigDecimal quantBcPis;
     @Campos(posicao = 29, tipo = 'R')
-    @Column(name = "ALIQ_PIS_REAIS")
+    @Column(name = "ALIQ_PIS_REAIS", precision = 15, scale = 6)
     private BigDecimal aliqPisReais;
     @Campos(posicao = 30, tipo = 'R')
-    @Column(name = "VL_PIS")
+    @Column(name = "VL_PIS", precision = 15, scale = 6)
     private BigDecimal vlPis;
     @Campos(posicao = 31, tipo = 'C')
     @Column(name = "CST_COFINS")
     private String cstCofins;
     @Campos(posicao = 32, tipo = 'R')
-    @Column(name = "VL_BC_COFINS")
+    @Column(name = "VL_BC_COFINS", precision = 15, scale = 6)
     private BigDecimal vlBcCofins;
     @Campos(posicao = 33, tipo = 'R')
-    @Column(name = "ALIQ_COFINS_PERC")
+    @Column(name = "ALIQ_COFINS_PERC", precision = 15, scale = 6)
     private BigDecimal aliqCofinsPerc;
     @Campos(posicao = 34, tipo = 'R')
-    @Column(name = "QUANT_BC_COFINS")
+    @Column(name = "QUANT_BC_COFINS", precision = 15, scale = 6)
     private BigDecimal quantBcCofins;
     @Campos(posicao = 35, tipo = 'R')
-    @Column(name = "ALIQ_COFINS_REAIS")
+    @Column(name = "ALIQ_COFINS_REAIS", precision = 15, scale = 6)
     private BigDecimal aliqCofinsReais;
     @Campos(posicao = 36, tipo = 'R')
-    @Column(name = "VL_COFINS")
+    @Column(name = "VL_COFINS", precision = 15, scale = 6)
     private BigDecimal vlCofins;
     @Campos(posicao = 37, tipo = 'C')
     @Column(name = "COD_CTA")
     private String codCta;
     @Campos(posicao = 38, tipo = 'R')
-    @Column(name = "VL_ABAT_NT")
+    @Column(name = "VL_ABAT_NT", precision = 15, scale = 6)
     private BigDecimal vlAbatNt;
 
     public long getLinha() {
@@ -354,12 +354,12 @@ public class RegC170 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -668,9 +668,9 @@ public class RegC170 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

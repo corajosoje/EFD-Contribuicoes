@@ -1,0 +1,25 @@
+USE efdicms;
+SELECT 
+reg_0000.ID,
+reg_0000.HASHFILE,
+reg_0000.REG,
+reg_0000.COD_VER,
+reg_0000.COD_FIN,
+reg_0000.DT_INI,
+reg_0000.DT_FIN,
+reg_0000.NOME,
+reg_0000.CNPJ,
+reg_0000.CPF,
+reg_0000.UF,
+reg_0000.IE,
+reg_0000.COD_MUN,
+reg_0000.IM,
+reg_0000.SUFRAMA,
+reg_0000.IND_PERFIL,
+reg_0000.IND_ATIV
+FROM efdicms.reg_0000
+WHERE CNPJ LIKE '59%' 
+ -- HASHFILE = '9ab97f27aa66e3bf7e9e90534a7a6b08'
+ORDER BY CNPJ , DT_INI
+;
+

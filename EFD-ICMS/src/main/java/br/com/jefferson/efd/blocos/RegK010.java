@@ -9,7 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -28,7 +28,7 @@ public class RegK010 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -51,11 +51,11 @@ public class RegK010 implements Serializable {
         this.id = id;
     }
 
-    public RegK010(Long id, RegK001 idPai, long linha, String hash) {
+    public RegK010(Long id, RegK001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -69,8 +69,8 @@ public class RegK010 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
@@ -86,12 +86,12 @@ public class RegK010 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -112,9 +112,9 @@ public class RegK010 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.hash);
-        return hash;
+        int hashfile = 3;
+        hashfile = 71 * hashfile + Objects.hashCode(this.hashfile);
+        return hashfile;
     }
 
     @Override

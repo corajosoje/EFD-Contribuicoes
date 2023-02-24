@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegE110.findById", query = "SELECT r FROM RegE110 r WHERE r.id = :id"),
     @NamedQuery(name = "RegE110.findByIdPai", query = "SELECT r FROM RegE110 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegE110.findByLinha", query = "SELECT r FROM RegE110 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegE110.findByHash", query = "SELECT r FROM RegE110 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegE110.findByHashfile", query = "SELECT r FROM RegE110 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegE110.findByReg", query = "SELECT r FROM RegE110 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegE110.findByVlTotDebitos", query = "SELECT r FROM RegE110 r WHERE r.vlTotDebitos = :vlTotDebitos"),
     @NamedQuery(name = "RegE110.findByVlAjDebitos", query = "SELECT r FROM RegE110 r WHERE r.vlAjDebitos = :vlAjDebitos"),
@@ -54,7 +54,7 @@ public class RegE110 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -77,11 +77,11 @@ public class RegE110 implements Serializable {
         this.id = id;
     }
 
-    public RegE110(Long id, RegE100 idPai, long linha, String hash) {
+    public RegE110(Long id, RegE100 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -95,8 +95,8 @@ public class RegE110 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<RegE111> regE111;
 
@@ -131,46 +131,46 @@ public class RegE110 implements Serializable {
     @Column(name = "REG")
     private String reg;
     @Campos(posicao = 2, tipo = 'R')
-    @Column(name = "VL_TOT_DEBITOS")
+    @Column(name = "VL_TOT_DEBITOS", precision = 15, scale = 6)
     private BigDecimal vlTotDebitos;
     @Campos(posicao = 3, tipo = 'R')
-    @Column(name = "VL_AJ_DEBITOS")
+    @Column(name = "VL_AJ_DEBITOS", precision = 15, scale = 6)
     private BigDecimal vlAjDebitos;
     @Campos(posicao = 4, tipo = 'R')
-    @Column(name = "VL_TOT_AJ_DEBITOS")
+    @Column(name = "VL_TOT_AJ_DEBITOS", precision = 15, scale = 6)
     private BigDecimal vlTotAjDebitos;
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "VL_ESTORNOS_CRED")
+    @Column(name = "VL_ESTORNOS_CRED", precision = 15, scale = 6)
     private BigDecimal vlEstornosCred;
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "VL_TOT_CREDITOS")
+    @Column(name = "VL_TOT_CREDITOS", precision = 15, scale = 6)
     private BigDecimal vlTotCreditos;
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "VL_AJ_CREDITOS")
+    @Column(name = "VL_AJ_CREDITOS", precision = 15, scale = 6)
     private BigDecimal vlAjCreditos;
     @Campos(posicao = 8, tipo = 'R')
-    @Column(name = "VL_TOT_AJ_CREDITOS")
+    @Column(name = "VL_TOT_AJ_CREDITOS", precision = 15, scale = 6)
     private BigDecimal vlTotAjCreditos;
     @Campos(posicao = 9, tipo = 'R')
-    @Column(name = "VL_ESTORNOS_DEB")
+    @Column(name = "VL_ESTORNOS_DEB", precision = 15, scale = 6)
     private BigDecimal vlEstornosDeb;
     @Campos(posicao = 10, tipo = 'R')
-    @Column(name = "VL_SLD_CREDOR_ANT")
+    @Column(name = "VL_SLD_CREDOR_ANT", precision = 15, scale = 6)
     private BigDecimal vlSldCredorAnt;
     @Campos(posicao = 11, tipo = 'R')
-    @Column(name = "VL_SLD_APURADO")
+    @Column(name = "VL_SLD_APURADO", precision = 15, scale = 6)
     private BigDecimal vlSldApurado;
     @Campos(posicao = 12, tipo = 'R')
-    @Column(name = "VL_TOT_DED")
+    @Column(name = "VL_TOT_DED", precision = 15, scale = 6)
     private BigDecimal vlTotDed;
     @Campos(posicao = 13, tipo = 'R')
-    @Column(name = "VL_ICMS_RECOLHER")
+    @Column(name = "VL_ICMS_RECOLHER", precision = 15, scale = 6)
     private BigDecimal vlIcmsRecolher;
     @Campos(posicao = 14, tipo = 'R')
-    @Column(name = "VL_SLD_CREDOR_TRANSPORTAR")
+    @Column(name = "VL_SLD_CREDOR_TRANSPORTAR", precision = 15, scale = 6)
     private BigDecimal vlSldCredorTransportar;
     @Campos(posicao = 15, tipo = 'R')
-    @Column(name = "DEB_ESP")
+    @Column(name = "DEB_ESP", precision = 15, scale = 6)
     private BigDecimal debEsp;
 
     public long getLinha() {
@@ -181,12 +181,12 @@ public class RegE110 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -311,9 +311,9 @@ public class RegE110 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

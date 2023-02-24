@@ -3,7 +3,7 @@
     <Properties>
         <Property name="logPath">log</Property>
         <Property name="rollingFileName">EFD-Fiscal</Property>
-        <Property name="AppenderPadrao">rollingFile</Property>   
+        <Property name="AppenderPadrao">Console</Property>   
         <Property name="LevelPadrao">INFO</Property>  
         <!--  
         OFF (most specific, no logging)
@@ -26,7 +26,7 @@
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
             
             <!-- Matches only ERROR level -->
-            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY" />
       
             <Policies>
                 <OnStartupTriggeringPolicy />
@@ -42,8 +42,8 @@
         <Logger name="LoggerTest" level="ALL" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Root level="${LevelPadrao}" additivity="true">
-            <AppenderRef ref="${AppenderPadrao}"/>
+        <Root level="ERROR" additivity="true">
+            <AppenderRef ref="Console"/>
         </Root>
         
         <Logger name="br.com.jefferson.efd.MainFrame" level="${LevelPadrao}" additivity="false">
@@ -80,19 +80,19 @@
         </Logger>
       
         <!--      JPA        -->
-        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="WARN" additivity="false">
+        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="ERROR" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger name="org.hibernate.SQL" level="WARN" additivity="false">
+        <Logger name="org.hibernate.SQL" level="ERROR" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger name="org.hibernate.jpa.internal.util.LogHelper" level="WARN" additivity="false">
+        <Logger name="org.hibernate.jpa.internal.util.LogHelper" level="ERROR" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger name="EL Warning" level="WARN" additivity="false">
+        <Logger name="EL Warning" level="ERROR" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger name="EL Info" level="WARN" additivity="false">
+        <Logger name="EL Info" level="ERROR" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
         <!--

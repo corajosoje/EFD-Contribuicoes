@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC130.findById", query = "SELECT r FROM RegC130 r WHERE r.id = :id"),
     @NamedQuery(name = "RegC130.findByIdPai", query = "SELECT r FROM RegC130 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegC130.findByLinha", query = "SELECT r FROM RegC130 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegC130.findByHash", query = "SELECT r FROM RegC130 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegC130.findByHashfile", query = "SELECT r FROM RegC130 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegC130.findByReg", query = "SELECT r FROM RegC130 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC130.findByVlServNt", query = "SELECT r FROM RegC130 r WHERE r.vlServNt = :vlServNt"),
     @NamedQuery(name = "RegC130.findByVlBcIssqn", query = "SELECT r FROM RegC130 r WHERE r.vlBcIssqn = :vlBcIssqn"),
@@ -44,7 +44,7 @@ public class RegC130 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -67,11 +67,11 @@ public class RegC130 implements Serializable {
         this.id = id;
     }
 
-    public RegC130(Long id, RegC100 idPai, long linha, String hash) {
+    public RegC130(Long id, RegC100 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -85,31 +85,31 @@ public class RegC130 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
     @Campos(posicao = 2, tipo = 'R')
-    @Column(name = "VL_SERV_NT")
+    @Column(name = "VL_SERV_NT", precision = 15, scale = 6)
     private BigDecimal vlServNt;
     @Campos(posicao = 3, tipo = 'R')
-    @Column(name = "VL_BC_ISSQN")
+    @Column(name = "VL_BC_ISSQN", precision = 15, scale = 6)
     private BigDecimal vlBcIssqn;
     @Campos(posicao = 4, tipo = 'R')
-    @Column(name = "VL_ISSQN")
+    @Column(name = "VL_ISSQN", precision = 15, scale = 6)
     private BigDecimal vlIssqn;
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "VL_BC_IRRF")
+    @Column(name = "VL_BC_IRRF", precision = 15, scale = 6)
     private BigDecimal vlBcIrrf;
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "VL_IRRF")
+    @Column(name = "VL_IRRF", precision = 15, scale = 6)
     private BigDecimal vlIrrf;
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "VL_BC_PREV")
+    @Column(name = "VL_BC_PREV", precision = 15, scale = 6)
     private BigDecimal vlBcPrev;
     @Campos(posicao = 8, tipo = 'R')
-    @Column(name = "VL_PREV")
+    @Column(name = "VL_PREV", precision = 15, scale = 6)
     private BigDecimal vlPrev;
 
     public long getLinha() {
@@ -120,12 +120,12 @@ public class RegC130 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -194,9 +194,9 @@ public class RegC130 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

@@ -2,6 +2,7 @@ package teste.br.com.jefferson.efd;
 
 import br.com.jefferson.efd.blocos.Reg0000;
 import br.com.jefferson.efd.blocos.Reg0001;
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -22,5 +23,13 @@ public class Simples {
 
         Reg0001 reg0001 = new Reg0001();
         Method method = reg0001.getClass().getMethod("getReg0015");
+        
+        System.out.println("Teste IF Ternario");
+        String teste = "sqlserver";
+        System.out.println((teste.equals("sqlserver"))?";database=":"/");
+        
+        System.out.println("Teste Separator");
+        System.out.println("Esse é o File.separator: " + File.separator);
+        System.out.println("Esse é o File.pathSeparator: " + File.pathSeparator);
     }
 }

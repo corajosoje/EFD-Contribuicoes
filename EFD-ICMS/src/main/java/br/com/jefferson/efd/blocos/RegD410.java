@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD410.findById", query = "SELECT r FROM RegD410 r WHERE r.id = :id"),
     @NamedQuery(name = "RegD410.findByIdPai", query = "SELECT r FROM RegD410 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegD410.findByLinha", query = "SELECT r FROM RegD410 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegD410.findByHash", query = "SELECT r FROM RegD410 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegD410.findByHashfile", query = "SELECT r FROM RegD410 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegD410.findByReg", query = "SELECT r FROM RegD410 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegD410.findByCodMod", query = "SELECT r FROM RegD410 r WHERE r.codMod = :codMod"),
     @NamedQuery(name = "RegD410.findBySer", query = "SELECT r FROM RegD410 r WHERE r.ser = :ser"),
@@ -57,7 +57,7 @@ public class RegD410 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -80,11 +80,11 @@ public class RegD410 implements Serializable {
         this.id = id;
     }
 
-    public RegD410(Long id, RegD400 idPai, long linha, String hash) {
+    public RegD410(Long id, RegD400 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -98,8 +98,8 @@ public class RegD410 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<RegD411> regD411;
 
@@ -139,22 +139,22 @@ public class RegD410 implements Serializable {
     @Column(name = "CFOP")
     private String cfop;
     @Campos(posicao = 10, tipo = 'R')
-    @Column(name = "ALIQ_ICMS")
+    @Column(name = "ALIQ_ICMS", precision = 15, scale = 6)
     private BigDecimal aliqIcms;
     @Campos(posicao = 11, tipo = 'R')
-    @Column(name = "VL_OPR")
+    @Column(name = "VL_OPR", precision = 15, scale = 6)
     private BigDecimal vlOpr;
     @Campos(posicao = 12, tipo = 'R')
-    @Column(name = "VL_DESC")
+    @Column(name = "VL_DESC", precision = 15, scale = 6)
     private BigDecimal vlDesc;
     @Campos(posicao = 13, tipo = 'R')
-    @Column(name = "VL_SERV")
+    @Column(name = "VL_SERV", precision = 15, scale = 6)
     private BigDecimal vlServ;
     @Campos(posicao = 14, tipo = 'R')
-    @Column(name = "VL_BC_ICMS")
+    @Column(name = "VL_BC_ICMS", precision = 15, scale = 6)
     private BigDecimal vlBcIcms;
     @Campos(posicao = 15, tipo = 'R')
-    @Column(name = "VL_ICMS")
+    @Column(name = "VL_ICMS", precision = 15, scale = 6)
     private BigDecimal vlIcms;
 
     public long getLinha() {
@@ -165,12 +165,12 @@ public class RegD410 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -295,9 +295,9 @@ public class RegD410 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

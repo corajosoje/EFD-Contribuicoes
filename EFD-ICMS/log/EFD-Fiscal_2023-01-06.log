@@ -1,0 +1,1129 @@
+17:11:04.760 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:45) [classes/:?]
+17:11:04.932 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:45) [classes/:?]
+17:11:05.127 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:45) [classes/:?]
+17:11:05.338 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:45) [classes/:?]
+17:11:05.557 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:45) [classes/:?]
+17:11:05.941 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:45) [classes/:?]
+17:11:06.286 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:45) [classes/:?]
+17:11:06.425 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:45) [classes/:?]
+17:11:06.698 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:45) [classes/:?]
+17:11:06.935 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:45) [classes/:?]
+17:11:07.144 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:45) [classes/:?]
+17:14:25.985 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:47) [classes/:?]
+17:14:26.478 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:47) [classes/:?]
+17:14:26.781 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:47) [classes/:?]
+17:14:26.982 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:47) [classes/:?]
+17:14:27.278 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:47) [classes/:?]
+17:14:27.515 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:47) [classes/:?]
+17:14:27.741 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:47) [classes/:?]
+17:14:27.943 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:47) [classes/:?]
+17:14:28.148 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:47) [classes/:?]
+17:14:28.411 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:47) [classes/:?]
+17:14:28.643 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:47) [classes/:?]
+17:32:29.172 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:48) [classes/:?]
+17:32:29.396 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:48) [classes/:?]
+17:32:29.604 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:48) [classes/:?]
+17:32:29.817 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:48) [classes/:?]
+17:32:30.223 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:48) [classes/:?]
+17:32:30.453 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:48) [classes/:?]
+17:32:30.630 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:48) [classes/:?]
+17:32:30.864 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:48) [classes/:?]
+17:32:31.130 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:48) [classes/:?]
+17:32:31.407 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:48) [classes/:?]
+17:32:31.578 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:48) [classes/:?]
+17:39:35.170 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:39:35.222 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:39:35.267 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:39:35.299 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:39:35.358 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:39:35.413 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:39:35.446 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:39:35.503 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:39:35.542 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:39:35.586 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:39:35.631 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:45:08.077 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:45:09.359 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:45:10.608 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:45:11.606 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:45:12.862 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:45:13.867 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:45:14.459 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:45:15.665 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:45:16.448 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:45:17.384 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:45:18.584 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:46:41.598 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:46:44.236 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:46:47.331 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:46:50.243 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:46:52.916 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:46:56.169 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:46:57.941 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:47:01.259 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:47:04.215 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:47:06.597 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:47:09.344 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:49:25.345 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:49:25.431 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:49:25.528 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:49:25.619 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:49:25.715 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:49:25.801 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:49:25.872 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:49:25.958 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:49:26.054 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:49:26.148 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:49:26.335 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:53:12.708 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:53:12.755 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:53:12.792 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:53:12.831 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:53:12.871 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:53:12.898 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:53:12.928 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:53:12.958 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:53:12.982 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:53:13.010 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:53:13.037 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:56:06.869 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:56:06.936 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:56:06.984 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:56:07.018 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:56:07.060 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:56:07.098 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:56:07.126 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:56:07.161 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:56:07.194 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:56:07.223 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:56:07.253 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:57:59.531 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:57:59.577 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:57:59.614 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:57:59.646 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:57:59.692 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:57:59.721 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:57:59.749 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:57:59.785 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:57:59.807 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:57:59.832 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+17:57:59.854 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt/nD:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+java.nio.file.FileSystemException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt: O arquivo já está sendo usado por outro processo.
+
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:03.787 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:03.844 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:03.882 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:03.919 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:03.955 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:03.980 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:04.011 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:04.044 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:04.067 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:04.093 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:04.117 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:57.866 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220101-20220131-1-BA087BF5E61CEB66511A6CEF3B6A1F28886C2526-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:57.912 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220201-20220228-0-92ED048550491A860676573473AD054C9BC6721B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:57.948 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220301-20220331-0-63F525BCABB546E0673D8929A607BE5D892E41E3-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:57.984 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220401-20220430-0-F54D7D32A00F51F2094947E5017C4181A5691245-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:58.016 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220501-20220531-0-58E6888B44DF03FC1C3EE2B3A8B54F2732C5B1F1-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:58.041 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220601-20220630-0-4EC8480C01BBEA4E8CE2E59ED7A1D731623EC1C5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:58.065 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220701-20220731-0-A9E6B511A856670BC7EF5BF9345BD086D8EBCFA5-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:58.098 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220801-20220831-0-AEDAF9ABFA9CAF9E84BAE9265CDF98942E7110EC-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:58.118 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20220901-20220930-0-6C26F62A815DB5FAEEA646A175FF502D7BAA60BE-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:58.143 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221001-20221031-0-185DA26E2C353593D10A9F4120375CB74EAA2C0B-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]
+18:01:58.166 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel mover arquivo: 06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+java.nio.file.NoSuchFileException: D:\Sped\less\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt -> D:\Sped\less\importado\06347409000165-116912840110-20221101-20221130-0-E2C286923275570C3B71317416F5CD4624B4B5D4-SPED-EFD.txt
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsFileCopy.move(WindowsFileCopy.java:395) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.move(WindowsFileSystemProvider.java:292) ~[?:?]
+	at java.nio.file.Files.move(Files.java:1422) ~[?:?]
+	at br.com.jefferson.efd.Main.main(Main.java:49) [classes/:?]

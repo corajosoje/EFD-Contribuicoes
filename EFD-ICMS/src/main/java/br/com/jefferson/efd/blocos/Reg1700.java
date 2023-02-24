@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1700.findById", query = "SELECT r FROM Reg1700 r WHERE r.id = :id"),
     @NamedQuery(name = "Reg1700.findByIdPai", query = "SELECT r FROM Reg1700 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "Reg1700.findByLinha", query = "SELECT r FROM Reg1700 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "Reg1700.findByHash", query = "SELECT r FROM Reg1700 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "Reg1700.findByHashfile", query = "SELECT r FROM Reg1700 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "Reg1700.findByReg", query = "SELECT r FROM Reg1700 r WHERE r.reg = :reg"),
     @NamedQuery(name = "Reg1700.findByCodDisp", query = "SELECT r FROM Reg1700 r WHERE r.codDisp = :codDisp"),
     @NamedQuery(name = "Reg1700.findByCodMod", query = "SELECT r FROM Reg1700 r WHERE r.codMod = :codMod"),
@@ -46,7 +46,7 @@ public class Reg1700 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -66,8 +66,8 @@ public class Reg1700 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
 
     @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
@@ -119,11 +119,11 @@ public class Reg1700 implements Serializable {
         this.id = id;
     }
 
-    public Reg1700(Long id, Reg1001 idPai, long linha, String hash) {
+    public Reg1700(Long id, Reg1001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -142,12 +142,12 @@ public class Reg1700 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -216,9 +216,9 @@ public class Reg1700 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

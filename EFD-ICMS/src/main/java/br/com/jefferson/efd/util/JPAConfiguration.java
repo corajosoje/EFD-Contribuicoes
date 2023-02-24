@@ -33,11 +33,13 @@ public class JPAConfiguration {
         log.trace("Criando EntityManagerFactory");
         Map<String, Object> properties = new HashMap<>();
 
-        String conectionsql = "jdbc:mysql://" + ObjectFactory.getJPAPropertie("prop.server.ip") + ":"
-                + ObjectFactory.getJPAPropertie("prop.server.port") + "/" + ObjectFactory.getJPAPropertie("prop.server.schema")
-                + "?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true";
+        String conectionsql = "jdbc:" + ObjectFactory.getJPAPropertie("prop.server.name") + "://" + ObjectFactory.getJPAPropertie("prop.server.ip") + ":"
+                + ObjectFactory.getJPAPropertie("prop.server.port")
+                + ((ObjectFactory.getJPAPropertie("prop.server.name").equals("sqlserver")) ? ";databaseName=" : "/")
+                + ObjectFactory.getJPAPropertie("prop.server.schema")
+                + ObjectFactory.getJPAPropertie("prop.server.connectionOptions");
 
-        log.debug("Conection String " + conectionsql);
+        log.trace("Conection String " + conectionsql);
 
         properties.put("javax.persistence.jdbc.url", conectionsql);
         properties.put("javax.persistence.jdbc.user", ObjectFactory.getJPAPropertie("prop.server.user"));

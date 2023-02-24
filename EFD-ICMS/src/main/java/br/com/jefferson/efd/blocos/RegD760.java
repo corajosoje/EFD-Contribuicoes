@@ -11,7 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,7 +31,7 @@ public class RegD760 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -54,11 +54,11 @@ public class RegD760 implements Serializable {
         this.id = id;
     }
 
-    public RegD760(Long id, RegD750 idPai, long linha, String hash) {
+    public RegD760(Long id, RegD750 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -72,8 +72,8 @@ public class RegD760 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private RegD761 regD761;
 
@@ -94,19 +94,19 @@ public class RegD760 implements Serializable {
     @Column(name = "CFOP")
     private String cfop;
     @Campos(posicao = 4, tipo = 'R')
-    @Column(name = "ALQ_ICMS")
+    @Column(name = "ALQ_ICMS", precision = 15, scale = 6)
     private BigDecimal alqIcms;
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "VL_OPR")
+    @Column(name = "VL_OPR", precision = 15, scale = 6)
     private BigDecimal vlOpr;
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "VL_BC_ICMS")
+    @Column(name = "VL_BC_ICMS", precision = 15, scale = 6)
     private BigDecimal vlBcIcms;
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "VL_ICMS")
+    @Column(name = "VL_ICMS", precision = 15, scale = 6)
     private BigDecimal vlIcms;
     @Campos(posicao = 8, tipo = 'R')
-    @Column(name = "VL_RED_BC")
+    @Column(name = "VL_RED_BC", precision = 15, scale = 6)
     private BigDecimal vlRedBc;
     @Campos(posicao = 9, tipo = 'C')
     @Column(name = "COD_OBS")
@@ -120,12 +120,12 @@ public class RegD760 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -202,9 +202,9 @@ public class RegD760 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.hash);
-        return hash;
+        int hashfile = 7;
+        hashfile = 47 * hashfile + Objects.hashCode(this.hashfile);
+        return hashfile;
     }
 
     @Override

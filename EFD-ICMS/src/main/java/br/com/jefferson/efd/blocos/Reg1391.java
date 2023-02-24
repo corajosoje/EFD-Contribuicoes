@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1391.findById", query = "SELECT r FROM Reg1391 r WHERE r.id = :id"),
     @NamedQuery(name = "Reg1391.findByIdPai", query = "SELECT r FROM Reg1391 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "Reg1391.findByLinha", query = "SELECT r FROM Reg1391 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "Reg1391.findByHash", query = "SELECT r FROM Reg1391 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "Reg1391.findByHashfile", query = "SELECT r FROM Reg1391 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "Reg1391.findByReg", query = "SELECT r FROM Reg1391 r WHERE r.reg = :reg"),
     @NamedQuery(name = "Reg1391.findByDtRegistro", query = "SELECT r FROM Reg1391 r WHERE r.dtRegistro = :dtRegistro"),
     @NamedQuery(name = "Reg1391.findByQtd", query = "SELECT r FROM Reg1391 r WHERE r.qtd = :qtd"),
@@ -59,7 +59,7 @@ public class Reg1391 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -79,8 +79,8 @@ public class Reg1391 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
 
     @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
@@ -92,59 +92,59 @@ public class Reg1391 implements Serializable {
     private Date dtRegistro;
 
     @Campos(posicao = 3, tipo = 'R')
-    @Column(name = "QTD")
+    @Column(name = "QTD", precision = 15, scale = 6)
     private BigDecimal qtd;
 
     @Campos(posicao = 4, tipo = 'R')
-    @Column(name = "ESTQ_INI")
+    @Column(name = "ESTQ_INI", precision = 15, scale = 6)
     private BigDecimal estqIni;
 
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "QTD_PRODUZ")
+    @Column(name = "QTD_PRODUZ", precision = 15, scale = 6)
     private BigDecimal qtdProduz;
 
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "ENT_ANID_HID")
+    @Column(name = "ENT_ANID_HID", precision = 15, scale = 6)
     private BigDecimal entAnidHid;
 
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "OUTR_ENTR")
+    @Column(name = "OUTR_ENTR", precision = 15, scale = 6)
     private BigDecimal outrEntr;
 
     @Campos(posicao = 8, tipo = 'R')
-    @Column(name = "PERDA")
+    @Column(name = "PERDA", precision = 15, scale = 6)
     private BigDecimal perda;
 
     @Campos(posicao = 9, tipo = 'R')
-    @Column(name = "CONS")
+    @Column(name = "CONS", precision = 15, scale = 6)
     private BigDecimal cons;
 
     @Campos(posicao = 10, tipo = 'R')
-    @Column(name = "SAI_ANI_HID")
+    @Column(name = "SAI_ANI_HID", precision = 15, scale = 6)
     private BigDecimal saiAniHid;
 
     @Campos(posicao = 11, tipo = 'R')
-    @Column(name = "SAIDAS")
+    @Column(name = "SAIDAS", precision = 15, scale = 6)
     private BigDecimal saidas;
 
     @Campos(posicao = 12, tipo = 'R')
-    @Column(name = "ESTQ_FIN")
+    @Column(name = "ESTQ_FIN", precision = 15, scale = 6)
     private BigDecimal estqFin;
 
     @Campos(posicao = 13, tipo = 'R')
-    @Column(name = "ESTQ_INI_MEL")
+    @Column(name = "ESTQ_INI_MEL", precision = 15, scale = 6)
     private BigDecimal estqIniMel;
 
     @Campos(posicao = 14, tipo = 'R')
-    @Column(name = "PROD_DIA_MEL")
+    @Column(name = "PROD_DIA_MEL", precision = 15, scale = 6)
     private BigDecimal prodDiaMel;
 
     @Campos(posicao = 15, tipo = 'R')
-    @Column(name = "UTIL_MEL")
+    @Column(name = "UTIL_MEL", precision = 15, scale = 6)
     private BigDecimal utilMel;
 
     @Campos(posicao = 16, tipo = 'R')
-    @Column(name = "PROD_ALC_MEL")
+    @Column(name = "PROD_ALC_MEL", precision = 15, scale = 6)
     private BigDecimal prodAlcMel;
 
     @Campos(posicao = 17, tipo = 'C')
@@ -160,7 +160,7 @@ public class Reg1391 implements Serializable {
     private String tpResiduo;
 
     @Campos(posicao = 20, tipo = 'R')
-    @Column(name = "QTD_RESIDUO")
+    @Column(name = "QTD_RESIDUO", precision = 15, scale = 6)
     private BigDecimal qtdResiduo;
 
     public Reg1391() {
@@ -170,11 +170,11 @@ public class Reg1391 implements Serializable {
         this.id = id;
     }
 
-    public Reg1391(Long id, Reg1390 idPai, long linha, String hash) {
+    public Reg1391(Long id, Reg1390 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -193,12 +193,12 @@ public class Reg1391 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -363,9 +363,9 @@ public class Reg1391 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

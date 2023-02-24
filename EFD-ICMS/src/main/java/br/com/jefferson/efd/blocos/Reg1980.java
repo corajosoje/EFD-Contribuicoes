@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1980.findById", query = "SELECT r FROM Reg1980 r WHERE r.id = :id"),
     @NamedQuery(name = "Reg1980.findByIdPai", query = "SELECT r FROM Reg1980 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "Reg1980.findByLinha", query = "SELECT r FROM Reg1980 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "Reg1980.findByHash", query = "SELECT r FROM Reg1980 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "Reg1980.findByHashfile", query = "SELECT r FROM Reg1980 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "Reg1980.findByReg", query = "SELECT r FROM Reg1980 r WHERE r.reg = :reg"),
     @NamedQuery(name = "Reg1980.findByIndAp", query = "SELECT r FROM Reg1980 r WHERE r.indAp = :indAp"),
     @NamedQuery(name = "Reg1980.findByG401", query = "SELECT r FROM Reg1980 r WHERE r.g401 = :g401"),
@@ -50,7 +50,7 @@ public class Reg1980 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -69,8 +69,8 @@ public class Reg1980 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
@@ -78,40 +78,40 @@ public class Reg1980 implements Serializable {
     @Column(name = "IND_AP")
     private String indAp;
     @Campos(posicao = 3, tipo = 'R')
-    @Column(name = "G4_01")
+    @Column(name = "G4_01", precision = 15, scale = 6)
     private BigDecimal g401;
     @Campos(posicao = 4, tipo = 'R')
-    @Column(name = "G4_02")
+    @Column(name = "G4_02", precision = 15, scale = 6)
     private BigDecimal g402;
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "G4_03")
+    @Column(name = "G4_03", precision = 15, scale = 6)
     private BigDecimal g403;
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "G4_04")
+    @Column(name = "G4_04", precision = 15, scale = 6)
     private BigDecimal g404;
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "G4_05")
+    @Column(name = "G4_05", precision = 15, scale = 6)
     private BigDecimal g405;
     @Campos(posicao = 8, tipo = 'R')
-    @Column(name = "G4_06")
+    @Column(name = "G4_06", precision = 15, scale = 6)
     private BigDecimal g406;
     @Campos(posicao = 9, tipo = 'R')
-    @Column(name = "G4_07")
+    @Column(name = "G4_07", precision = 15, scale = 6)
     private BigDecimal g407;
     @Campos(posicao = 10, tipo = 'R')
-    @Column(name = "G4_08")
+    @Column(name = "G4_08", precision = 15, scale = 6)
     private BigDecimal g408;
     @Campos(posicao = 11, tipo = 'R')
-    @Column(name = "G4_09")
+    @Column(name = "G4_09", precision = 15, scale = 6)
     private BigDecimal g409;
     @Campos(posicao = 12, tipo = 'R')
-    @Column(name = "G4_10")
+    @Column(name = "G4_10", precision = 15, scale = 6)
     private BigDecimal g410;
     @Campos(posicao = 13, tipo = 'R')
-    @Column(name = "G4_11")
+    @Column(name = "G4_11", precision = 15, scale = 6)
     private BigDecimal g411;
     @Campos(posicao = 14, tipo = 'R')
-    @Column(name = "G4_12 ")
+    @Column(name = "G4_12 ", precision = 15, scale = 6)
     private BigDecimal g412;
 
     public Reg1980() {
@@ -121,11 +121,11 @@ public class Reg1980 implements Serializable {
         this.id = id;
     }
 
-    public Reg1980(Long id, Reg1001 idPai, long linha, String hash) {
+    public Reg1980(Long id, Reg1001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -144,12 +144,12 @@ public class Reg1980 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -266,9 +266,9 @@ public class Reg1980 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegB440.findById", query = "SELECT r FROM RegB440 r WHERE r.id = :id"),
     @NamedQuery(name = "RegB440.findByIdPai", query = "SELECT r FROM RegB440 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegB440.findByLinha", query = "SELECT r FROM RegB440 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegB440.findByHash", query = "SELECT r FROM RegB440 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegB440.findByHashfile", query = "SELECT r FROM RegB440 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegB440.findByReg", query = "SELECT r FROM RegB440 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegB440.findByIndOper", query = "SELECT r FROM RegB440 r WHERE r.indOper = :indOper"),
     @NamedQuery(name = "RegB440.findByCodPart", query = "SELECT r FROM RegB440 r WHERE r.codPart = :codPart"),
@@ -42,7 +42,7 @@ public class RegB440 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -56,8 +56,8 @@ public class RegB440 implements Serializable {
     private long linha;
 
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
 
     @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
@@ -73,15 +73,15 @@ public class RegB440 implements Serializable {
 
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Campos(posicao = 4, tipo = 'R')
-    @Column(name = "VL_CONT_RT")
+    @Column(name = "VL_CONT_RT", precision = 15, scale = 6)
     private BigDecimal vlContRt;
 
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "VL_BC_ISS_RT")
+    @Column(name = "VL_BC_ISS_RT", precision = 15, scale = 6)
     private BigDecimal vlBcIssRt;
 
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "VL_ISS_RT")
+    @Column(name = "VL_ISS_RT", precision = 15, scale = 6)
     private BigDecimal vlIssRt;
 
     public RegB440() {
@@ -91,11 +91,11 @@ public class RegB440 implements Serializable {
         this.id = id;
     }
 
-    public RegB440(Long id, RegB001 idPai, long linha, String hash) {
+    public RegB440(Long id, RegB001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -122,12 +122,12 @@ public class RegB440 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -180,9 +180,9 @@ public class RegB440 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

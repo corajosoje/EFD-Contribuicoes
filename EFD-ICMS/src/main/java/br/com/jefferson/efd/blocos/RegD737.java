@@ -10,7 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,7 +29,7 @@ public class RegD737 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -52,11 +52,11 @@ public class RegD737 implements Serializable {
         this.id = id;
     }
 
-    public RegD737(Long id, RegD735 idPai, long linha, String hash) {
+    public RegD737(Long id, RegD735 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -70,8 +70,8 @@ public class RegD737 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
@@ -85,16 +85,16 @@ public class RegD737 implements Serializable {
     @Column(name = "COD_ITEM")
     private String codItem;
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "VL_BC_ICMS")
+    @Column(name = "VL_BC_ICMS", precision = 15, scale = 6)
     private BigDecimal vlBcIcms;
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "ALIQ_ICMS")
+    @Column(name = "ALIQ_ICMS", precision = 15, scale = 6)
     private BigDecimal aliqIcms;
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "VL_ICMS")
+    @Column(name = "VL_ICMS", precision = 15, scale = 6)
     private BigDecimal vlIcms;
     @Campos(posicao = 8, tipo = 'R')
-    @Column(name = "VL_OUTROS")
+    @Column(name = "VL_OUTROS", precision = 15, scale = 6)
     private BigDecimal vlOutros;
 
     public long getLinha() {
@@ -105,12 +105,12 @@ public class RegD737 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -179,9 +179,9 @@ public class RegD737 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.hash);
-        return hash;
+        int hashfile = 7;
+        hashfile = 53 * hashfile + Objects.hashCode(this.hashfile);
+        return hashfile;
     }
 
     @Override

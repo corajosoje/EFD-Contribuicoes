@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -28,7 +28,7 @@ public class Reg1600 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -51,11 +51,11 @@ public class Reg1600 implements Serializable {
         this.id = id;
     }
 
-    public Reg1600(Long id, Reg1001 idPai, long linha, String hash) {
+    public Reg1600(Long id, Reg1001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -69,8 +69,8 @@ public class Reg1600 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
@@ -78,10 +78,10 @@ public class Reg1600 implements Serializable {
     @Column(name = "COD_PART")
     private String codPart;
     @Campos(posicao = 3, tipo = 'R')
-    @Column(name = "TOT_CREDITO")
+    @Column(name = "TOT_CREDITO", precision = 15, scale = 6)
     private BigDecimal totCredito;
     @Campos(posicao = 4, tipo = 'R')
-    @Column(name = "TOT_DEBITO")
+    @Column(name = "TOT_DEBITO", precision = 15, scale = 6)
     private BigDecimal totDebito;
 
     public long getLinha() {
@@ -92,12 +92,12 @@ public class Reg1600 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -134,9 +134,9 @@ public class Reg1600 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

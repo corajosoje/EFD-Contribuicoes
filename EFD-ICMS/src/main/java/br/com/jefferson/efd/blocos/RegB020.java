@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegB020.findById", query = "SELECT r FROM RegB020 r WHERE r.id = :id"),
     @NamedQuery(name = "RegB020.findByIdPai", query = "SELECT r FROM RegB020 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegB020.findByLinha", query = "SELECT r FROM RegB020 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegB020.findByHash", query = "SELECT r FROM RegB020 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegB020.findByHashfile", query = "SELECT r FROM RegB020 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegB020.findByReg", query = "SELECT r FROM RegB020 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegB020.findByIndOper", query = "SELECT r FROM RegB020 r WHERE r.indOper = :indOper"),
     @NamedQuery(name = "RegB020.findByIndEmit", query = "SELECT r FROM RegB020 r WHERE r.indEmit = :indEmit"),
@@ -63,7 +63,7 @@ public class RegB020 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -77,8 +77,8 @@ public class RegB020 implements Serializable {
     private long linha;
 
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
 
     @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
@@ -127,39 +127,39 @@ public class RegB020 implements Serializable {
 
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Campos(posicao = 12, tipo = 'R')
-    @Column(name = "VL_CONT")
+    @Column(name = "VL_CONT", precision = 15, scale = 6)
     private BigDecimal vlCont;
 
     @Campos(posicao = 13, tipo = 'R')
-    @Column(name = "VL_MAT_TERC")
+    @Column(name = "VL_MAT_TERC", precision = 15, scale = 6)
     private BigDecimal vlMatTerc;
 
     @Campos(posicao = 14, tipo = 'R')
-    @Column(name = "VL_SUB")
+    @Column(name = "VL_SUB", precision = 15, scale = 6)
     private BigDecimal vlSub;
 
     @Campos(posicao = 15, tipo = 'R')
-    @Column(name = "VL_ISNT_ISS")
+    @Column(name = "VL_ISNT_ISS", precision = 15, scale = 6)
     private BigDecimal vlIsntIss;
 
     @Campos(posicao = 16, tipo = 'R')
-    @Column(name = "VL_DED_BC")
+    @Column(name = "VL_DED_BC", precision = 15, scale = 6)
     private BigDecimal vlDedBc;
 
     @Campos(posicao = 17, tipo = 'R')
-    @Column(name = "VL_BC_ISS")
+    @Column(name = "VL_BC_ISS", precision = 15, scale = 6)
     private BigDecimal vlBcIss;
 
     @Campos(posicao = 18, tipo = 'R')
-    @Column(name = "VL_BC_ISS_RT")
+    @Column(name = "VL_BC_ISS_RT", precision = 15, scale = 6)
     private BigDecimal vlBcIssRt;
 
     @Campos(posicao = 19, tipo = 'R')
-    @Column(name = "VL_ISS_RT")
+    @Column(name = "VL_ISS_RT", precision = 15, scale = 6)
     private BigDecimal vlIssRt;
 
     @Campos(posicao = 20, tipo = 'R')
-    @Column(name = "VL_ISS")
+    @Column(name = "VL_ISS", precision = 15, scale = 6)
     private BigDecimal vlIss;
 
     @Campos(posicao = 21, tipo = 'C')
@@ -176,11 +176,11 @@ public class RegB020 implements Serializable {
         this.id = id;
     }
 
-    public RegB020(Long id, RegB001 idPai, long linha, String hash) {
+    public RegB020(Long id, RegB001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -207,12 +207,12 @@ public class RegB020 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -393,9 +393,9 @@ public class RegB020 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

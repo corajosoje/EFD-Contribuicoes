@@ -2,16 +2,8 @@ package br.com.jefferson.efd.blocos;
 
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
-import static br.com.jefferson.efd.blocos.Reg1255_.codMotRestCompl;
-import static br.com.jefferson.efd.blocos.RegC180_.vlUnitIcmsOpConv;
-import static br.com.jefferson.efd.blocos.RegC181_.vlUnitFcpStConvCompl;
-import static br.com.jefferson.efd.blocos.RegC181_.vlUnitFcpStConvRest;
-import static br.com.jefferson.efd.blocos.RegC181_.vlUnitIcmsStConvCompl;
-import static br.com.jefferson.efd.blocos.RegC181_.vlUnitIcmsStConvRest;
-import static br.com.jefferson.efd.blocos.RegC185_.vlUnitIcmsNaOperacaoConv;
-import static br.com.jefferson.efd.blocos.RegC185_.vlUnitIcmsStEstoqueConv;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Basic;
@@ -38,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC380.findById", query = "SELECT r FROM RegC380 r WHERE r.id = :id"),
     @NamedQuery(name = "RegC380.findByIdPai", query = "SELECT r FROM RegC380 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegC380.findByLinha", query = "SELECT r FROM RegC380 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegC380.findByHash", query = "SELECT r FROM RegC380 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegC380.findByHashfile", query = "SELECT r FROM RegC380 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegC380.findByReg", query = "SELECT r FROM RegC380 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC380.findByCodMotRestCompl", query = "SELECT r FROM RegC380 r WHERE r.codMotRestCompl = :codMotRestCompl"),
     @NamedQuery(name = "RegC380.findByQuantConv", query = "SELECT r FROM RegC380 r WHERE r.quantConv = :quantConv"),
@@ -60,7 +52,7 @@ public class RegC380 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -83,11 +75,11 @@ public class RegC380 implements Serializable {
         this.id = id;
     }
 
-    public RegC380(Long id, RegC370 idPai, long linha, String hash) {
+    public RegC380(Long id, RegC370 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -101,8 +93,8 @@ public class RegC380 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
     private String reg;
@@ -110,40 +102,40 @@ public class RegC380 implements Serializable {
     @Column(name = "COD_MOT_REST_COMPL")
     private String codMotRestCompl;
     @Campos(posicao = 3, tipo = 'R')
-    @Column(name = "QUANT_CONV")
+    @Column(name = "QUANT_CONV", precision = 15, scale = 6)
     private BigDecimal quantConv;
     @Campos(posicao = 4, tipo = 'C')
     @Column(name = "UNID")
     private String unid;
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "VL_UNIT_CONV")
+    @Column(name = "VL_UNIT_CONV", precision = 15, scale = 6)
     private BigDecimal vlUnitConv;
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "VL_UNIT_ICMS_NA_OPERACAO_CONV")
+    @Column(name = "VL_UNIT_ICMS_NA_OPERACAO_CONV", precision = 15, scale = 6)
     private BigDecimal vlUnitIcmsNaOperacaoConv;
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "VL_UNIT_ICMS_OP_CONV")
+    @Column(name = "VL_UNIT_ICMS_OP_CONV", precision = 15, scale = 6)
     private BigDecimal vlUnitIcmsOpConv;
     @Campos(posicao = 8, tipo = 'R')
-    @Column(name = "VL_UNIT_ICMS_OP_ESTOQUE_CONV")
+    @Column(name = "VL_UNIT_ICMS_OP_ESTOQUE_CONV", precision = 15, scale = 6)
     private BigDecimal vlUnitIcmsOpEstoqueConv;
     @Campos(posicao = 9, tipo = 'R')
-    @Column(name = "VL_UNIT_ICMS_ST_ESTOQUE_CONV")
+    @Column(name = "VL_UNIT_ICMS_ST_ESTOQUE_CONV", precision = 15, scale = 6)
     private BigDecimal vlUnitIcmsStEstoqueConv;
     @Campos(posicao = 10, tipo = 'R')
-    @Column(name = "VL_UNIT_FCP_ICMS_ST_ESTOQUE_CONV")
+    @Column(name = "VL_UNIT_FCP_ICMS_ST_ESTOQUE_CONV", precision = 15, scale = 6)
     private BigDecimal vlUnitFcpIcmsStEstoqueConv;
     @Campos(posicao = 11, tipo = 'R')
-    @Column(name = "VL_UNIT_ICMS_ST_CONV_REST")
+    @Column(name = "VL_UNIT_ICMS_ST_CONV_REST", precision = 15, scale = 6)
     private BigDecimal vlUnitIcmsStConvRest;
     @Campos(posicao = 12, tipo = 'R')
-    @Column(name = "VL_UNIT_FCP_ST_CONV_REST")
+    @Column(name = "VL_UNIT_FCP_ST_CONV_REST", precision = 15, scale = 6)
     private BigDecimal vlUnitFcpStConvRest;
     @Campos(posicao = 13, tipo = 'R')
-    @Column(name = "VL_UNIT_ICMS_ST_CONV_COMPL")
+    @Column(name = "VL_UNIT_ICMS_ST_CONV_COMPL", precision = 15, scale = 6)
     private BigDecimal vlUnitIcmsStConvCompl;
     @Campos(posicao = 14, tipo = 'R')
-    @Column(name = "VL_UNIT_FCP_ST_CONV_COMPL ")
+    @Column(name = "VL_UNIT_FCP_ST_CONV_COMPL ", precision = 15, scale = 6)
     private BigDecimal vlUnitFcpStConvCompl;
     @Campos(posicao = 15, tipo = 'C')
     @Column(name = "CST_ICMS")
@@ -160,12 +152,12 @@ public class RegC380 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -298,9 +290,9 @@ public class RegC380 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

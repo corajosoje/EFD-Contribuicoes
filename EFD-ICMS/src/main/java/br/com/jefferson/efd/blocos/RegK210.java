@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegK210.findById", query = "SELECT r FROM RegK210 r WHERE r.id = :id"),
     @NamedQuery(name = "RegK210.findByIdPai", query = "SELECT r FROM RegK210 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegK210.findByLinha", query = "SELECT r FROM RegK210 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegK210.findByHash", query = "SELECT r FROM RegK210 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegK210.findByHashfile", query = "SELECT r FROM RegK210 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegK210.findByReg", query = "SELECT r FROM RegK210 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegK210.findByDtIniOs", query = "SELECT r FROM RegK210 r WHERE r.dtIniOs = :dtIniOs"),
     @NamedQuery(name = "RegK210.findByDtFinOs", query = "SELECT r FROM RegK210 r WHERE r.dtFinOs = :dtFinOs"),
@@ -48,7 +48,7 @@ public class RegK210 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -71,11 +71,11 @@ public class RegK210 implements Serializable {
         this.id = id;
     }
 
-    public RegK210(Long id, RegK100 idPai, long linha, String hash) {
+    public RegK210(Long id, RegK100 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -89,8 +89,8 @@ public class RegK210 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<RegK215> regK215;
 
@@ -119,7 +119,7 @@ public class RegK210 implements Serializable {
     @Column(name = "COD_ITEM_ORI")
     private String codItemOri;
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "QTD_ORI")
+    @Column(name = "QTD_ORI", precision = 15, scale = 6)
     private BigDecimal qtdOri;
 
     public long getLinha() {
@@ -130,12 +130,12 @@ public class RegK210 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -188,9 +188,9 @@ public class RegK210 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC800.findById", query = "SELECT r FROM RegC800 r WHERE r.id = :id"),
     @NamedQuery(name = "RegC800.findByIdPai", query = "SELECT r FROM RegC800 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegC800.findByLinha", query = "SELECT r FROM RegC800 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegC800.findByHash", query = "SELECT r FROM RegC800 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegC800.findByHashfile", query = "SELECT r FROM RegC800 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegC800.findByReg", query = "SELECT r FROM RegC800 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC800.findByCodMod", query = "SELECT r FROM RegC800 r WHERE r.codMod = :codMod"),
     @NamedQuery(name = "RegC800.findByCodSit", query = "SELECT r FROM RegC800 r WHERE r.codSit = :codSit"),
@@ -59,7 +59,7 @@ public class RegC800 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -82,11 +82,11 @@ public class RegC800 implements Serializable {
         this.id = id;
     }
 
-    public RegC800(Long id, RegC001 idPai, long linha, String hash) {
+    public RegC800(Long id, RegC001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -100,8 +100,8 @@ public class RegC800 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<RegC810> regC810;
 
@@ -149,13 +149,13 @@ public class RegC800 implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dtDoc;
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "VL_CFE")
+    @Column(name = "VL_CFE", precision = 15, scale = 6)
     private BigDecimal vlCfe;
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "VL_PIS")
+    @Column(name = "VL_PIS", precision = 15, scale = 6)
     private BigDecimal vlPis;
     @Campos(posicao = 8, tipo = 'R')
-    @Column(name = "VL_COFINS")
+    @Column(name = "VL_COFINS", precision = 15, scale = 6)
     private BigDecimal vlCofins;
     @Campos(posicao = 9, tipo = 'C')
     @Column(name = "CNPJ_CPF")
@@ -167,22 +167,22 @@ public class RegC800 implements Serializable {
     @Column(name = "CHV_CFE")
     private String chvCfe;
     @Campos(posicao = 12, tipo = 'R')
-    @Column(name = "VL_DESC")
+    @Column(name = "VL_DESC", precision = 15, scale = 6)
     private BigDecimal vlDesc;
     @Campos(posicao = 13, tipo = 'R')
-    @Column(name = "VL_MERC")
+    @Column(name = "VL_MERC", precision = 15, scale = 6)
     private BigDecimal vlMerc;
     @Campos(posicao = 14, tipo = 'R')
-    @Column(name = "VL_OUT_DA")
+    @Column(name = "VL_OUT_DA", precision = 15, scale = 6)
     private BigDecimal vlOutDa;
     @Campos(posicao = 15, tipo = 'R')
-    @Column(name = "VL_ICMS")
+    @Column(name = "VL_ICMS", precision = 15, scale = 6)
     private BigDecimal vlIcms;
     @Campos(posicao = 16, tipo = 'R')
-    @Column(name = "VL_PIS_ST")
+    @Column(name = "VL_PIS_ST", precision = 15, scale = 6)
     private BigDecimal vlPisSt;
     @Campos(posicao = 17, tipo = 'R')
-    @Column(name = "VL_COFINS_ST")
+    @Column(name = "VL_COFINS_ST", precision = 15, scale = 6)
     private BigDecimal vlCofinsSt;
 
     public long getLinha() {
@@ -193,12 +193,12 @@ public class RegC800 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -339,9 +339,9 @@ public class RegC800 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

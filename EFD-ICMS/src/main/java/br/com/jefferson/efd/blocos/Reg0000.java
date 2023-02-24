@@ -11,12 +11,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Reg0000.findAll", query = "SELECT r FROM Reg0000 r"),
     @NamedQuery(name = "Reg0000.findByLinha", query = "SELECT r FROM Reg0000 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "Reg0000.findByHash", query = "SELECT r FROM Reg0000 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "Reg0000.findByHashfile", query = "SELECT r FROM Reg0000 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "Reg0000.findByReg", query = "SELECT r FROM Reg0000 r WHERE r.reg = :reg"),
     @NamedQuery(name = "Reg0000.findByCodVer", query = "SELECT r FROM Reg0000 r WHERE r.codVer = :codVer"),
     @NamedQuery(name = "Reg0000.findByCodFin", query = "SELECT r FROM Reg0000 r WHERE r.codFin = :codFin"),
@@ -54,7 +53,7 @@ public class Reg0000 implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -64,8 +63,8 @@ public class Reg0000 implements Serializable {
     private long linha;
 
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
 
     @Campos(posicao = 1, tipo = 'C')
     @Column(name = "REG")
@@ -319,14 +318,14 @@ public class Reg0000 implements Serializable {
     public Reg0000() {
     }
 
-    public Reg0000(String hash) {
-        this.hash = hash;
+    public Reg0000(String hashfile) {
+        this.hashfile = hashfile;
     }
 
-    public Reg0000(long idPai, String hash) {
+    public Reg0000(long idPai, String hashfile) {
 
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -345,12 +344,12 @@ public class Reg0000 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -475,9 +474,9 @@ public class Reg0000 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 43 * hash + Objects.hashCode(this.hash);
-        return hash;
+        int hashfile = 3;
+        hashfile = 43 * hashfile + Objects.hashCode(this.hashfile);
+        return hashfile;
     }
 
     @Override
@@ -492,12 +491,12 @@ public class Reg0000 implements Serializable {
             return false;
         }
         final Reg0000 other = (Reg0000) obj;
-        return Objects.equals(this.hash, other.hash);
+        return Objects.equals(this.hashfile, other.hashfile);
     }
 
     @Override
     public String toString() {
-        return "br.com.jefferson.efd.blocos.Reg0000[ hash=" + hash + " ]";
+        return "br.com.jefferson.efd.blocos.Reg0000[ hashfile=" + hashfile + " ]";
     }
 
 }

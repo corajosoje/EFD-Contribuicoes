@@ -16,28 +16,52 @@ import java.nio.file.Paths;
 public class Main {
 
     private static final org.apache.logging.log4j.Logger log = LogManager.getLogger(Main.class.getName());
+    private static Leitor leitor;
 
     public static void main(String args[]) {
 
         if (args.length > 0) {
+            log.debug("Detectado " + args.length + " Argumento(s) na inicializacao");
             File file = new File(args[0]);
 
             if (file.isDirectory()) {
+                String separator = File.separator;
+                log.debug("Filtrando arquivos Sped");
                 File arquivos[] = file.listFiles(ObjectFactory.getSpedFileFilter());
+                log.info("Listado(s) " + arquivos.length + " arquivos");
                 if (arquivos.length > 0) {
                     for (File arquivo : arquivos) {
                         try {
                             log.info("Processando arquivo: " + arquivo.getName());
-                            Leitor.processarArquivo(arquivo);
-                            log.debug("Movendo arquivo: " + arquivo.getName());
+                            leitor = new Leitor(arquivo);
+
+                            if (!leitor.verificarDuplicidade()) {
+                                log.info("Arquivo nao duplicado, quantidade de linhas: " + leitor.getLinhas());
+                                processarArquivo(leitor);
+                                log.info("Gravando Arquivo ...");
+                                leitor.gravar();
+                                log.info("Gravacao finalizada!");
+                            } else {
+                                log.info("Arquivo Duplicado");
+                            }
+
+                            leitor.close();
+                            //fim do processamento
+                            log.info("Movendo arquivo: " + arquivo.getName());
                             Path path = Paths.get(arquivo.getAbsolutePath());
+
                             try {
+                                File pasta = new File(path.getParent().toString() + separator + "importado");
+
+                                if (!pasta.exists()) {
+                                    pasta.mkdir();
+                                }
                                 Files.move(path,
-                                        Paths.get(path.getParent().toString() + "\\importado\\" + path.getFileName()),
+                                        Paths.get(path.getParent().toString() + separator + "importado" + separator + path.getFileName()),
                                         java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-                                log.info("Processando do arquivo finalizado");
+                                log.info("Processamento do arquivo finalizado");
                             } catch (Exception ex) {
-                                log.error("Não foi possivel mover arquivo: " + arquivo.getName(), ex);
+                                log.error("Não foi possivel mover arquivo: " + arquivo.getName() + " " + ex.getMessage(), ex);
                             }
                         } catch (IOException ex) {
                             log.error("Não foi possivel processar arquivo: " + arquivo.getName(), ex);
@@ -79,6 +103,19 @@ public class Main {
                     new MainFrame().setVisible(true);
                 }
             });
+        }
+    }
+
+    private static void processarArquivo(Leitor leitor) throws IOException {
+        for (int i = 0; i < leitor.getLinhas(); i++) {
+            String conteudo = leitor.getlinha();
+
+            if (conteudo == null) {
+            } else if (Leitor.verificaLinhaSped(conteudo)) {
+                log.trace("Linha: " + (i + 1) + " - Registro: " + conteudo);
+                leitor.processarLinha(conteudo, (i + 1));
+            }
+
         }
     }
 

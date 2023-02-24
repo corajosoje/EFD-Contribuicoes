@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC425.findById", query = "SELECT r FROM RegC425 r WHERE r.id = :id"),
     @NamedQuery(name = "RegC425.findByIdPai", query = "SELECT r FROM RegC425 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegC425.findByLinha", query = "SELECT r FROM RegC425 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegC425.findByHash", query = "SELECT r FROM RegC425 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegC425.findByHashfile", query = "SELECT r FROM RegC425 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegC425.findByReg", query = "SELECT r FROM RegC425 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC425.findByCodItem", query = "SELECT r FROM RegC425 r WHERE r.codItem = :codItem"),
     @NamedQuery(name = "RegC425.findByQtd", query = "SELECT r FROM RegC425 r WHERE r.qtd = :qtd"),
@@ -46,7 +46,7 @@ public class RegC425 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -69,11 +69,11 @@ public class RegC425 implements Serializable {
         this.id = id;
     }
 
-    public RegC425(Long id, RegC420 idPai, long linha, String hash) {
+    public RegC425(Long id, RegC420 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -87,8 +87,8 @@ public class RegC425 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<RegC430> regC430;
 
@@ -106,19 +106,19 @@ public class RegC425 implements Serializable {
     @Column(name = "COD_ITEM")
     private String codItem;
     @Campos(posicao = 3, tipo = 'R')
-    @Column(name = "QTD")
+    @Column(name = "QTD", precision = 15, scale = 6)
     private BigDecimal qtd;
     @Campos(posicao = 4, tipo = 'C')
     @Column(name = "UNID")
     private String unid;
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "VL_ITEM")
+    @Column(name = "VL_ITEM", precision = 15, scale = 6)
     private BigDecimal vlItem;
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "VL_PIS")
+    @Column(name = "VL_PIS", precision = 15, scale = 6)
     private BigDecimal vlPis;
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "VL_COFINS")
+    @Column(name = "VL_COFINS", precision = 15, scale = 6)
     private BigDecimal vlCofins;
 
     public long getLinha() {
@@ -129,12 +129,12 @@ public class RegC425 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -195,9 +195,9 @@ public class RegC425 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

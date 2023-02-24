@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC500.findById", query = "SELECT r FROM RegC500 r WHERE r.id = :id"),
     @NamedQuery(name = "RegC500.findByIdPai", query = "SELECT r FROM RegC500 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegC500.findByLinha", query = "SELECT r FROM RegC500 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegC500.findByHash", query = "SELECT r FROM RegC500 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegC500.findByHashfile", query = "SELECT r FROM RegC500 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegC500.findByReg", query = "SELECT r FROM RegC500 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC500.findByIndOper", query = "SELECT r FROM RegC500 r WHERE r.indOper = :indOper"),
     @NamedQuery(name = "RegC500.findByIndEmit", query = "SELECT r FROM RegC500 r WHERE r.indEmit = :indEmit"),
@@ -71,7 +71,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC500.findByCodMunDest", query = "SELECT r FROM RegC500 r WHERE r.codMunDest = :codMunDest"),
     @NamedQuery(name = "RegC500.findByCodCta", query = "SELECT r FROM RegC500 r WHERE r.codCta = :codCta"),
     @NamedQuery(name = "RegC500.findByCodModDocRef", query = "SELECT r FROM RegC500 r WHERE r.codModDocRef = :codModDocRef"),
-    @NamedQuery(name = "RegC500.findByHashDocRef", query = "SELECT r FROM RegC500 r WHERE r.hashDocRef = :hashDocRef"),
+    @NamedQuery(name = "RegC500.findByHashfileDocRef", query = "SELECT r FROM RegC500 r WHERE r.hashfileDocRef = :hashfileDocRef"),
     @NamedQuery(name = "RegC500.findBySerDocRef", query = "SELECT r FROM RegC500 r WHERE r.serDocRef = :serDocRef"),
     @NamedQuery(name = "RegC500.findByNumDocRef", query = "SELECT r FROM RegC500 r WHERE r.numDocRef = :numDocRef"),
     @NamedQuery(name = "RegC500.findByMesDocRef", query = "SELECT r FROM RegC500 r WHERE r.mesDocRef = :mesDocRef"),
@@ -82,7 +82,7 @@ public class RegC500 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -105,11 +105,11 @@ public class RegC500 implements Serializable {
         this.id = id;
     }
 
-    public RegC500(Long id, RegC001 idPai, long linha, String hash) {
+    public RegC500(Long id, RegC001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -123,8 +123,8 @@ public class RegC500 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<RegC510> regC510;
 
@@ -194,43 +194,43 @@ public class RegC500 implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dtES;
     @Campos(posicao = 13, tipo = 'R')
-    @Column(name = "VL_DOC")
+    @Column(name = "VL_DOC", precision = 15, scale = 6)
     private BigDecimal vlDoc;
     @Campos(posicao = 14, tipo = 'R')
-    @Column(name = "VL_DESC")
+    @Column(name = "VL_DESC", precision = 15, scale = 6)
     private BigDecimal vlDesc;
     @Campos(posicao = 15, tipo = 'R')
-    @Column(name = "VL_FORN")
+    @Column(name = "VL_FORN", precision = 15, scale = 6)
     private BigDecimal vlForn;
     @Campos(posicao = 16, tipo = 'R')
-    @Column(name = "VL_SERV_NT")
+    @Column(name = "VL_SERV_NT", precision = 15, scale = 6)
     private BigDecimal vlServNt;
     @Campos(posicao = 17, tipo = 'R')
-    @Column(name = "VL_TERC")
+    @Column(name = "VL_TERC", precision = 15, scale = 6)
     private BigDecimal vlTerc;
     @Campos(posicao = 18, tipo = 'R')
-    @Column(name = "VL_DA")
+    @Column(name = "VL_DA", precision = 15, scale = 6)
     private BigDecimal vlDa;
     @Campos(posicao = 19, tipo = 'R')
-    @Column(name = "VL_BC_ICMS")
+    @Column(name = "VL_BC_ICMS", precision = 15, scale = 6)
     private BigDecimal vlBcIcms;
     @Campos(posicao = 20, tipo = 'R')
-    @Column(name = "VL_ICMS")
+    @Column(name = "VL_ICMS", precision = 15, scale = 6)
     private BigDecimal vlIcms;
     @Campos(posicao = 21, tipo = 'R')
-    @Column(name = "VL_BC_ICMS_ST")
+    @Column(name = "VL_BC_ICMS_ST", precision = 15, scale = 6)
     private BigDecimal vlBcIcmsSt;
     @Campos(posicao = 22, tipo = 'R')
-    @Column(name = "VL_ICMS_ST")
+    @Column(name = "VL_ICMS_ST", precision = 15, scale = 6)
     private BigDecimal vlIcmsSt;
     @Campos(posicao = 23, tipo = 'C')
     @Column(name = "COD_INF")
     private String codInf;
     @Campos(posicao = 24, tipo = 'R')
-    @Column(name = "VL_PIS")
+    @Column(name = "VL_PIS", precision = 15, scale = 6)
     private BigDecimal vlPis;
     @Campos(posicao = 25, tipo = 'R')
-    @Column(name = "VL_COFINS")
+    @Column(name = "VL_COFINS", precision = 15, scale = 6)
     private BigDecimal vlCofins;
     @Campos(posicao = 26, tipo = 'C')
     @Column(name = "TP_LIGACAO")
@@ -260,8 +260,8 @@ public class RegC500 implements Serializable {
     @Column(name = "COD_MOD_DOC_REF")
     private String codModDocRef;
     @Campos(posicao = 35, tipo = 'C')
-    @Column(name = "HASH_DOC_REF")
-    private String hashDocRef;
+    @Column(name = "HASHFILE_DOC_REF")
+    private String hashfileDocRef;
     @Campos(posicao = 36, tipo = 'C')
     @Column(name = "SER_DOC_REF")
     private String serDocRef;
@@ -272,10 +272,10 @@ public class RegC500 implements Serializable {
     @Column(name = "MES_DOC_REF")
     private String mesDocRef;
     @Campos(posicao = 39, tipo = 'R')
-    @Column(name = "ENER_INJET")
+    @Column(name = "ENER_INJET", precision = 15, scale = 6)
     private BigDecimal enerInjet;
     @Campos(posicao = 40, tipo = 'R')
-    @Column(name = "OUTRAS_DED")
+    @Column(name = "OUTRAS_DED", precision = 15, scale = 6)
     private BigDecimal outrasDed;
 
     public long getLinha() {
@@ -286,12 +286,12 @@ public class RegC500 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -567,11 +567,11 @@ public class RegC500 implements Serializable {
     }
 
     public String getHashDocRef() {
-        return hashDocRef;
+        return hashfileDocRef;
     }
 
-    public void setHashDocRef(String hashDocRef) {
-        this.hashDocRef = hashDocRef;
+    public void setHashDocRef(String hashfileDocRef) {
+        this.hashfileDocRef = hashfileDocRef;
     }
 
     public String getSerDocRef() {
@@ -616,9 +616,9 @@ public class RegC500 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

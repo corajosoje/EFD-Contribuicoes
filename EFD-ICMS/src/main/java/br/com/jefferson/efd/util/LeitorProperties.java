@@ -56,7 +56,7 @@ public class LeitorProperties {
         if (!arquivo.exists()) {
             arquivo.mkdir();
         }
-        arquivo = new File("config/mysql.properties");
+        arquivo = new File("config/bd.properties");
         if (!arquivo.exists()) {
             gerarPadraoJPA(arquivo);
         }

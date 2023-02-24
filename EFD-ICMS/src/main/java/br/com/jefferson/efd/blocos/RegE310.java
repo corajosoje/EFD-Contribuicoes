@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegE310.findById", query = "SELECT r FROM RegE310 r WHERE r.id = :id"),
     @NamedQuery(name = "RegE310.findByIdPai", query = "SELECT r FROM RegE310 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegE310.findByLinha", query = "SELECT r FROM RegE310 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegE310.findByHash", query = "SELECT r FROM RegE310 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegE310.findByHashfile", query = "SELECT r FROM RegE310 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegE310.findByReg", query = "SELECT r FROM RegE310 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegE310.findByIndMovDifal", query = "SELECT r FROM RegE310 r WHERE r.indMovDifal = :indMovDifal"),
     @NamedQuery(name = "RegE310.findByVlSldCredAntDifal", query = "SELECT r FROM RegE310 r WHERE r.vlSldCredAntDifal = :vlSldCredAntDifal"),
@@ -61,7 +61,7 @@ public class RegE310 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -84,11 +84,11 @@ public class RegE310 implements Serializable {
         this.id = id;
     }
 
-    public RegE310(Long id, RegE300 idPai, long linha, String hash) {
+    public RegE310(Long id, RegE300 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -102,8 +102,8 @@ public class RegE310 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<RegE311> regE311;
 
@@ -131,64 +131,64 @@ public class RegE310 implements Serializable {
     @Column(name = "IND_MOV_DIFAL")
     private String indMovDifal;
     @Campos(posicao = 3, tipo = 'R')
-    @Column(name = "VL_SLD_CRED_ANT_DIFAL")
+    @Column(name = "VL_SLD_CRED_ANT_DIFAL", precision = 15, scale = 6)
     private BigDecimal vlSldCredAntDifal;
     @Campos(posicao = 4, tipo = 'R')
-    @Column(name = "VL_TOT_DEBITOS_DIFAL")
+    @Column(name = "VL_TOT_DEBITOS_DIFAL", precision = 15, scale = 6)
     private BigDecimal vlTotDebitosDifal;
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "VL_OUT_DEB_DIFAL")
+    @Column(name = "VL_OUT_DEB_DIFAL", precision = 15, scale = 6)
     private BigDecimal vlOutDebDifal;
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "VL_TOT_CREDITOS_DIFAL")
+    @Column(name = "VL_TOT_CREDITOS_DIFAL", precision = 15, scale = 6)
     private BigDecimal vlTotCreditosDifal;
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "VL_OUT_CRED_DIFAL")
+    @Column(name = "VL_OUT_CRED_DIFAL", precision = 15, scale = 6)
     private BigDecimal vlOutCredDifal;
     @Campos(posicao = 8, tipo = 'R')
-    @Column(name = "VL_SLD_DEV_ANT_DIFAL")
+    @Column(name = "VL_SLD_DEV_ANT_DIFAL", precision = 15, scale = 6)
     private BigDecimal vlSldDevAntDifal;
     @Campos(posicao = 9, tipo = 'R')
-    @Column(name = "VL_DEDUCOES_DIFAL")
+    @Column(name = "VL_DEDUCOES_DIFAL", precision = 15, scale = 6)
     private BigDecimal vlDeducoesDifal;
     @Campos(posicao = 10, tipo = 'R')
-    @Column(name = "VL_RECOL_DIFAL")
+    @Column(name = "VL_RECOL_DIFAL", precision = 15, scale = 6)
     private BigDecimal vlRecolDifal;
     @Campos(posicao = 11, tipo = 'R')
-    @Column(name = "VL_SLD_CRED_TRANSPORTAR_DIFAL")
+    @Column(name = "VL_SLD_CRED_TRANSPORTAR_DIFAL", precision = 15, scale = 6)
     private BigDecimal vlSldCredTransportarDifal;
     @Campos(posicao = 12, tipo = 'R')
-    @Column(name = "DEB_ESP_DIFAL")
+    @Column(name = "DEB_ESP_DIFAL", precision = 15, scale = 6)
     private BigDecimal debEspDifal;
     @Campos(posicao = 13, tipo = 'R')
-    @Column(name = "VL_SLD_CRED_ANT_FCP")
+    @Column(name = "VL_SLD_CRED_ANT_FCP", precision = 15, scale = 6)
     private BigDecimal vlSldCredAntFcp;
     @Campos(posicao = 14, tipo = 'R')
-    @Column(name = "VL_TOT_DEB_FCP")
+    @Column(name = "VL_TOT_DEB_FCP", precision = 15, scale = 6)
     private BigDecimal vlTotDebFcp;
     @Campos(posicao = 15, tipo = 'R')
-    @Column(name = "VL_OUT_DEB_FCP")
+    @Column(name = "VL_OUT_DEB_FCP", precision = 15, scale = 6)
     private BigDecimal vlOutDebFcp;
     @Campos(posicao = 16, tipo = 'R')
-    @Column(name = "VL_TOT_CRED_FCP")
+    @Column(name = "VL_TOT_CRED_FCP", precision = 15, scale = 6)
     private BigDecimal vlTotCredFcp;
     @Campos(posicao = 17, tipo = 'R')
-    @Column(name = "VL_OUT_CRED_FCP")
+    @Column(name = "VL_OUT_CRED_FCP", precision = 15, scale = 6)
     private BigDecimal vlOutCredFcp;
     @Campos(posicao = 18, tipo = 'R')
-    @Column(name = "VL_SLD_DEV_ANT_FCP")
+    @Column(name = "VL_SLD_DEV_ANT_FCP", precision = 15, scale = 6)
     private BigDecimal vlSldDevAntFcp;
     @Campos(posicao = 19, tipo = 'R')
-    @Column(name = "VL_DEDUCOES_FCP")
+    @Column(name = "VL_DEDUCOES_FCP", precision = 15, scale = 6)
     private BigDecimal vlDeducoesFcp;
     @Campos(posicao = 20, tipo = 'R')
-    @Column(name = "VL_RECOL_FCP")
+    @Column(name = "VL_RECOL_FCP", precision = 15, scale = 6)
     private BigDecimal vlRecolFcp;
     @Campos(posicao = 21, tipo = 'R')
-    @Column(name = "VL_SLD_CRED_TRANSPORTAR_FCP")
+    @Column(name = "VL_SLD_CRED_TRANSPORTAR_FCP", precision = 15, scale = 6)
     private BigDecimal vlSldCredTransportarFcp;
     @Campos(posicao = 22, tipo = 'R')
-    @Column(name = "DEB_ESP_FCP")
+    @Column(name = "DEB_ESP_FCP", precision = 15, scale = 6)
     private BigDecimal debEspFcp;
 
     public long getLinha() {
@@ -199,12 +199,12 @@ public class RegE310 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -385,9 +385,9 @@ public class RegE310 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

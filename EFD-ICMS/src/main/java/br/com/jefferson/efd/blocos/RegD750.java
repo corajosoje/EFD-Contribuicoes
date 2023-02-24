@@ -13,7 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -35,7 +35,7 @@ public class RegD750 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -58,11 +58,11 @@ public class RegD750 implements Serializable {
         this.id = id;
     }
 
-    public RegD750(Long id, RegD001 idPai, long linha, String hash) {
+    public RegD750(Long id, RegD001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -76,8 +76,8 @@ public class RegD750 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<RegD760> regD760;
 
@@ -108,34 +108,34 @@ public class RegD750 implements Serializable {
     @Column(name = "IND_PREPAGO")
     private String indPrepago;
     @Campos(posicao = 7, tipo = 'R')
-    @Column(name = "VL_DOC")
+    @Column(name = "VL_DOC", precision = 15, scale = 6)
     private BigDecimal vlDoc;
     @Campos(posicao = 8, tipo = 'R')
-    @Column(name = "VL_SERV")
+    @Column(name = "VL_SERV", precision = 15, scale = 6)
     private BigDecimal vlServ;
     @Campos(posicao = 9, tipo = 'R')
-    @Column(name = "VL_SERV_NT")
+    @Column(name = "VL_SERV_NT", precision = 15, scale = 6)
     private BigDecimal vlServNt;
     @Campos(posicao = 10, tipo = 'R')
-    @Column(name = "VL_TERC")
+    @Column(name = "VL_TERC", precision = 15, scale = 6)
     private BigDecimal vlTerc;
     @Campos(posicao = 11, tipo = 'R')
-    @Column(name = "VL_DESC")
+    @Column(name = "VL_DESC", precision = 15, scale = 6)
     private BigDecimal vlDesc;
     @Campos(posicao = 12, tipo = 'R')
-    @Column(name = "VL_DA")
+    @Column(name = "VL_DA", precision = 15, scale = 6)
     private BigDecimal vlDa;
     @Campos(posicao = 13, tipo = 'R')
-    @Column(name = "VL_BC_ICMS")
+    @Column(name = "VL_BC_ICMS", precision = 15, scale = 6)
     private BigDecimal vlBcIcms;
     @Campos(posicao = 14, tipo = 'R')
-    @Column(name = "VL_ICMS")
+    @Column(name = "VL_ICMS", precision = 15, scale = 6)
     private BigDecimal vlIcms;
     @Campos(posicao = 15, tipo = 'R')
-    @Column(name = "VL_PIS")
+    @Column(name = "VL_PIS", precision = 15, scale = 6)
     private BigDecimal vlPis;
     @Campos(posicao = 16, tipo = 'R')
-    @Column(name = "VL_COFINS")
+    @Column(name = "VL_COFINS", precision = 15, scale = 6)
     private BigDecimal vlCofins;
 
     public long getLinha() {
@@ -146,12 +146,12 @@ public class RegD750 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -284,9 +284,9 @@ public class RegD750 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.hash);
-        return hash;
+        int hashfile = 5;
+        hashfile = 53 * hashfile + Objects.hashCode(this.hashfile);
+        return hashfile;
     }
 
     @Override

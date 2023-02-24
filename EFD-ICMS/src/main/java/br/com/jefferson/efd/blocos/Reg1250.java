@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1250.findById", query = "SELECT r FROM Reg1250 r WHERE r.id = :id"),
     @NamedQuery(name = "Reg1250.findByIdPai", query = "SELECT r FROM Reg1250 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "Reg1250.findByLinha", query = "SELECT r FROM Reg1250 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "Reg1250.findByHash", query = "SELECT r FROM Reg1250 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "Reg1250.findByHashfile", query = "SELECT r FROM Reg1250 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "Reg1250.findByReg", query = "SELECT r FROM Reg1250 r WHERE r.reg = :reg"),
     @NamedQuery(name = "Reg1250.findByVlCreditoIcmsOp", query = "SELECT r FROM Reg1250 r WHERE r.vlCreditoIcmsOp = :vlCreditoIcmsOp"),
     @NamedQuery(name = "Reg1250.findByVlIcmsStRest", query = "SELECT r FROM Reg1250 r WHERE r.vlIcmsStRest = :vlIcmsStRest"),
@@ -45,7 +45,7 @@ public class Reg1250 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -68,11 +68,11 @@ public class Reg1250 implements Serializable {
         this.id = id;
     }
 
-    public Reg1250(Long id, Reg1001 idPai, long linha, String hash) {
+    public Reg1250(Long id, Reg1001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -86,8 +86,8 @@ public class Reg1250 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<Reg1255> reg1255;
 
@@ -102,19 +102,19 @@ public class Reg1250 implements Serializable {
     @Column(name = "REG")
     private String reg;
     @Campos(posicao = 2, tipo = 'R')
-    @Column(name = "VL_CREDITO_ICMS_OP")
+    @Column(name = "VL_CREDITO_ICMS_OP", precision = 15, scale = 6)
     private BigDecimal vlCreditoIcmsOp;
     @Campos(posicao = 3, tipo = 'R')
-    @Column(name = "VL_ICMS_ST_REST")
+    @Column(name = "VL_ICMS_ST_REST", precision = 15, scale = 6)
     private BigDecimal vlIcmsStRest;
     @Campos(posicao = 4, tipo = 'R')
-    @Column(name = "VL_FCP_ST_REST")
+    @Column(name = "VL_FCP_ST_REST", precision = 15, scale = 6)
     private BigDecimal vlFcpStRest;
     @Campos(posicao = 5, tipo = 'R')
-    @Column(name = "VL_ICMS_ST_COMPL")
+    @Column(name = "VL_ICMS_ST_COMPL", precision = 15, scale = 6)
     private BigDecimal vlIcmsStCompl;
     @Campos(posicao = 6, tipo = 'R')
-    @Column(name = "VL_FCP_ST_COMPL")
+    @Column(name = "VL_FCP_ST_COMPL", precision = 15, scale = 6)
     private BigDecimal vlFcpStCompl;
 
     public long getLinha() {
@@ -125,12 +125,12 @@ public class Reg1250 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -183,9 +183,9 @@ public class Reg1250 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override

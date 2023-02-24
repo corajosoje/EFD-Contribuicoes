@@ -3,7 +3,7 @@ package br.com.jefferson.efd.blocos;
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC700.findById", query = "SELECT r FROM RegC700 r WHERE r.id = :id"),
     @NamedQuery(name = "RegC700.findByIdPai", query = "SELECT r FROM RegC700 r WHERE r.idPai = :idPai"),
     @NamedQuery(name = "RegC700.findByLinha", query = "SELECT r FROM RegC700 r WHERE r.linha = :linha"),
-    @NamedQuery(name = "RegC700.findByHash", query = "SELECT r FROM RegC700 r WHERE r.hash = :hash"),
+    @NamedQuery(name = "RegC700.findByHashfile", query = "SELECT r FROM RegC700 r WHERE r.hashfile = :hashfile"),
     @NamedQuery(name = "RegC700.findByReg", query = "SELECT r FROM RegC700 r WHERE r.reg = :reg"),
     @NamedQuery(name = "RegC700.findByCodMod", query = "SELECT r FROM RegC700 r WHERE r.codMod = :codMod"),
     @NamedQuery(name = "RegC700.findBySer", query = "SELECT r FROM RegC700 r WHERE r.ser = :ser"),
@@ -50,7 +50,7 @@ public class RegC700 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
@@ -73,11 +73,11 @@ public class RegC700 implements Serializable {
         this.id = id;
     }
 
-    public RegC700(Long id, RegC001 idPai, long linha, String hash) {
+    public RegC700(Long id, RegC001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
-        this.hash = hash;
+        this.hashfile = hashfile;
     }
 
     public Long getId() {
@@ -91,8 +91,8 @@ public class RegC700 implements Serializable {
     @Column(name = "LINHA")
     private long linha;
     @Basic(optional = false)
-    @Column(name = "HASH")
-    private String hash;
+    @Column(name = "HASHFILE")
+    private String hashfile;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "idPai")
     private List<RegC790> regC790;
 
@@ -141,12 +141,12 @@ public class RegC700 implements Serializable {
         this.linha = linha;
     }
 
-    public String getHash() {
-        return hash;
+    public String getHashfile() {
+        return hashfile;
     }
 
-    public void setHash(String hash) {
-        this.hash = hash;
+    public void setHash(String hashfile) {
+        this.hashfile = hashfile;
     }
 
     public String getReg() {
@@ -223,9 +223,9 @@ public class RegC700 implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+        int hashfile = 0;
+        hashfile += (id != null ? id.hashCode() : 0);
+        return hashfile;
     }
 
     @Override
