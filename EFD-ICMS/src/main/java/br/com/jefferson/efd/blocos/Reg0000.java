@@ -11,11 +11,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -53,10 +54,10 @@ public class Reg0000 implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_0000")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    private String id;
 
     @Basic(optional = false)
     @Column(name = "LINHA")
@@ -328,12 +329,13 @@ public class Reg0000 implements Serializable {
         this.hashfile = hashfile;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @PrePersist
+    public void setId() {
+        this.id = this.hashfile + "." + 1;
     }
 
     public long getLinha() {
