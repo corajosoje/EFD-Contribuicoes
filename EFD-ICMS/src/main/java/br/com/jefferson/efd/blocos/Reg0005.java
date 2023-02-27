@@ -2,8 +2,6 @@ package br.com.jefferson.efd.blocos;
 
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
-import javax.persistence.GeneratedValue;
-
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -14,12 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 88717
+ * @author Jefferson Oliveira
  */
 @Entity
 @Table(name = "reg_0005")
@@ -43,8 +42,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Reg0005 implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
-    
     @Basic(optional = false)
     @Column(name = "ID")
     private String id;
@@ -119,8 +118,9 @@ public class Reg0005 implements Serializable {
         return id;
     }
 
+    @PrePersist
     public void setId() {
-        this.id = id;
+        this.id = this.hashfile + "." + this.linha;
     }
 
     public Reg0001 getIdPai() {

@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 88717
+ * @author Jefferson Oliveira
  */
 @Entity
 @Table(name = "reg_0015")
@@ -35,8 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Reg0015 implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
 
+    @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private String id;
@@ -85,6 +85,10 @@ public class Reg0015 implements Serializable {
 
     public Reg0001 getIdPai() {
         return idPai;
+    }
+
+    public void setIdPai(Object idPai) {
+        this.idPai = (Reg0001) idPai;
     }
 
     @PrePersist

@@ -47,8 +47,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Reg0100 implements Serializable {
 
     private static final long serialVersionUID = 1L;
+  
     @Id
-
     @Basic(optional = false)
     @Column(name = "ID")
     private String id;
