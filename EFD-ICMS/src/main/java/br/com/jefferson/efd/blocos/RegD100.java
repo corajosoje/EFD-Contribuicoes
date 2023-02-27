@@ -2,8 +2,6 @@ package br.com.jefferson.efd.blocos;
 
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.PrePersist;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 88717
+ * @author Jefferson Oliveira
  */
 @Entity
 @Table(name = "reg_d100")
@@ -68,10 +67,10 @@ public class RegD100 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
+
     @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    private String id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
     private RegD001 idPai;
@@ -87,23 +86,24 @@ public class RegD100 implements Serializable {
     public RegD100() {
     }
 
-    public RegD100(Long id) {
+    public RegD100(String id) {
         this.id = id;
     }
 
-    public RegD100(Long id, RegD001 idPai, long linha, String hashfile) {
+    public RegD100(String id, RegD001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
         this.hashfile = hashfile;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @PrePersist
+    public void setId() {
+        this.id = this.hashfile + "." + this.linha;
     }
     @Basic(optional = false)
     @Column(name = "LINHA")

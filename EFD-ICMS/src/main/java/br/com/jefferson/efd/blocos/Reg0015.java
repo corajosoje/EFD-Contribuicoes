@@ -2,8 +2,6 @@ package br.com.jefferson.efd.blocos;
 
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -14,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -37,10 +36,10 @@ public class Reg0015 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
+
     @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
@@ -69,31 +68,28 @@ public class Reg0015 implements Serializable {
     public Reg0015() {
     }
 
-    public Reg0015(Long id) {
+    public Reg0015(String id) {
         this.id = id;
     }
 
-    public Reg0015(Long id, Reg0001 idPai, long linha, String hashfile) {
+    public Reg0015(String id, Reg0001 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
         this.hashfile = hashfile;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Reg0001 getIdPai() {
         return idPai;
     }
 
-    public void setIdPai(Object idPai) {
-        this.idPai = (Reg0001) idPai;
+    @PrePersist
+    public void setId() {
+        this.id = this.hashfile + "." + this.linha;
     }
 
     public long getLinha() {

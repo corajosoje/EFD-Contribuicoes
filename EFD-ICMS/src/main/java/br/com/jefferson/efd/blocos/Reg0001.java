@@ -9,18 +9,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType; import javax.persistence.SequenceGenerator;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-
-
 
 /**
  *
@@ -41,10 +38,9 @@ public class Reg0001 implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_post")    @SequenceGenerator(name = "seq_post", allocationSize = 1)
     @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    private String id;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
@@ -61,24 +57,26 @@ public class Reg0001 implements Serializable {
     public Reg0001() {
     }
 
-    public Reg0001(Long id) {
+    public Reg0001(String id) {
         this.id = id;
     }
 
-    public Reg0001(Long id, Reg0000 idPai, long linha, String hashfile) {
+    public Reg0001(String id, Reg0000 idPai, long linha, String hashfile) {
         this.id = id;
         this.idPai = idPai;
         this.linha = linha;
         this.hashfile = hashfile;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @PrePersist
+    public void setId() {
+        this.id = this.hashfile + "." + this.linha;
     }
+
     @Basic(optional = false)
     @Column(name = "LINHA")
     private long linha;
