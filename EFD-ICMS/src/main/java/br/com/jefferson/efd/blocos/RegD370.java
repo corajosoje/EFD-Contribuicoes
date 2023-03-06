@@ -1,6 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
 import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.interfaces.BlocoSped;
 import br.com.jefferson.efd.annotations.Registros;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -37,14 +38,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegD370.findByVlBcIcms", query = "SELECT r FROM RegD370 r WHERE r.vlBcIcms = :vlBcIcms"),
     @NamedQuery(name = "RegD370.findByVlIcms", query = "SELECT r FROM RegD370 r WHERE r.vlIcms = :vlIcms")})
 @Registros(nivel = 5)
-public class RegD370 implements Serializable {
+public class RegD370 implements Serializable, BlocoSped {
 
     private static final long serialVersionUID = 1L;
-    @Id
 
-    @Basic(optional = false)
-    @Column(name = "ID")
+    @Id
+    @Column(name = "ID", unique = true, nullable = false)
     private String id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
     private RegD365 idPai;
@@ -53,7 +54,7 @@ public class RegD370 implements Serializable {
         return idPai;
     }
 
-    public void setIdPai(Object idPai) {
+    public void setIdPai(BlocoSped idPai) {
         this.idPai = (RegD365) idPai;
     }
 

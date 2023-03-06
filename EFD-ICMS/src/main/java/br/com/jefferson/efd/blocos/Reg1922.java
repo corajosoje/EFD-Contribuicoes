@@ -1,6 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
 import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.interfaces.BlocoSped;
 import br.com.jefferson.efd.annotations.Registros;
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -36,14 +37,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1922.findByProc", query = "SELECT r FROM Reg1922 r WHERE r.proc = :proc"),
     @NamedQuery(name = "Reg1922.findByTxtCompl", query = "SELECT r FROM Reg1922 r WHERE r.txtCompl = :txtCompl")})
 @Registros(nivel = 6)
-public class Reg1922 implements Serializable {
+public class Reg1922 implements Serializable, BlocoSped {
 
     private static final long serialVersionUID = 1L;
-    @Id
 
-    @Basic(optional = false)
-    @Column(name = "ID")
+    @Id
+    @Column(name = "ID", unique = true, nullable = false)
     private String id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
     private Reg1921 idPai;
@@ -52,7 +53,7 @@ public class Reg1922 implements Serializable {
         return idPai;
     }
 
-    public void setIdPai(Object idPai) {
+    public void setIdPai(BlocoSped idPai) {
         this.idPai = (Reg1921) idPai;
     }
     @Basic(optional = false)

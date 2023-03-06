@@ -1,6 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
 import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.interfaces.BlocoSped;
 import br.com.jefferson.efd.annotations.Registros;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -77,14 +78,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "RegC500.findByEnerInjet", query = "SELECT r FROM RegC500 r WHERE r.enerInjet = :enerInjet"),
     @NamedQuery(name = "RegC500.findByOutrasDed", query = "SELECT r FROM RegC500 r WHERE r.outrasDed = :outrasDed")})
 @Registros(nivel = 2)
-public class RegC500 implements Serializable {
+public class RegC500 implements Serializable, BlocoSped {
 
     private static final long serialVersionUID = 1L;
-    @Id
 
-    @Basic(optional = false)
-    @Column(name = "ID")
+    @Id
+    @Column(name = "ID", unique = true, nullable = false)
     private String id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PAI", nullable = false)
     private RegC001 idPai;
@@ -93,7 +94,7 @@ public class RegC500 implements Serializable {
         return idPai;
     }
 
-    public void setIdPai(Object idPai) {
+    public void setIdPai(BlocoSped idPai) {
         this.idPai = (RegC001) idPai;
     }
 
@@ -261,7 +262,7 @@ public class RegC500 implements Serializable {
     private String codModDocRef;
     @Campos(posicao = 35, tipo = 'C')
     @Column(name = "HASHFILE_DOC_REF")
-    private String hashfileDocRef;
+    private String hashDocRef;
     @Campos(posicao = 36, tipo = 'C')
     @Column(name = "SER_DOC_REF")
     private String serDocRef;
@@ -567,11 +568,11 @@ public class RegC500 implements Serializable {
     }
 
     public String getHashDocRef() {
-        return hashfileDocRef;
+        return hashDocRef;
     }
 
     public void setHashDocRef(String hashfileDocRef) {
-        this.hashfileDocRef = hashfileDocRef;
+        this.hashDocRef = hashfileDocRef;
     }
 
     public String getSerDocRef() {

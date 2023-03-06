@@ -2,6 +2,7 @@ package br.com.jefferson.efd.blocos;
 
 import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
+import br.com.jefferson.efd.interfaces.BlocoSped;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -10,8 +11,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -49,14 +48,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg0000.findByIndPerfil", query = "SELECT r FROM Reg0000 r WHERE r.indPerfil = :indPerfil"),
     @NamedQuery(name = "Reg0000.findByIndAtiv", query = "SELECT r FROM Reg0000 r WHERE r.indAtiv = :indAtiv")})
 @Registros(nivel = 0)
-public class Reg0000 implements Serializable {
+public class Reg0000 implements Serializable, BlocoSped {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Basic(optional = false)
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true, nullable = false)
     private String id;
 
     @Basic(optional = false)
@@ -499,6 +496,15 @@ public class Reg0000 implements Serializable {
     @Override
     public String toString() {
         return "br.com.jefferson.efd.blocos.Reg0000[ hashfile=" + hashfile + " ]";
+    }
+
+    @Override
+    public BlocoSped getIdPai() {
+        return null;
+    }
+
+    @Override
+    public void setIdPai(BlocoSped idPai) {
     }
 
 }

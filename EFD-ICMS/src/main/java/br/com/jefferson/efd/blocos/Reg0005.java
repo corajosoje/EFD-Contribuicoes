@@ -1,6 +1,7 @@
 package br.com.jefferson.efd.blocos;
 
 import br.com.jefferson.efd.annotations.Campos;
+import br.com.jefferson.efd.interfaces.BlocoSped;
 import br.com.jefferson.efd.annotations.Registros;
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -39,13 +40,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg0005.findByFax", query = "SELECT r FROM Reg0005 r WHERE r.fax = :fax"),
     @NamedQuery(name = "Reg0005.findByEmail", query = "SELECT r FROM Reg0005 r WHERE r.email = :email")})
 @Registros(nivel = 2)
-public class Reg0005 implements Serializable {
+public class Reg0005 implements Serializable, BlocoSped {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Basic(optional = false)
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true, nullable = false)
     private String id;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -127,7 +127,7 @@ public class Reg0005 implements Serializable {
         return idPai;
     }
 
-    public void setIdPai(Object idPai) {
+    public void setIdPai(BlocoSped idPai) {
         this.idPai = (Reg0001) idPai;
     }
 
