@@ -74,6 +74,10 @@
             <AppenderRef ref="Console"/>
             <AppenderRef ref="rollingFile"/>
         </Logger>
+        <Logger name="br.com.jefferson.efd.processamento.ToSqlScript" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
         <Logger name="br.com.jefferson.efd.util.Util" level="${LevelPadrao}" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="rollingFile"/>

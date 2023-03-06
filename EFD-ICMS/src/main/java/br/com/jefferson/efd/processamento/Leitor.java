@@ -4,6 +4,7 @@ import br.com.jefferson.efd.annotations.Campos;
 import br.com.jefferson.efd.annotations.Registros;
 import br.com.jefferson.efd.blocos.Reg0000;
 import br.com.jefferson.efd.exception.LeitorExeption;
+import br.com.jefferson.efd.interfaces.BlocoSped;
 import br.com.jefferson.efd.util.ObjectFactory;
 import br.com.jefferson.efd.util.Util;
 import java.io.BufferedReader;
@@ -20,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 import javax.persistence.EntityManager;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -274,7 +274,7 @@ public class Leitor {
                             preencherObjeto(campos, field, newInstance);
                         }
                     }
-                    method = forName.getMethod("setIdPai", Object.class);
+                    method = forName.getMethod("setIdPai", BlocoSped.class);
 
                     switch (nivel) {
                         case 1:

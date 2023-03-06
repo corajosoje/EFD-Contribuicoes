@@ -1,6 +1,8 @@
 package br.com.jefferson.efd;//Main
 
+import br.com.jefferson.efd.exception.ScriptExeption;
 import br.com.jefferson.efd.processamento.Leitor;
+import br.com.jefferson.efd.processamento.ToSqlScript;
 import br.com.jefferson.efd.util.ObjectFactory;
 import java.io.File;
 import java.io.IOException;
@@ -34,36 +36,53 @@ public class Main {
                         try {
                             log.info("Processando arquivo: " + arquivo.getName());
                             leitor = new Leitor(arquivo);
-
-                            if (!leitor.verificarDuplicidade()) {
-                                log.info("Arquivo nao duplicado, quantidade de linhas: " + leitor.getLinhas());
-                                processarArquivo(leitor);
-                                log.info("Gravando Arquivo ...");
-                                leitor.gravar();
-                                log.info("Gravacao finalizada!");
-                            } else {
-                                log.info("Arquivo Duplicado");
-                            }
-
-                            leitor.close();
-                            //fim do processamento
-                            log.info("Movendo arquivo: " + arquivo.getName());
-                            Path path = Paths.get(arquivo.getAbsolutePath());
-
-                            try {
-                                File pasta = new File(path.getParent().toString() + separator + "importado");
-
-                                if (!pasta.exists()) {
-                                    pasta.mkdir();
+                            if (args[1].equals("1")) {
+                                // Processamento para banco de dados
+                                if (!leitor.verificarDuplicidade()) {
+                                    log.info("Arquivo nao duplicado, quantidade de linhas: " + leitor.getLinhas());
+                                    processarArquivo(leitor);
+                                    log.info("Gravando Arquivo ...");
+                                    leitor.gravar();
+                                    log.info("Gravacao finalizada!");
+                                } else {
+                                    log.info("Arquivo Duplicado");
                                 }
-                                Files.move(path,
-                                        Paths.get(path.getParent().toString() + separator + "importado" + separator + path.getFileName()),
-                                        java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-                                log.info("Processamento do arquivo finalizado");
-                            } catch (Exception ex) {
-                                log.error("Não foi possivel mover arquivo: " + arquivo.getName() + " " + ex.getMessage(), ex);
+
+                                leitor.close();
+                                //fim do processamento
+                                log.info("Movendo arquivo: " + arquivo.getName());
+                                Path path = Paths.get(arquivo.getAbsolutePath());
+
+                                try {
+                                    File pasta = new File(path.getParent().toString() + separator + "importado");
+
+                                    if (!pasta.exists()) {
+                                        pasta.mkdir();
+                                    }
+                                    Files.move(path,
+                                            Paths.get(path.getParent().toString() + separator + "importado" + separator + path.getFileName()),
+                                            java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                                    log.info("Processamento do arquivo finalizado");
+
+                                } catch (Exception ex) {
+                                    log.error("Não foi possivel mover arquivo: " + arquivo.getName() + " " + ex.getMessage(), ex);
+                                }
+                            } else if (args[1].equals("2")) {
+                                log.info("Abrindo arquivo, quantidade de linhas: " + leitor.getLinhas());
+                                processarArquivo(leitor);
+                                //log.info("Iniciando gerador de Scripts");
+                                ToSqlScript gerar = new ToSqlScript(leitor.getSped());
+                                File destino = null;
+                                if (args[2] == null) {
+                                    destino = new File(arquivo.getPath().replace(".txt", ".sql"));
+                                } else {
+                                    destino = new File(args[2] + separator + arquivo.getName().replace(".txt", ".sql"));
+                                }
+                                gerar.gerarScript(destino);
+                                log.info("Script sql gerado com sucesso");
+
                             }
-                        } catch (IOException ex) {
+                        } catch (IOException | ScriptExeption ex) {
                             log.error("Não foi possivel processar arquivo: " + arquivo.getName(), ex);
                         }
                     }
