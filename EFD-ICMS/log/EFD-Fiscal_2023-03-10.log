@@ -1,0 +1,325 @@
+10:32:09.670 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - java.lang.NullPointerException
+10:59:59.535 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+br.com.jefferson.efd.exception.ScriptExeption: Writer não conseguiu ser iniciado
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:108) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:03:32.367 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:03:32.386 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20220701-20220731-0-C477CE66893402324EF102BEA415D8328C0C0E17-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:155) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) ~[classes/:?]
+	... 1 more
+11:04:44.481 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:04:44.482 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20220801-20220831-0-C2EDBC1AD6A8717F74987963F41C076079158FE7-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:155) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) ~[classes/:?]
+	... 1 more
+11:05:49.280 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:05:49.280 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20220901-20220930-1-ACD4FCB97D84AB04FB224A978D565BA3001EF3F2-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:155) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) ~[classes/:?]
+	... 1 more
+11:06:50.633 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:06:50.633 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20221001-20221031-0-49E677794DD01C3A362507520496B72E79EBB3B1-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:155) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) ~[classes/:?]
+	... 1 more
+11:08:13.817 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:08:13.818 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20221101-20221130-0-05C0B304B24AA2997FADBE0BA71823CB84F1D9C7-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:155) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) ~[classes/:?]
+	... 1 more
+11:09:45.303 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:09:45.304 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20221201-20221231-0-EBEB868D2D22BBB56E25368FFE25A8AE220A345F-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:155) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:190) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:170) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:172) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:117) ~[classes/:?]
+	... 1 more
+11:12:01.359 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:12:01.374 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20220701-20220731-0-C477CE66893402324EF102BEA415D8328C0C0E17-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:166) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) ~[classes/:?]
+	... 1 more
+11:13:02.652 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:13:02.653 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20220801-20220831-0-C2EDBC1AD6A8717F74987963F41C076079158FE7-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:166) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) ~[classes/:?]
+	... 1 more
+11:13:57.375 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:13:57.375 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20220901-20220930-1-ACD4FCB97D84AB04FB224A978D565BA3001EF3F2-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:166) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) ~[classes/:?]
+	... 1 more
+11:14:52.651 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:14:52.651 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20221001-20221031-0-49E677794DD01C3A362507520496B72E79EBB3B1-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:166) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) ~[classes/:?]
+	... 1 more
+11:16:06.291 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:16:06.291 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20221101-20221130-0-05C0B304B24AA2997FADBE0BA71823CB84F1D9C7-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:166) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) ~[classes/:?]
+	... 1 more
+11:17:14.422 [main] ERROR br.com.jefferson.efd.processamento.ToSqlScript - Exception generica lançada 
+java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) [classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+11:17:14.422 [main] ERROR br.com.jefferson.efd.Main - Não foi possivel processar arquivo: 06347409006872-0623186220601-20221201-20221231-0-EBEB868D2D22BBB56E25368FFE25A8AE220A345F-SPED-EFD.txt
+br.com.jefferson.efd.exception.ScriptExeption: java.io.IOException: Stream closed
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:166) ~[classes/:?]
+	at br.com.jefferson.efd.Main.main(Main.java:81) [classes/:?]
+Caused by: java.io.IOException: Stream closed
+	at java.io.BufferedWriter.ensureOpen(BufferedWriter.java:107) ~[?:?]
+	at java.io.BufferedWriter.write(BufferedWriter.java:224) ~[?:?]
+	at java.io.Writer.write(Writer.java:249) ~[?:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gravarLinhaTxt(ToSqlScript.java:53) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:201) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:181) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.writeObjectsScript(ToSqlScript.java:183) ~[classes/:?]
+	at br.com.jefferson.efd.processamento.ToSqlScript.gerarScript(ToSqlScript.java:128) ~[classes/:?]
+	... 1 more

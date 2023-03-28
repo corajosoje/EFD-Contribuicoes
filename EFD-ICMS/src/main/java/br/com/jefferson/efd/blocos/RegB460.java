@@ -82,8 +82,8 @@ public class RegB460 implements Serializable, BlocoSped {
     private String indProc;
 
     @Campos(posicao = 6, tipo = 'C')
-    @Column(name = "\"PROC\"")
-    private String proc;
+    @Column(name = "PROCE")
+    private String proce;
 
     @Campos(posicao = 7, tipo = 'C')
     @Column(name = "COD_INF_OBS")
@@ -180,12 +180,12 @@ public class RegB460 implements Serializable, BlocoSped {
         this.indProc = indProc;
     }
 
-    public String getProc() {
-        return proc;
+    public String getProce() {
+        return proce;
     }
 
-    public void setProc(String proc) {
-        this.proc = proc;
+    public void setProce(String proce) {
+        this.proce = proce;
     }
 
     public String getCodInfObs() {

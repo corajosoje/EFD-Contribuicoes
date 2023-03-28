@@ -116,8 +116,8 @@ public class RegE116 implements Serializable, BlocoSped {
     @Column(name = "IND_PROC")
     private String indProc;
     @Campos(posicao = 8, tipo = 'C')
-    @Column(name = "\"PROC\"")
-    private String proc;
+    @Column(name = "PROCE")
+    private String proce;
     @Campos(posicao = 9, tipo = 'C')
     @Column(name = "TXT_COMPL")
     private String txtCompl;
@@ -197,12 +197,12 @@ public class RegE116 implements Serializable, BlocoSped {
         this.indProc = indProc;
     }
 
-    public String getProc() {
-        return proc;
+    public String getProce() {
+        return proce;
     }
 
-    public void setProc(String proc) {
-        this.proc = proc;
+    public void setProce(String proce) {
+        this.proce = proce;
     }
 
     public String getTxtCompl() {

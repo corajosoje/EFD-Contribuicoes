@@ -20,6 +20,7 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 import org.apache.logging.log4j.LogManager;
 import java.io.File;
+import java.io.FileNotFoundException;
 import javax.persistence.JoinColumn;
 
 /**
@@ -29,57 +30,112 @@ import javax.persistence.JoinColumn;
 public class ToSqlScript {
 
     private final Reg0000 sped;
-    private int linha = 0;
-    private final static int LIMITE = 30;
-    private final static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private int linha = 0, fileNumber = 1, totalLinha = 0;
+    private File originalFile;
+    private final static int LIMITEGO = 30, LIMITE_LINHA = 1000000;
+    private final static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
     private static final org.apache.logging.log4j.Logger log = LogManager.getLogger(ToSqlScript.class.getName());
+    private BufferedWriter bw = null;
 
     public ToSqlScript(Reg0000 sped) {
         this.sped = sped;
     }
 
-    private void gravarLinhaTxt(String texto, BufferedWriter br) throws IOException {
-
-        if (linha == LIMITE) {
-            br.write("GO");
-            br.newLine();
-            linha = 0;
+    private void gravarLinhaTxt(String texto) throws ScriptExeption, IOException {
+        if (this.bw == null) {
+            throw new ScriptExeption("Writer está nulo");
         }
-        br.write(texto);
-        br.newLine();
+        log.debug("Gerando linha no arquivo");
+        if (linha >= LIMITEGO) {
+            this.bw.write("GO");
+            this.bw.newLine();
+            linha = 0;
+            totalLinha++;
+        }
+        this.bw.write(texto);
+        this.bw.newLine();
         linha++;
+        totalLinha++;
+        if (totalLinha >= LIMITE_LINHA) {
+            inicializarWriter();
+            totalLinha = 0;
+        }
+        log.debug("Finalizada a geração de linha");
+
+    }
+
+    private void inicializarWriter() throws FileNotFoundException, IOException, ScriptExeption {
+        if (this.originalFile == null) {
+            throw new ScriptExeption("Arquivo de out está nulo");
+        }
+        if (fileNumber == 1) {
+            log.info("Inicializando primeiro arquivo");
+            OutputStream os = new FileOutputStream(this.originalFile); // nome do arquivo que será escrito
+            Writer wr = new OutputStreamWriter(os); // Criação de um escritor
+            this.bw = new BufferedWriter(wr); // adiciono a um escritor de buffer
+            //Primeiro registro
+            log.debug("Inserindo primeiro Script");
+
+            this.bw.write("USE EFDICMS;");
+            this.bw.newLine();
+            this.bw.write("GO");
+            this.bw.newLine();
+            fileNumber++;
+            if (this.bw == null) {
+                throw new ScriptExeption("Writer não conseguiu ser iniciado com o InicializarWriter()");
+            }
+        } else {
+            log.info("Encerrando arquivo " + (fileNumber - 1));
+            this.bw.flush();
+            this.bw.close();
+
+            log.info("Inicializando arquivo " + fileNumber);
+
+            File otherfile = new File(this.originalFile.getAbsolutePath().replace(".sql", fileNumber + ".sql"));
+            this.bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(otherfile)));
+            //Primeiro registro
+            log.debug("Inserindo primeiro Script");
+
+            this.bw.write("USE EFDICMS;");
+            this.bw.newLine();
+            this.bw.write("GO");
+            this.bw.newLine();
+            fileNumber++;
+            if (bw == null) {
+                throw new ScriptExeption("Writer não conseguiu ser iniciado com o InicializarWriter()");
+            }
+        }
+
     }
 
     public void gerarScript(File outputFile) throws ScriptExeption, IOException {
+
+        this.originalFile = outputFile;
         log.info("Iniciando geracao de script sql");
-        BufferedWriter br = null;
+
         try {
             //Fluxo de saida de um arquivo
-            OutputStream os = new FileOutputStream(outputFile); // nome do arquivo que será escrito
-            Writer wr = new OutputStreamWriter(os); // criação de um escritor
-            br = new BufferedWriter(wr); // adiciono a um escritor de buffer
+            inicializarWriter();
+            if (this.bw == null) {
+                throw new ScriptExeption("Writer não conseguiu ser iniciado");
+            }
 
-            //Primeiro registro
-            log.debug("Inserindo primeiro Script");
-            gravarLinhaTxt("USE EFDICMS;", br);
-            gravarLinhaTxt("GO", br);
             //gravarLinhaTxt("BEGIN TRANSACTION;",br);
-
-            for (Object nivel1 : writeObjectsScript(br, sped)) {
+            for (Object nivel1 : writeObjectsScript(sped)) {
                 log.debug("Inserindo script nivel 1 " + nivel1.getClass().getName());
-                for (Object nivel2 : writeObjectsScript(br, nivel1)) {
+                for (Object nivel2 : writeObjectsScript(nivel1)) {
                     log.debug("Inserindo script nivel 2 " + nivel2.getClass().getName());
-                    for (Object nivel3 : writeObjectsScript(br, nivel2)) {
+                    for (Object nivel3 : writeObjectsScript(nivel2)) {
                         log.debug("Inserindo script nivel 3 " + nivel3.getClass().getName());
-                        for (Object nivel4 : writeObjectsScript(br, nivel3)) {
+                        for (Object nivel4 : writeObjectsScript(nivel3)) {
                             log.debug("Inserindo script nivel 14 " + nivel4.getClass().getName());
-                            for (Object nivel5 : writeObjectsScript(br, nivel4)) {
+                            for (Object nivel5 : writeObjectsScript(nivel4)) {
                                 log.debug("Inserindo script nivel 5 " + nivel5.getClass().getName());
-                                for (Object nivel6 : writeObjectsScript(br, nivel5)) {
+                                for (Object nivel6 : writeObjectsScript(nivel5)) {
                                     log.debug("Inserindo script nivel 6 " + nivel6.getClass().getName());
-                                    for (Object nivel7 : writeObjectsScript(br, nivel6)) {
+                                    for (Object nivel7 : writeObjectsScript(nivel6)) {
                                         log.debug("Inserindo script nivel 7 " + nivel7.getClass().getName());
-                                        gravarLinhaTxt(sqlScript(nivel7), br);
+                                        gravarLinhaTxt(sqlScript(nivel7));
                                     }
                                 }
                             }
@@ -89,6 +145,7 @@ public class ToSqlScript {
                 }
             }
 
+            log.debug("Finalizado os laços");
             /*
             br.write("IF @@ERROR = 0");
             br.newLine();
@@ -102,24 +159,36 @@ public class ToSqlScript {
             br.newLine();
              */
         } catch (NoSuchMethodException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            log.error("Exception lançada ", ex);
+            throw new ScriptExeption(ex);
+        } catch (Exception ex) {
+            log.error("Exception generica lançada ", ex);
             throw new ScriptExeption(ex);
         } finally {
-            br.close();
+            log.debug("Fechando writer");
+            this.bw.flush();
+            this.bw.close();
         }
 
     }
 
-    private List<Object> writeObjectsScript(BufferedWriter br, Object nivel) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, IOException, InvocationTargetException {
+    private List<Object> writeObjectsScript(Object nivel) throws NoSuchMethodException, IllegalAccessException, IllegalArgumentException, IOException, InvocationTargetException, ScriptExeption {
 
         if (nivel instanceof java.util.ArrayList) {
             log.debug("Registro é um lista");
 
             for (Object nivel2 : (ArrayList) nivel) {
-                for (Object nivel3 : writeObjectsScript(br, nivel2)) {
-                    for (Object nivel4 : writeObjectsScript(br, nivel3)) {
-                        for (Object nivel5 : writeObjectsScript(br, nivel4)) {
-                            for (Object nivel6 : writeObjectsScript(br, nivel5)) {
-                                for (Object nivel7 : writeObjectsScript(br, nivel6)) {
+                log.debug("Nivel 2 do writeObjectsScript");
+                for (Object nivel3 : writeObjectsScript(nivel2)) {
+                    log.debug("Nivel 3 do writeObjectsScript");
+                    for (Object nivel4 : writeObjectsScript(nivel3)) {
+                        log.debug("Nivel 4 do writeObjectsScript");
+                        for (Object nivel5 : writeObjectsScript(nivel4)) {
+                            log.debug("Nivel 5 do writeObjectsScript");
+                            for (Object nivel6 : writeObjectsScript(nivel5)) {
+                                log.debug("Nivel 6 do writeObjectsScript");
+                                for (Object nivel7 : writeObjectsScript(nivel6)) {
+                                    log.debug("Nivel 7 do writeObjectsScript");
 
                                 }
                             }
@@ -130,7 +199,7 @@ public class ToSqlScript {
             }
         } else {
             log.debug("Criando registro " + nivel.getClass().getName());
-            gravarLinhaTxt(sqlScript(nivel), br);
+            gravarLinhaTxt(sqlScript(nivel));
         }
         List<Object> returnAllSubs = returnAllSubs(nivel);
         log.debug("Total de Subclasses " + returnAllSubs.size());
@@ -171,6 +240,7 @@ public class ToSqlScript {
                 }
             }
         }
+        log.debug("Total de subclasses: " + subs.size());
         return subs;
     }
 
@@ -253,6 +323,7 @@ public class ToSqlScript {
         script.append(valores);
 
         script.append(");");
+        log.debug("Linha gerada " + script.toString().replace(",)", ")"));
         return script.toString().replace(",)", ")");
     }
 

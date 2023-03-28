@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1922.findByNumDa", query = "SELECT r FROM Reg1922 r WHERE r.numDa = :numDa"),
     @NamedQuery(name = "Reg1922.findByNumProc", query = "SELECT r FROM Reg1922 r WHERE r.numProc = :numProc"),
     @NamedQuery(name = "Reg1922.findByIndProc", query = "SELECT r FROM Reg1922 r WHERE r.indProc = :indProc"),
-    @NamedQuery(name = "Reg1922.findByProc", query = "SELECT r FROM Reg1922 r WHERE r.proc = :proc"),
+    @NamedQuery(name = "Reg1922.findByProce", query = "SELECT r FROM Reg1922 r WHERE r.proce = :proce"),
     @NamedQuery(name = "Reg1922.findByTxtCompl", query = "SELECT r FROM Reg1922 r WHERE r.txtCompl = :txtCompl")})
 @Registros(nivel = 6)
 public class Reg1922 implements Serializable, BlocoSped {
@@ -75,8 +75,8 @@ public class Reg1922 implements Serializable, BlocoSped {
     @Column(name = "IND_PROC")
     private String indProc;
     @Campos(posicao = 5, tipo = 'C')
-    @Column(name = "\"PROC\"")
-    private String proc;
+    @Column(name = "PROCE")
+    private String proce;
     @Campos(posicao = 6, tipo = 'C')
     @Column(name = "TXT_COMPL")
     private String txtCompl;
@@ -152,12 +152,12 @@ public class Reg1922 implements Serializable, BlocoSped {
         this.indProc = indProc;
     }
 
-    public String getProc() {
-        return proc;
+    public String getProce() {
+        return proce;
     }
 
-    public void setProc(String proc) {
-        this.proc = proc;
+    public void setProc(String proce) {
+        this.proce = proce;
     }
 
     public String getTxtCompl() {

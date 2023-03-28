@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg1926.findByCodRec", query = "SELECT r FROM Reg1926 r WHERE r.codRec = :codRec"),
     @NamedQuery(name = "Reg1926.findByNumProc", query = "SELECT r FROM Reg1926 r WHERE r.numProc = :numProc"),
     @NamedQuery(name = "Reg1926.findByIndProc", query = "SELECT r FROM Reg1926 r WHERE r.indProc = :indProc"),
-    @NamedQuery(name = "Reg1926.findByProc", query = "SELECT r FROM Reg1926 r WHERE r.proc = :proc"),
+    @NamedQuery(name = "Reg1926.findByProce", query = "SELECT r FROM Reg1926 r WHERE r.proce = :proce"),
     @NamedQuery(name = "Reg1926.findByTxtCompl", query = "SELECT r FROM Reg1926 r WHERE r.txtCompl = :txtCompl"),
     @NamedQuery(name = "Reg1926.findByMesRef", query = "SELECT r FROM Reg1926 r WHERE r.mesRef = :mesRef")})
 @Registros(nivel = 5)
@@ -93,8 +93,8 @@ public class Reg1926 implements Serializable, BlocoSped {
     @Column(name = "IND_PROC")
     private String indProc;
     @Campos(posicao = 8, tipo = 'C')
-    @Column(name = "\"PROC\"")
-    private String proc;
+    @Column(name = "PROCE")
+    private String proce;
     @Campos(posicao = 9, tipo = 'C')
     @Column(name = "TXT_COMPL")
     private String txtCompl;
@@ -197,12 +197,12 @@ public class Reg1926 implements Serializable, BlocoSped {
         this.indProc = indProc;
     }
 
-    public String getProc() {
-        return proc;
+    public String getProce() {
+        return proce;
     }
 
-    public void setProc(String proc) {
-        this.proc = proc;
+    public void setProce(String proce) {
+        this.proce = proce;
     }
 
     public String getTxtCompl() {
