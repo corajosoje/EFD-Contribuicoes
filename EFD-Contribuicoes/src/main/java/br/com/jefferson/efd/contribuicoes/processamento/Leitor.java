@@ -27,7 +27,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * @version 1.0
+ * @version 1.1
  * @author Jefferson Oliveira
  */
 public class Leitor {
@@ -46,7 +46,7 @@ public class Leitor {
     private final String hashCode;
 
     private final Reg0000 sped = new Reg0000();
-    private Object nivel1 = null, nivel2 = null, nivel3 = null, nivel4 = null, nivel5 = null, nivel6 = null;
+    private Object nivel1 = null, nivel2 = null, nivel3 = null, nivel4 = null, nivel5 = null, nivel6 = null, nivel7 = null;
 
     public Leitor(File file) throws FileNotFoundException, IOException {
         //File file = new File(pathToFile);
@@ -324,10 +324,18 @@ public class Leitor {
                         case 6:
                             log.trace("Inserindo no registro pai " + nivel5.getClass().getSimpleName());
 
-                            method.invoke(newInstance, nivel4);
+                            method.invoke(newInstance, nivel5);
                             preencherSuperior(nivel5, newInstance);
 
                             nivel6 = newInstance;
+                            break;
+                        case 7:
+                            log.trace("Inserindo no registro pai " + nivel6.getClass().getSimpleName());
+
+                            method.invoke(newInstance, nivel6);
+                            preencherSuperior(nivel6, newInstance);
+
+                            nivel7 = newInstance;
                             break;
                     }
                 }
