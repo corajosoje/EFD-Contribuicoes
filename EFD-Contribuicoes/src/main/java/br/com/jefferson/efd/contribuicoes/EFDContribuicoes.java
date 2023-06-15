@@ -132,6 +132,7 @@ public class EFDContribuicoes {
                     gerar.gerarScript(new File(fileDestino + separator + arquivoSPED.getName().replace(".txt", ".sql")));
                     log.info("Script sql gerado com sucesso");
 
+                    leitor.close();
                     try {
                         log.info("Movendo arquivo: " + arquivoSPED.getName());
                         moverArquivoProcessado(arquivoSPED);
@@ -175,10 +176,13 @@ public class EFDContribuicoes {
                     processarArquivo(leitor);
                     //log.info("Iniciando gerador de Scripts");
                     ToSqlScript gerar = new ToSqlScript(leitor.getSped());
-
+                    File sqlFolder = new File(folder + separator + "sql");
+                    if (!sqlFolder.exists()) {
+                        sqlFolder.mkdir();
+                    }
                     gerar.gerarScript(new File(folder + separator + "sql" + separator + arquivoSPED.getName().replace(".txt", ".sql")));
                     log.info("Script sql gerado com sucesso");
-
+                    leitor.close();
                     try {
                         log.info("Movendo arquivo: " + arquivoSPED.getName());
                         moverArquivoProcessado(arquivoSPED);
@@ -231,6 +235,7 @@ public class EFDContribuicoes {
 
                     try {
                         log.info("Movendo arquivo: " + arquivo.getName());
+
                         moverArquivoProcessado(arquivo);
                     } catch (Exception ex) {
                         log.warn("Não foi possivel mover arquivo: " + arquivo.getName() + " " + ex.getMessage(), ex);
