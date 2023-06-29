@@ -26,9 +26,7 @@
         <RollingFile name="rollingFile" filePattern="${logPath}/${rollingFileName}_%d{yyyy-MM-dd}.log">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
             
-            <!-- Matches only ERROR level -->
-            <LevelRangeFilter minLevel="ERROR" maxLevel="FATAL" onMatch="ACCEPT" onMismatch="DENY" />
-      
+                  
             <Policies>
                 <OnStartupTriggeringPolicy />
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
@@ -49,38 +47,43 @@
         
         <Logger name="br.com.jefferson.efd.contribuicoes.EFDContribuicoes" level="${LevelPadrao}" additivity="false">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.contribuicoes.processamento.DaoRegistro" level="${LevelPadrao}" additivity="false">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.contribuicoes.util.JPAConfiguration" level="${LevelPadrao}" additivity="false">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.contribuicoes.util.LeitorProperties" level="${LevelPadrao}" additivity="false">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.contribuicoes.Main" level="${LevelPadrao}" additivity="false">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.contribuicoes.ObjectFactory" level="${LevelPadrao}" additivity="false">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.contribuicoes.processamento.Leitor" level="${LevelPadrao}" additivity="false">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.contribuicoes.processamento.ToSqlScript" level="${LevelPadrao}" additivity="false">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="rollingFile"/>
         </Logger>
         <Logger name="br.com.jefferson.efd.contribuicoes.util.Util" level="${LevelPadrao}" additivity="false">
             <AppenderRef ref="Console"/>
+        </Logger>
+      
+        <!-- Exceptions -->
+        <Logger name="br.com.jefferson.efd.contribuicoes.exceptions.BlocoException" level="WARN" additivity="false">
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.exceptions.DaoException" level="WARN" additivity="false">
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.exceptions.LeitorException" level="WARN" additivity="false">
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.exceptions.ScriptException" level="WARN" additivity="false">
             <AppenderRef ref="rollingFile"/>
         </Logger>
       
