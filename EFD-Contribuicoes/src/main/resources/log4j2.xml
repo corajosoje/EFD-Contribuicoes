@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="logPath">log</Property>
+        <Property name="rollingFileName">EFD-CONTRIBUICOES</Property>
+        <Property name="AppenderPadrao">Console</Property>
+        <Property name="LevelPadrao">INFO</Property>
+        <Property name="LevelJPA">ERROR</Property>
+        <!--   
+       OFF (most specific, no logging)
+       FATAL (most specific, little data)
+       ERROR
+       WARN
+       INFO
+       DEBUG
+       TRACE (least specific, a lot of data)
+       ALL (least specific, all data)
+        -->
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <RollingFile name="rollingFile" filePattern="${logPath}/${rollingFileName}_%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="19500KB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="LoggerTest" level="ALL" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="ERROR" additivity="true">
+            <AppenderRef ref="Console"/>
+        </Root>
+        <Logger name="br.com.jefferson.efd.contribuicoes.EFDContribuicoes" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.processamento.DaoRegistro" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.util.JPAConfiguration" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.util.LeitorProperties" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.Main" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.ObjectFactory" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.processamento.Leitor" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.processamento.ToSqlScript" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.util.Util" level="${LevelPadrao}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <!--  Exceptions  -->
+        <Logger name="br.com.jefferson.efd.contribuicoes.exceptions.BlocoException" level="WARN" additivity="false">
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.exceptions.DaoException" level="WARN" additivity="false">
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.exceptions.LeitorException" level="WARN" additivity="false">
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <Logger name="br.com.jefferson.efd.contribuicoes.exceptions.ScriptException" level="WARN" additivity="false">
+            <AppenderRef ref="rollingFile"/>
+        </Logger>
+        <!--       JPA         -->
+        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="${LevelJPA}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="org.hibernate.SQL" level="${LevelJPA}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="org.hibernate.jpa.internal.util.LogHelper" level="${LevelJPA}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="EL Warning" level="${LevelJPA}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="EL Info" level="${LevelJPA}" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <!-- 
+       log.debug("");
+       log.trace("");
+        -->
+    </Loggers>
+</Configuration>

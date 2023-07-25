@@ -22,9 +22,10 @@ import org.apache.logging.log4j.LogManager;
  */
 public class EFDContribuicoes {
 
+    /*
     static {
         System.setProperty("log4j2.configurationFile", "./config/log4j2.xml");
-    }
+    }*/
     private static final org.apache.logging.log4j.Logger log = LogManager.getLogger(EFDContribuicoes.class.getName());
     private static Leitor leitor;
     private static String separator = File.separator;
