@@ -266,7 +266,7 @@ public class Reg0900 implements Serializable, BlocoSped {
         return this.recTotalNrbPeriodo;
     }
 
-    public void setRecTotalNrbPeríodo(BigDecimal recTotalNrbPeriodo) {
+    public void setRecTotalNrbPeriodo(BigDecimal recTotalNrbPeriodo) {
         this.recTotalNrbPeriodo = recTotalNrbPeriodo;
     }
 
