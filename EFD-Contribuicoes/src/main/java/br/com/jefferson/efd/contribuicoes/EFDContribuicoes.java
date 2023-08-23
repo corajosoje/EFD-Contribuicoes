@@ -4,11 +4,12 @@
  */
 package br.com.jefferson.efd.contribuicoes;//.EFDContribuicoes
 
-import br.com.jefferson.efd.contribuicoes.exceptions.ScriptException;
-import br.com.jefferson.efd.contribuicoes.processamento.Leitor;
-import br.com.jefferson.efd.contribuicoes.processamento.ToSqlScript;
-import br.com.jefferson.efd.contribuicoes.util.JPAConfiguration;
-import br.com.jefferson.efd.contribuicoes.util.ObjectFactory;
+import br.com.jefferson.efd.contribuicoes.blocos.Reg0000;
+import br.com.jefferson.sped.exceptions.ScriptException;
+import br.com.jefferson.sped.processamento.Leitor;
+import br.com.jefferson.sped.processamento.ToSqlScript;
+import br.com.jefferson.sped.util.JPAConfiguration;
+import br.com.jefferson.sped.util.ObjectFactory;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -123,12 +124,12 @@ public class EFDContribuicoes {
             for (File arquivoSPED : arquivos) {
                 try {
                     log.info("Processando arquivo: " + arquivoSPED.getName());
-                    leitor = new Leitor(arquivoSPED);
+                    leitor = new Leitor(arquivoSPED, new Reg0000(), "br.com.jefferson.efd.contribuicoes.blocos");
 
                     log.info("Abrindo arquivo, quantidade de linhas: " + leitor.getLinhas());
                     processarArquivo(leitor);
                     //log.info("Iniciando gerador de Scripts");
-                    ToSqlScript gerar = new ToSqlScript(leitor.getSped());
+                    ToSqlScript gerar = new ToSqlScript(leitor.getSped(), ObjectFactory.getJPAPropertie("prop.sped.contrib.prefix.db"));
 
                     gerar.gerarScript(new File(fileDestino + separator + arquivoSPED.getName().replace(".txt", ".sql")));
                     log.info("Script sql gerado com sucesso");
@@ -171,12 +172,12 @@ public class EFDContribuicoes {
             for (File arquivoSPED : arquivos) {
                 try {
                     log.info("Processando arquivo: " + arquivoSPED.getName());
-                    leitor = new Leitor(arquivoSPED);
+                    leitor = new Leitor(arquivoSPED, new Reg0000(), "br.com.jefferson.efd.contribuicoes.blocos");
 
                     log.info("Abrindo arquivo, quantidade de linhas: " + leitor.getLinhas());
                     processarArquivo(leitor);
                     //log.info("Iniciando gerador de Scripts");
-                    ToSqlScript gerar = new ToSqlScript(leitor.getSped());
+                    ToSqlScript gerar = new ToSqlScript(leitor.getSped(), "epc");
                     File sqlFolder = new File(folder + separator + "sql");
                     if (!sqlFolder.exists()) {
                         sqlFolder.mkdir();
@@ -218,7 +219,7 @@ public class EFDContribuicoes {
             for (File arquivo : arquivos) {
                 try {
                     log.info("Processando arquivo: " + arquivo.getName());
-                    leitor = new Leitor(arquivo);
+                    leitor = new Leitor(arquivo, new Reg0000(), "br.com.jefferson.efd.contribuicoes.blocos");
 
                     // Processamento para banco de dados
                     if (!leitor.verificarDuplicidade()) {

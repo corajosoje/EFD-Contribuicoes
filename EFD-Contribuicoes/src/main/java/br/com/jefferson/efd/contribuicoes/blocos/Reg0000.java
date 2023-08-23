@@ -1,9 +1,10 @@
 package br.com.jefferson.efd.contribuicoes.blocos;
 
-import br.com.jefferson.efd.contribuicoes.annotations.Campos;
-import br.com.jefferson.efd.contribuicoes.annotations.Registros;
-import br.com.jefferson.efd.contribuicoes.exceptions.BlocoException;
-import br.com.jefferson.efd.contribuicoes.interfaces.BlocoSped;
+import br.com.jefferson.sped.annotations.Campos;
+import br.com.jefferson.sped.annotations.Registros;
+import br.com.jefferson.sped.exceptions.BlocoException;
+import br.com.jefferson.sped.interfaces.BlocoSped;
+import br.com.jefferson.sped.interfaces.Registro0;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -48,7 +49,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reg0000.findByIndNatPj", query = "SELECT r FROM Reg0000 r WHERE r.indNatPj = :indNatPj"),
     @NamedQuery(name = "Reg0000.findByIndAtiv", query = "SELECT r FROM Reg0000 r WHERE r.indAtiv = :indAtiv")})
 @Registros(nivel = 0)
-public class Reg0000 implements Serializable, BlocoSped {
+public class Reg0000 implements Serializable, BlocoSped,Registro0 {
 
     private static final long serialVersionUID = 1L;
     @Id

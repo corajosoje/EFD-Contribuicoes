@@ -1,6 +1,6 @@
 package teste.br.com.jefferson.efd.contribuicoes;
 
-import br.com.jefferson.efd.contribuicoes.util.ObjectFactory;
+import br.com.jefferson.sped.util.ObjectFactory;
 
 /**
  *
@@ -9,9 +9,11 @@ import br.com.jefferson.efd.contribuicoes.util.ObjectFactory;
 public class Basicos {
 
     public static void main(String[] args) {
-        String prop = ObjectFactory.getConfigPropertie("prop.contrib.script.limiteGO");
+        String prop = ObjectFactory.getConfigPropertie("prop.sped.script.limiteGO");
         System.out.println(prop);
         int parseInt = Integer.parseInt(prop);
         System.out.println(parseInt);
+        
+        System.out.println(System.getProperty("user.home"));
     }
 }

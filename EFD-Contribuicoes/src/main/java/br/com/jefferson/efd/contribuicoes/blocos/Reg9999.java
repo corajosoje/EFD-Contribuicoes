@@ -1,9 +1,9 @@
 package br.com.jefferson.efd.contribuicoes.blocos;
 
-import br.com.jefferson.efd.contribuicoes.annotations.Campos;
-import br.com.jefferson.efd.contribuicoes.annotations.Registros;
-import br.com.jefferson.efd.contribuicoes.exceptions.BlocoException;
-import br.com.jefferson.efd.contribuicoes.interfaces.BlocoSped;
+import br.com.jefferson.sped.annotations.Campos;
+import br.com.jefferson.sped.annotations.Registros;
+import br.com.jefferson.sped.exceptions.BlocoException;
+import br.com.jefferson.sped.interfaces.BlocoSped;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Basic;

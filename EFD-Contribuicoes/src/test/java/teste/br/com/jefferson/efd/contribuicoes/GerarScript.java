@@ -1,8 +1,8 @@
 package teste.br.com.jefferson.efd.contribuicoes;
 
 import br.com.jefferson.efd.contribuicoes.blocos.Reg0000;
-import br.com.jefferson.efd.contribuicoes.processamento.Leitor;
-import br.com.jefferson.efd.contribuicoes.processamento.ToSqlScript;
+import br.com.jefferson.sped.processamento.Leitor;
+import br.com.jefferson.sped.processamento.ToSqlScript;
 import java.io.File;
 import java.util.Date;
 import org.apache.logging.log4j.LogManager;
@@ -40,7 +40,7 @@ public class GerarScript {
         String file = "PISCOFINS_20221201_20221231_59546515000134_Original_20230213152511_493209F923D8090481756D61B7687EA97A5B7333";
         String prefixo = ".txt";
         File arquivo = new File(dir + file + prefixo);
-        Leitor leitor = new Leitor(arquivo);
+        Leitor leitor = new Leitor(arquivo,new Reg0000(),"br.com.jefferson.efd.contribuicoes.blocos");
         log.info("iniciando o Leitor de arquivo Sped");
         log.info("Preenchendo objeto Sped");
         for (int i = 0; i < leitor.getLinhas(); i++) {
@@ -54,7 +54,7 @@ public class GerarScript {
 
         }
         log.info("Iniciando gerador de Scripts");
-        ToSqlScript gerar = new ToSqlScript(leitor.getSped());
+        ToSqlScript gerar = new ToSqlScript(leitor.getSped(),"epc");
         gerar.gerarScript(new File(arquivo.getPath().replace(".txt", ".sql")));
 
         //ToSqlScript gerar = new ToSqlScript(reg);
